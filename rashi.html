@@ -4,6 +4,10 @@
         <title>My Life Timeline</title>
         <meta charset="utf-8">
         <style>
+            body{
+                margin:0;
+                background-color:antiquewhite;
+            }
             #active {
                 color: slateblue;
             }
@@ -13,20 +17,74 @@
             }
             h1 {
                 text-align: center;
-                color:slateblue
+                color:slateblue;
+                border-bottom: 1px solid slateblue;
+                padding-bottom: 20px;
+                padding-top: 20px;
+                margin: 0;
             }   
+            dl {
+                border-right:1px solid slateblue;
+                width:100%;
+                margin:0;
+                padding-left: 20px;
+                padding-top: 20px;
+            }
+            #grid {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                justify-content: center;
+                margin: 0;
+            }
+            #rashi {
+                place-self: center;
+                align-content: center;
+                width:60%;
+                margin: 20px;
+            }
         </style>
-        
     </head>
     <body>
-        <ul>
-            <li><a href="biography.html">Biography</a></li>
-            <li><a href="photos.html">Photos</a></li>
-            <li><a href="rashi.html" id="active"> Rashi</a></li>
-        </ul>
-        <h1>Rashi</h1> <p>
-        <img src="Rashi.jpeg" width="100%">
-        </p><p style="margin-top:45px;">Rashi was adopted to our family on January 15th, 2021, from a dog shelter. She has a very chilling and careful personality.
-        </p>
+        <h1>Rashi</h1> 
+        <div id = grid>
+            <dl>
+                <li><a href="biography.html">Biography</a></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="rashi.html" id="active"> Rashi</a></li>
+            </dl> 
+            <span id = rashi> 
+                <div>
+                    <p>
+                    <img src="Rashi1.jpeg" width="100%">
+                    </p><p style="margin-top:15px;">Rashi was adopted to our family on January 15th, 2021, from a dog shelter. She has a very chilling and careful personality.
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <img src="Rashi3.jpeg" width="100%" style="margin-top: 25px;">
+                    </p><p style="margin-top:15px;">On the first day she came to our place, it took awhile for her to come out of the cage.
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <img src="Rashi2.jpeg" width="100%" style="margin-top: 25px;">
+                    </p><p style="margin-top:15px;">First thing we did for her was to shave off her untrimmed hair. Her thigh looked like a chicken thigh ever since then.
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <img src="Rashi.jpeg" width="100%" style="margin-top: 25px">
+                    </p><p style="margin-top:15px;">Later she got used to living in a new place. We even brought her to a beach.
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <img src="Rashi4.jpeg" width="100%" style="margin-top: 25px">
+                    </p><p style="margin-top:15px;">Hope she is enjoying her life at a new place
+                    </p>
+                </div>
+                <iframe width="100%" src="https://www.youtube.com/embed/HasI05RN6tE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </span>
+        </div>
     </body>
 </html>
