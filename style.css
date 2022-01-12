@@ -22,17 +22,18 @@ h1 {
     margin: 0;
 }   
 dl {
+    position:fixed;
     border-right:1px solid slateblue;
     width:100%;
     margin:0;
-    padding-left: 20px;
+    padding-left: 30px;
     padding-top: 40px;
     font-size: 20pt;
     list-style-type:none;
 }
 #grid {
     display: grid;
-    grid-template-columns: 1fr 3.5fr;
+    grid-template-columns: 3.5fr;
     justify-content: center;
     margin: 0;
 }
