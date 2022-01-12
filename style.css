@@ -23,7 +23,7 @@ dl {
     width:100%;
     margin:0;
     padding-left: 20px;
-    padding-top: 20px;
+    padding-top: 30px;
     font-size: 20pt;
 }
 #grid {
@@ -41,4 +41,8 @@ dl {
 .photo {
     width: 100%;
     margin-top: 25px;
+}
+
+li {
+    padding-bottom: 20px;
 }
