@@ -3,7 +3,10 @@ body{
     background-color:antiquewhite;
 }
 #active {
-    color: slateblue;
+    color: white;
+    text-decoration: underline white;
+    background-color: slateblue;
+    width: max-content;
 }
 a {
     color:black;
