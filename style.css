@@ -25,6 +25,7 @@ dl {
     padding-left: 20px;
     padding-top: 30px;
     font-size: 20pt;
+    list-style-type:none;
 }
 #grid {
     display: grid;
