@@ -1,11 +1,11 @@
 body{
     margin:0;
-    background-color:antiquewhite;
+    background-image: url(images/repeated-square-dark.png);
 }
 #active {
     color: white;
     text-decoration: underline white;
-    background-color: slateblue;
+    background-color: rgb(64,64,64);
     width: max-content;
 }
 a {
@@ -13,27 +13,31 @@ a {
     text-decoration: none;
 }
 h1 {
-    font-family: 'Berkshire Swash';    text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-    text-align: center;
+    font-family: 'Optima';    text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    text-align: left;
     font-size: 45px;
-    color:rgb(90, 76, 184);
     padding-bottom: 20px;
+    padding-left: 30px;
     padding-top: 20px;
     margin: 0;
-    background-color: navajowhite;
+    color: aliceblue;
+    background-color: transparent;
 }   
 h1 img {
     background-color: transparent;
 }
 dl {
     position:fixed;
-    border-right:1px solid slateblue;
     width:100%;
     margin:0;
     padding-left: 30px;
     padding-top: 40px;
-    font-size: 20pt;
+    font-size: 15pt;
+    text-shadow: 0.5px 0.5px 2px;
     list-style-type:none;
+}
+dl li a{
+    color:white;
 }
 #grid {
     display: grid;
@@ -69,11 +73,12 @@ li {
     padding-top: 20px;
 }
 #column {
-    column-width: 300px;
+    column-width: 330px;
     padding-top: 10px;
     place-self: center;
     align-content: center;
     width: 65%;
+    background-color: rgba(30,30,30,0.5);
 }
 
 #column figure {
@@ -90,10 +95,12 @@ li {
 #column figure figcaption{
     border-top: 10px rgba(0,0,0,0.2);
     padding: 10px;
-    background-color:oldlace;
+    background-color:rgba(80,80,80,0.5);
+    color:white;
+    font-size:13px;
 }
 
 #column figure figcaption span {
     font-weight: bold;
-    font-size: large;
+    font-size: 15px;
 }
