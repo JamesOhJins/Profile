@@ -41,13 +41,46 @@ dl {
     place-self: center;
     align-content: center;
     width:60%;
-    margin: 20px;
 }
 .photo {
     width: 100%;
-    margin-top: 25px;
 }
 
 li {
     padding-bottom: 40px;
+}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+    padding-top: 20px;
+}
+#column {
+    column-width: 300px;
+    padding-top: 10px;
+}
+
+#column figure {
+    display: inline-block;
+    border: 10px rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 5px  rgba(0,0,0,0.2);
+}
+
+#column figure img{
+    width: 100%;
+}
+
+#column figure figcaption{
+    border-top: 10px rgba(0,0,0,0.2);
+    padding: 10px;
+    background-color:oldlace;
 }
