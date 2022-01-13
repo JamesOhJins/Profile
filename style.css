@@ -69,11 +69,11 @@ li {
     padding-top: 20px;
 }
 #column {
-    column-width: 280px;
+    column-width: 300px;
     padding-top: 10px;
     place-self: center;
     align-content: center;
-    width:70%;
+    width: 65%;
 }
 
 #column figure {
