@@ -72,11 +72,12 @@ li {
 #column figure {
     display: inline-block;
     border: 10px rgba(0,0,0,0.2);
-    box-shadow: 5px 5px 5px  rgba(0,0,0,0.2);
+    box-shadow: 3px 3px 5px  rgba(0,0,0,0.2);
 }
 
 #column figure img{
     width: 100%;
+    border-radius: 6px;
 }
 
 #column figure figcaption{
