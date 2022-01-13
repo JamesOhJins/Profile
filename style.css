@@ -17,10 +17,10 @@ h1 {
     text-align: center;
     font-size: 45px;
     color:rgb(90, 76, 184);
-    border-bottom: 1px solid slateblue;
     padding-bottom: 20px;
     padding-top: 20px;
     margin: 0;
+    background-color: navajowhite;
 }   
 h1 img {
     background-color: transparent;
@@ -71,6 +71,9 @@ li {
 #column {
     column-width: 280px;
     padding-top: 10px;
+    place-self: center;
+    align-content: center;
+    width:70%;
 }
 
 #column figure {
@@ -88,4 +91,9 @@ li {
     border-top: 10px rgba(0,0,0,0.2);
     padding: 10px;
     background-color:oldlace;
+}
+
+#column figure figcaption span {
+    font-weight: bold;
+    font-size: large;
 }
