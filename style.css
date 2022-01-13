@@ -22,6 +22,9 @@ h1 {
     padding-top: 20px;
     margin: 0;
 }   
+h1 img {
+    background-color: transparent;
+}
 dl {
     position:fixed;
     border-right:1px solid slateblue;
