@@ -1,6 +1,6 @@
 body{
     margin:0;
-    background-color: rgb(10,10,10);
+    background-image: url(images/repeated-square-dark.png);
 }
 #active {
     color: white;
