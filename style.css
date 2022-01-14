@@ -1,6 +1,6 @@
 body{
     margin:0;
-    background-image: url(images/repeated-square-dark.png);
+    background-color: rgb(10,10,10);
 }
 #active {
     color: white;
@@ -73,7 +73,7 @@ li {
     padding-top: 20px;
 }
 #column {
-    column-width: 330px;
+    column-width: 300px;
     padding-top: 10px;
     place-self: center;
     align-content: center;
