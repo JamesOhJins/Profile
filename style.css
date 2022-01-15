@@ -23,15 +23,21 @@ h1 {
     color: aliceblue;
     background-color: transparent;
 }   
+#logo {
+    max-height: 50px;
+    width:auto;
+}
 h1 img {
     background-color: transparent;
 }
 dl {
+    display: flex;
+    flex-wrap: wrap;
     position:fixed;
-    width:15%;
-    margin:0;
-    padding-left: 30px;
-    padding-top: 10%;
+    margin-left: auto;
+    top: 5px;
+    right: 5px;
+    text-align: right;
     font-size: 15pt;
     text-shadow: 0.5px 0.5px 2px;
     list-style-type:none;
@@ -40,6 +46,11 @@ dl {
 dl li a{
     color:white;
     opacity: 0.5;
+    padding: 14px 16px;
+}
+dl li #selected{
+    color: white;
+    opacity: 1;
 }
 dl li a:hover {
     transition: 0.3s;
@@ -175,4 +186,18 @@ li {
 }
 .gallery__item img:hover {
     transform: scale(1.03);
+}
+
+#profile {
+    width: 100%;
+    padding-top: 20%;
+}
+#profile img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    justify-content: center;
+    border: 10px solid #ccc;
+    border-color: rgb(30,30,30);
+    margin-left: 40%;
 }

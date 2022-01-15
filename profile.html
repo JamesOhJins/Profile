@@ -5,19 +5,38 @@
         <meta charset="utf-8">
         <link href="style.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Optima' rel='stylesheet'>
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script defer src="./script.js"></script>
     </head>
     <body>
         <h1>My Profile
-            <img src="images/logo/profile.jpeg" width = "40px" style = "filter: invert();">
-        </h1> 
-        <div id = grid>
+            <img id = "logo" src="images/logo/profile.jpeg" style = "filter: invert();">
             <dl>
-                <li><a href="photos.html">Photos</a></li>
+                <li><a id = "selected" href="profile.html"> Profile</a></li>
+                <li><a href="photos.html"> Photos</a></li>
                 <li><a href="rashi.html"> Rashi</a></li>
                 <li><a href="games.html"> Games</a></li>
                 <li><a href="algorithm.html"> Algorithm</a></li>
             </dl> 
+        </h1> 
+        <div id = profile>
+            <img src = "images/profile/profile.png" alt = "profileImg">
+        </div>
+        <div id = grid>
+            <div id = column>
+            </div>
+        </div>
+        <div class="footer-dark">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col item social"><a href="https://www.facebook.com/jinsang.j.oh/"><i class="icon ion-social-facebook"></i></a><a href="mailto:fldhs2012@gmail.com"><i class="material-icons" style = "vertical-align: -20%">email</i></a><a href="https://www.linkedin.com/in/james-oh-b41a82215/"><i class="fa fa-linkedin-square"></i></a></div>
+                    </div>
+                    <p class="copyright">Jinsang Oh © 2022</p>
+                </div>
+            </footer>
         </div>
     </body>
 </html>
