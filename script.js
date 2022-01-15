@@ -14,6 +14,7 @@ let imgModal = (src) => {
     const modal = document.createElement("figure");
     modal.setAttribute("class", "modal");
     //add the modal to the main section or the parent element
+    
     document.querySelector(".main").append(modal);
     //adding image to modal
     const newImage = document.createElement("img");

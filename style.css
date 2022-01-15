@@ -28,7 +28,7 @@ h1 img {
 }
 dl {
     position:fixed;
-    width:100%;
+    width:20%;
     margin:0;
     padding-left: 30px;
     padding-top: 10%;
@@ -132,6 +132,7 @@ li {
     height: 80%;
     object-fit: cover;
 }
+
 
 .closeBtn {
     color: rgba(255, 255, 255, 0.87);
