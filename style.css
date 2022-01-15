@@ -1,6 +1,6 @@
 body{
     margin:0;
-    background-image: url(images/repeated-square-dark.png);
+    background-color: rgb(15,15,15);
 }
 #active {
     color: white;
@@ -119,6 +119,8 @@ li {
     margin-top: -1px;
     animation: zoom 0.3s ease-in-out;
     margin-left: 0;
+    
+    
 }
 
 @keyframes zoom {
@@ -130,7 +132,11 @@ li {
     }
 }
 .modal img {
-    height: 80%;
+    height:fit-content;
+    width: auto;
+    max-height: 100%;
+    max-width: 100%;
+    overflow-x: scroll;
     object-fit: cover;
 }
 
@@ -139,8 +145,8 @@ li {
     color: rgba(255, 255, 255, 0.87);
     font-size: 25px;
     position: absolute;
-    top: 50px;
-    right: 80px;
+    top: 30px;
+    right: 30px;
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
