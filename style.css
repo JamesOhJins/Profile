@@ -36,8 +36,13 @@ dl {
     text-shadow: 0.5px 0.5px 2px;
     list-style-type:none;
 }
+
 dl li a{
     color:white;
+}
+dl li a:hover {
+    transition: 0.5s;
+    color : rgb(65, 57, 167);
 }
 #grid {
     display: grid;
@@ -134,8 +139,8 @@ li {
 .modal img {
     height:fit-content;
     width: auto;
-    max-height: 100%;
-    max-width: 100%;
+    max-height: 90%;
+    max-width: 90%;
     overflow-x: scroll;
     object-fit: cover;
 }
