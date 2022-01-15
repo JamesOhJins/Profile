@@ -28,7 +28,7 @@ h1 img {
 }
 dl {
     position:fixed;
-    width:20%;
+    width:15%;
     margin:0;
     padding-left: 30px;
     padding-top: 10%;
@@ -118,6 +118,7 @@ li {
     background-color: rgba(0, 0, 0, 0.733);
     margin-top: -1px;
     animation: zoom 0.3s ease-in-out;
+    margin-left: 0;
 }
 
 @keyframes zoom {
