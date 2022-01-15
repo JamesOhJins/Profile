@@ -39,13 +39,11 @@ dl {
 
 dl li a{
     color:white;
+    opacity: 0.5;
 }
 dl li a:hover {
-    transition: 0.5s;
-    color : rgb(89, 79, 223);
-    -webkit-transform:rotate(180deg);
-    transform:rotate(180deg);
-    background-color: bisque;
+    transition: 0.3s;
+    opacity: 1;
 }
 #grid {
     display: grid;
@@ -139,6 +137,7 @@ li {
         transform: scale(1);
     }
 }
+
 .modal img {
     height:fit-content;
     width: auto;
