@@ -100,19 +100,19 @@ function seizeBlock(){
     if(pointAdded == 20){
         score +=10;
         scoreDisplay.innerText = score;
-        showTetrisText("Double x2");
+        showTetrisText("Double");
     }
     else if(pointAdded == 30) {
         score +=30;
         scoreDisplay.innerText = score;
 
-        showTetrisText("Triple x4");
+        showTetrisText("Triple");
     }
     else if(pointAdded == 40) {
         //print Tetris
         score += 70;
         scoreDisplay.innerText = score;
-        showTetrisText("Tetris x8");
+        showTetrisText("Tetris");
     }
     oldScore = score;
 }
@@ -187,7 +187,18 @@ function showGameoverText() {
     gameText.style.display = "flex"
 }
 function showTetrisText(msg) {
-        tetrisDisplay.innerText = msg;
+    if (msg == "Double"){
+        tetrisDisplay.style.color = "yellow";
+        tetrisDisplay.innerText = "Double x2";
+    }
+    else if (msg == "Triple"){
+        tetrisDisplay.style.color = "orange";
+        tetrisDisplay.innerText = "Triple x4"; 
+    }
+    else {
+        tetrisDisplay.style.color = "red";
+        tetrisDisplay.innerText = "Tetris x8!!";
+    }
         tetrisDisplay.style.display = "flex";
         setTimeout(function(){
         tetrisDisplay.style.display = "none"}, 500);
