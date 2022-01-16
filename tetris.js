@@ -6,6 +6,8 @@ const playground = document.querySelector(".playground > ul");
 const gameText = document.querySelector(".game-text");
 const scoreDisplay = document.querySelector(".score");
 const restartButton = document.querySelector(".game-text > button");
+const tetrisDisplay = document.querySelector(".tetris");
+
 //Setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
@@ -15,9 +17,9 @@ let score = 0;
 let duration = 500;
 let downInterval;
 let tempMovingItem;
-let isFalling = false;
 let play = true;
-
+let pointAdded = 0;
+let oldScore = 0;
 const movingItem = {
     type: "",
     direction: 3,
@@ -94,6 +96,25 @@ function seizeBlock(){
         moving.classList.add("seized");
     })
     checkMatch()
+    pointAdded = score - oldScore;
+    if(pointAdded == 20){
+        score +=10;
+        scoreDisplay.innerText = score;
+        showTetrisText("Double x2");
+    }
+    else if(pointAdded == 30) {
+        score +=30;
+        scoreDisplay.innerText = score;
+
+        showTetrisText("Triple x4");
+    }
+    else if(pointAdded == 40) {
+        //print Tetris
+        score += 70;
+        scoreDisplay.innerText = score;
+        showTetrisText("Tetris x8");
+    }
+    oldScore = score;
 }
 
 function checkMatch(){
@@ -110,7 +131,9 @@ function checkMatch(){
             child.remove();
             prependNewLine();
             score+= 10;
+            
             scoreDisplay.innerText = score;
+            
         }
     })
 
@@ -162,6 +185,13 @@ function dropBlock() {
 
 function showGameoverText() {
     gameText.style.display = "flex"
+}
+function showTetrisText(msg) {
+        tetrisDisplay.innerText = msg;
+        tetrisDisplay.style.display = "flex";
+        setTimeout(function(){
+        tetrisDisplay.style.display = "none"}, 500);
+
 }
 //event handling
 document.addEventListener("keydown", e => {
