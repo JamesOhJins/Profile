@@ -16,7 +16,7 @@ let duration = 500;
 let downInterval;
 let tempMovingItem;
 let isFalling = false;
-
+let play = true;
 
 const movingItem = {
     type: "",
@@ -70,6 +70,7 @@ function renderBlocks(moveType = ""){
             tempMovingItem = { ...movingItem }
             if(moveType === 'retry'){
                 clearInterval(downInterval)
+                play = false;
                 showGameoverText()
             }
             setTimeout(() => {
@@ -117,6 +118,8 @@ function checkMatch(){
 }
 
 function generateNewBlock(){
+    
+    if(play) {
     clearInterval(downInterval);
     downInterval = setInterval(()=>{
         moveBlock('top',1)
@@ -130,6 +133,10 @@ function generateNewBlock(){
     movingItem.direction = 0;
     tempMovingItem = {...movingItem};
     renderBlocks()
+    }
+    else{
+
+    }
 }
 function checkEmpty(target) {
     if(!target || target.classList.contains("seized")) {
@@ -183,6 +190,7 @@ restartButton.addEventListener("click", () => {
     playground.innerHTML = "";
     gameText.style.display = "none";
     score = 0;
+    play = true;
     scoreDisplay.innerText = score;
     init()
 })
