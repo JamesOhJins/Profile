@@ -133,6 +133,9 @@ function checkMatch(){
             }
         })
         if(matched){
+
+            setTimeout(function() {child.style.opacity = 0;},100);
+           // child.style.opacity = 1;
             child.remove();
             prependNewLine();
             score+= (10*scoreMultiplier);
@@ -144,7 +147,7 @@ function checkMatch(){
                 scoreMultiplier = (scoreMultiplier + ((stage - 1) / 10));
                 stageDisplay.innerText = "Stage: " + stage;
             }
-            scoreDisplay.innerText = "Score: " + score;
+            scoreDisplay.innerText = "Score: " + score;   
             
         }
     })
@@ -214,6 +217,7 @@ function hardDrop() {
 function showGameoverText() {
     gameText.innerText = "Game-over!!"
     gameText.style.display = "flex";
+    restartButton.innerText ="Re-Start"
     restartButton.style.display = "flex";
 }
 function showTetrisText(msg) {
