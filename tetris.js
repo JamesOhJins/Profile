@@ -17,7 +17,7 @@ let score = 0;
 let duration = 1000;
 let downInterval;
 let tempMovingItem;
-let play = true;
+let play = false;
 let pointAdded = 0;
 let oldScore = 0;
 let lineCount = 0;
@@ -39,7 +39,10 @@ window.addEventListener("keydown", function(e) {
 init()
 
 function init() {
-    
+    if(!play){
+    restartButton.innerText = "Play";
+    restartButton.style.display = "flex";
+    }
     tempMovingItem = movingItem;
     for (let i = 0; i < GAME_ROWS; i++) {
         prependNewLine()
@@ -105,10 +108,9 @@ function seizeBlock(){
         scoreDisplay.innerText = "Score: " + score;
         showTetrisText("Double");
     }
-    else if(pointAdded == (30*scoreMultiplier)) {
+    else if(pointAdded == (30 * scoreMultiplier)) {
         score += (30 * scoreMultiplier);
         scoreDisplay.innerText = "Score: " + score;
-
         showTetrisText("Triple");
     }
     else if(pointAdded == (40*scoreMultiplier)) {
@@ -194,16 +196,18 @@ function moveBlock(movetype, amount) {
     }
 }
 function changeDirection(){
-    const direction = tempMovingItem.direction;
-    direction === 3 ? tempMovingItem.direction = 0: tempMovingItem.direction += 1;
-    renderBlocks();
+    if(play){
+        const direction = tempMovingItem.direction;
+        direction === 3 ? tempMovingItem.direction = 0: tempMovingItem.direction += 1;
+        renderBlocks();
+    }
 }
-function dropBlock() {
+function hardDrop() {
     clearInterval(downInterval);
     if(play){
         downInterval = setInterval(()=> {
             moveBlock('top',1)
-        },15)
+        },5)
     }
 }
 
@@ -215,15 +219,15 @@ function showGameoverText() {
 function showTetrisText(msg) {
     if (msg == "Double"){
         tetrisDisplay.style.color = "yellow";
-        tetrisDisplay.innerText = "Double x2";
+        tetrisDisplay.innerText = "Double";
     }
     else if (msg == "Triple"){
         tetrisDisplay.style.color = "orange";
-        tetrisDisplay.innerText = "Triple x4"; 
+        tetrisDisplay.innerText = "Triple"; 
     }
     else {
         tetrisDisplay.style.color = "red";
-        tetrisDisplay.innerText = "Tetris x8!!";
+        tetrisDisplay.innerText = "Tetris!!!";
     }
         tetrisDisplay.style.display = "flex";
         setTimeout(function(){
@@ -246,7 +250,7 @@ document.addEventListener("keydown", e => {
             moveBlock("top", 1);
             break;
         case 32:
-            dropBlock();
+            hardDrop();
             break;
         case 80:
             pauseResume();
