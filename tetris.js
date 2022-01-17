@@ -5,24 +5,27 @@ import BLOCKS from "./blocks.js"
 const playground = document.querySelector(".playground > ul");
 const gameText = document.querySelector(".game-text");
 const scoreDisplay = document.querySelector(".score");
-const restartButton = document.querySelector(".game-text > button");
+const restartButton = document.querySelector(".game-button");
 const tetrisDisplay = document.querySelector(".tetris");
-
+const stageDisplay = document.querySelector(".stage");
 //Setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
 
 //variables
 let score = 0;
-let duration = 500;
+let duration = 1000;
 let downInterval;
 let tempMovingItem;
 let play = true;
 let pointAdded = 0;
 let oldScore = 0;
+let lineCount = 0;
+let stage = 1;
+let scoreMultiplier = 1;
 const movingItem = {
     type: "",
-    direction: 3,
+    direction: 0,
     top: 0,
     left: 0,
 };
@@ -97,21 +100,21 @@ function seizeBlock(){
     })
     checkMatch()
     pointAdded = score - oldScore;
-    if(pointAdded == 20){
-        score +=10;
-        scoreDisplay.innerText = score;
+    if(pointAdded == (20 * scoreMultiplier)){
+        score += (10 * scoreMultiplier);
+        scoreDisplay.innerText = "Score: " + score;
         showTetrisText("Double");
     }
-    else if(pointAdded == 30) {
-        score +=30;
-        scoreDisplay.innerText = score;
+    else if(pointAdded == (30*scoreMultiplier)) {
+        score += (30 * scoreMultiplier);
+        scoreDisplay.innerText = "Score: " + score;
 
         showTetrisText("Triple");
     }
-    else if(pointAdded == 40) {
+    else if(pointAdded == (40*scoreMultiplier)) {
         //print Tetris
-        score += 70;
-        scoreDisplay.innerText = score;
+        score += (70 *  scoreMultiplier);
+        scoreDisplay.innerText = "Score: " + score;
         showTetrisText("Tetris");
     }
     oldScore = score;
@@ -130,16 +133,33 @@ function checkMatch(){
         if(matched){
             child.remove();
             prependNewLine();
-            score+= 10;
-            
-            scoreDisplay.innerText = score;
+            score+= (10*scoreMultiplier);
+            lineCount += 1;
+            if (lineCount == 10) {
+                duration = duration * 0.90;
+                lineCount = 0;
+                stage ++;
+                scoreMultiplier = (scoreMultiplier + ((stage - 1) / 10));
+                stageDisplay.innerText = "Stage: " + stage;
+            }
+            scoreDisplay.innerText = "Score: " + score;
             
         }
     })
 
     generateNewBlock()
 }
-
+function pauseResume() {
+    if (play){
+    play = false;
+    gameText.innerText = "Paused";
+    gameText.style.display = "flex";
+    }
+    else {
+        gameText.style.display = "none";
+        play = true;
+    }
+}
 function generateNewBlock(){
     
     if(play) {
@@ -168,8 +188,10 @@ function checkEmpty(target) {
     return true;
 }
 function moveBlock(movetype, amount) {
+    if (play){
     tempMovingItem[movetype] += amount;
     renderBlocks(movetype);
+    }
 }
 function changeDirection(){
     const direction = tempMovingItem.direction;
@@ -178,13 +200,17 @@ function changeDirection(){
 }
 function dropBlock() {
     clearInterval(downInterval);
-    downInterval = setInterval(()=> {
-        moveBlock('top',1)
-    },15)
+    if(play){
+        downInterval = setInterval(()=> {
+            moveBlock('top',1)
+        },15)
+    }
 }
 
 function showGameoverText() {
-    gameText.style.display = "flex"
+    gameText.innerText = "Game-over!!"
+    gameText.style.display = "flex";
+    restartButton.style.display = "flex";
 }
 function showTetrisText(msg) {
     if (msg == "Double"){
@@ -222,16 +248,26 @@ document.addEventListener("keydown", e => {
         case 32:
             dropBlock();
             break;
+        case 80:
+            pauseResume();
+            break;
         default:
             break;
     }
 })
 
+function reset() {
+    gameText.style.display = "none";
+    restartButton.style.display = "none";
+    score = 0;
+    stage = 1;
+    scoreMultiplier = 1;
+    play = true;
+    scoreDisplay.innerText = "Score:" + score;
+    stageDisplay.innerText = "Stage:" + stage;
+}
 restartButton.addEventListener("click", () => {
     playground.innerHTML = "";
-    gameText.style.display = "none";
-    score = 0;
-    play = true;
-    scoreDisplay.innerText = score;
+    reset()
     init()
 })
