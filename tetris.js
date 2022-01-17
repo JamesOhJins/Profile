@@ -133,9 +133,6 @@ function checkMatch(){
             }
         })
         if(matched){
-
-            setTimeout(function() {child.style.opacity = 0;},100);
-           // child.style.opacity = 1;
             child.remove();
             prependNewLine();
             score+= (10*scoreMultiplier);
@@ -210,7 +207,7 @@ function hardDrop() {
     if(play){
         downInterval = setInterval(()=> {
             moveBlock('top',1)
-        },5)
+        },10)
     }
 }
 
