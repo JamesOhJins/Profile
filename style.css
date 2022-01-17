@@ -240,30 +240,37 @@ ul {
 .playground > ul > li >ul > li{
     width:25px;
     height:25px;
-    outline:1px solid #ccc;
+    outline: rgba(255, 255, 255, 0.9);
 }
 
 .tBlock {
     background: rgb(173, 0, 173);
+    opacity: 0.9;
 }
 
 .zBlock{
     background: red;
+    opacity: 0.9;
 }
 .iBlock{
     background: skyblue;
+    opacity: 0.9;
 }
 .jBlock{
     background: blue;
+    opacity: 0.9;
 }
 .lBlock{
     background: orange;
+    opacity: 0.9;
 }
 .oBlock{
     background: yellow;
+    opacity: 0.9;
 }
 .sBlock{
     background: yellowgreen;
+    opacity: 0.9;
 }
 
 
@@ -280,6 +287,7 @@ ul {
     top: 0;
     color: #fff;
     font-size: 50px;
+    z-index: 1;
 }
 
 .game-button {
@@ -298,6 +306,7 @@ ul {
     background-color: rgba(0,0,0,0.7);
     border: none;
     cursor:pointer;
+    z-index: 2;
 }
 
 .tetris {
@@ -313,4 +322,5 @@ ul {
     color: rgb(255, 217, 0);
     font-size: 30px;
     font-weight: bolder;
+    z-index: 1;
 }
