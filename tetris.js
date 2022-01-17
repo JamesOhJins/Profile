@@ -8,6 +8,8 @@ const scoreDisplay = document.querySelector(".score");
 const restartButton = document.querySelector(".game-button");
 const tetrisDisplay = document.querySelector(".tetris");
 const stageDisplay = document.querySelector(".stage");
+var high_scores = document.querySelector("ol.high-scores");
+
 //Setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
@@ -267,6 +269,9 @@ function reset() {
     score = 0;
     stage = 1;
     scoreMultiplier = 1;
+    oldScore = 0;
+    lineCount = 0;
+    duration = 1000;
     play = true;
     scoreDisplay.innerText = "Score:" + score;
     stageDisplay.innerText = "Stage:" + stage;

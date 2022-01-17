@@ -325,3 +325,7 @@ ul {
     font-weight: bolder;
     z-index: 1;
 }
+
+.high-scores{
+    text-align: left;
+}
