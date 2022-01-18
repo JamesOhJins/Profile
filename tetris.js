@@ -26,7 +26,7 @@ let lineCount = 0;
 let stage = 1;
 let scoreMultiplier = 1;
 let drop = true;
-
+let prevMoveType;
 
 const movingItem = {
     type: "",
@@ -252,6 +252,7 @@ document.addEventListener("keydown", e => {
     switch(e.keyCode){
         case 39:
             moveBlock("left", 1);
+
             break;
         case 37:
             moveBlock("left", -1);
@@ -263,7 +264,7 @@ document.addEventListener("keydown", e => {
             drop = false;
             clearInterval(downInterval);
             moveBlock("top", 1);
-            if (play){
+            if (play){ //
             setTimeout (function (){
                drop = true;
                dropInterval();
