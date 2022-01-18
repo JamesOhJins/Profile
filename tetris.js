@@ -25,6 +25,9 @@ let oldScore = 0;
 let lineCount = 0;
 let stage = 1;
 let scoreMultiplier = 1;
+let drop = true;
+
+
 const movingItem = {
     type: "",
     direction: 0,
@@ -105,21 +108,21 @@ function seizeBlock(){
     })
     checkMatch()
     pointAdded = score - oldScore;
-    if(pointAdded == (20 * scoreMultiplier)){
-        score += (10 * scoreMultiplier);
+    if(pointAdded >= (40*scoreMultiplier-3)) { //Minimum score will be added as oldScoreMultiplier * 3 + newScoreMuliplier if stage changes after deletion of first 3 lines out of 4, oldScoreMultiplier has value of -1 thus -1(3)
+        //print Tetris
+        score += (80 *  scoreMultiplier);
         scoreDisplay.innerText = "Score: " + score;
-        showTetrisText("Double");
+        showTetrisText("Tetris");
     }
-    else if(pointAdded == (30 * scoreMultiplier)) {
+    else if(pointAdded >= (30 * scoreMultiplier-2)) { //Minimum Score will be added as oldScoreMultiplier * 2+ newScoreMuliplier if stage changes after deletion of first 2 lines out of 3
         score += (30 * scoreMultiplier);
         scoreDisplay.innerText = "Score: " + score;
         showTetrisText("Triple");
     }
-    else if(pointAdded == (40*scoreMultiplier)) {
-        //print Tetris
-        score += (70 *  scoreMultiplier);
+    else if(pointAdded >= (20 * scoreMultiplier -1)){ //Minimum Score will be added as oldScoreMultiplier + newScoreMuliplier if stage changes after deletion of first line out of 2
+        score += (10 * scoreMultiplier);
         scoreDisplay.innerText = "Score: " + score;
-        showTetrisText("Tetris");
+        showTetrisText("Double");
     }
     oldScore = score;
 }
@@ -164,14 +167,19 @@ function pauseResume() {
         play = true;
     }
 }
-function generateNewBlock(){
-    
-    if(play) {
-    clearInterval(downInterval);
-    downInterval = setInterval(()=>{
-        moveBlock('top',1)
-    },duration)
 
+function dropInterval (){
+    if(play && drop){ 
+         
+        clearInterval(downInterval);
+        downInterval = setInterval(()=>{
+            moveBlock('top',1)
+        },duration)
+    
+    }
+}
+function generateNewBlock(){
+    dropInterval();
     const blockArray = Object.entries(BLOCKS);
     const randomIndex = Math.floor(Math.random() * blockArray.length)
     movingItem.type = blockArray[randomIndex][0]
@@ -179,12 +187,14 @@ function generateNewBlock(){
     movingItem.left = 4;
     movingItem.direction = 0;
     tempMovingItem = {...movingItem};
-    renderBlocks()
-    }
-    else{
-
+    
+    if (play) {renderBlocks()
     }
 }
+    // else{
+
+    // }
+// }
 function checkEmpty(target) {
     if(!target || target.classList.contains("seized")) {
         return false;
@@ -250,7 +260,15 @@ document.addEventListener("keydown", e => {
             changeDirection();
             break;
         case 40:
+            drop = false;
+            clearInterval(downInterval);
             moveBlock("top", 1);
+            if (play){
+            setTimeout (function (){
+               drop = true;
+               dropInterval();
+            }, 100)
+            }
             break;
         case 32:
             hardDrop();
@@ -273,6 +291,7 @@ function reset() {
     lineCount = 0;
     duration = 1000;
     play = true;
+    drop = true;
     scoreDisplay.innerText = "Score:" + score;
     stageDisplay.innerText = "Stage:" + stage;
 }

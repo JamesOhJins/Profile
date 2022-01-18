@@ -65,7 +65,7 @@ dl li a:hover {
     display: grid;
     grid-template-columns: 3.5fr;
     justify-content: center;
-    margin: 0;
+    margin: 0 auto;
 }
 #rashi {
     place-self: center;
@@ -76,21 +76,22 @@ dl li a:hover {
     width: 100%;
 }
 .gallery__item {
-    padding-bottom: 20px;
+    padding-bottom: 35px;
 }
 
-.videoWrapper {
-	position: relative;
+#column .videoWrapper {
+	position:relative;
 	padding-bottom: 56.25%; /* 16:9 */
 	height: 0;
 }
-.videoWrapper iframe {
-	position: absolute;
+#column .videoWrapper iframe {
+    display: inline-block;
+	position:absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-    padding-top: 20px;
+    padding-top: 50px;
 }
 #column {
     column-width: 300px;
