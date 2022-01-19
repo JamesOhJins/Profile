@@ -47,6 +47,9 @@ function init() {
     if(!play){
     restartButton.innerText = "Play";
     restartButton.style.display = "flex";
+    gameText.innerText ="Instructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop";
+    gameText.style.fontSize = "medium";
+    gameText.style.display = "flex";
     }
     tempMovingItem = movingItem;
     for (let i = 0; i < GAME_ROWS; i++) {
@@ -108,18 +111,18 @@ function seizeBlock(){
     })
     checkMatch()
     pointAdded = score - oldScore;
-    if(pointAdded >= (40*scoreMultiplier-4)) { //Minimum score will be added as oldScoreMultiplier * 3 + newScoreMuliplier if stage changes after deletion of first 3 lines out of 4, oldScoreMultiplier has value of -1 thus -1(3)
+    if(pointAdded >= ((40*scoreMultiplier)-4)) { //Minimum score will be added as oldScoreMultiplier * 3 + newScoreMuliplier if stage changes after deletion of first 3 lines out of 4, oldScoreMultiplier has value of -1 thus -1(3)
         //print Tetris
         score += (80 *  scoreMultiplier);
         scoreDisplay.innerText = "Score: " + score;
         showTetrisText("Tetris");
     }
-    else if(pointAdded >= (30 * scoreMultiplier-3)) { //Minimum Score will be added as oldScoreMultiplier * 2+ newScoreMuliplier if stage changes after deletion of first 2 lines out of 3
+    else if(pointAdded >= ((30 * scoreMultiplier)-3)) { //Minimum Score will be added as oldScoreMultiplier * 2+ newScoreMuliplier if stage changes after deletion of first 2 lines out of 3
         score += (30 * scoreMultiplier);
         scoreDisplay.innerText = "Score: " + score;
         showTetrisText("Triple");
     }
-    else if(pointAdded >= (20 * scoreMultiplier -2)){ //Minimum Score will be added as oldScoreMultiplier + newScoreMuliplier if stage changes after deletion of first line out of 2
+    else if(pointAdded >= ((20 * scoreMultiplier) -2)){ //Minimum Score will be added as oldScoreMultiplier + newScoreMuliplier if stage changes after deletion of first line out of 2
         score += (10 * scoreMultiplier);
         scoreDisplay.innerText = "Score: " + score;
         showTetrisText("Double");
@@ -160,6 +163,7 @@ function pauseResume() {
     if (play){
     play = false;
     gameText.innerText = "Paused";
+    gameText.style.fontSize = "xx-large";
     gameText.style.display = "flex";
     }
     else {
@@ -225,7 +229,8 @@ function hardDrop() {
 }
 
 function showGameoverText() {
-    gameText.innerText = "Game-over!!"
+    gameText.innerText = "Game-over!!";
+    gameText.style.fontSize = "xx-large";
     gameText.style.display = "flex";
     restartButton.innerText ="Re-Start"
     restartButton.style.display = "flex";

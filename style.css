@@ -281,7 +281,11 @@ ul {
     opacity: 0.9;
 }
 
-
+.instructions{
+    font-size: 40;
+    color: #ccc;
+    width: auto;
+}
 .game-text {
     display: none;
     justify-content: center;
@@ -311,8 +315,8 @@ ul {
     font-size: 30px;
     padding: 0.5rem 1rem;
     color:#fff;
-    background-color: rgba(0,0,0,0.7);
-    border: none;
+    background-color: rgba(0,0,0,0.1);
+    border: 3px;
     cursor:pointer;
     z-index: 2;
 }
@@ -354,8 +358,7 @@ ul {
   }
   
 
-  
-  
+
   
   .footer-dark .item.social {
     text-align:center;
