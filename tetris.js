@@ -163,7 +163,7 @@ function pauseResume() {
     if (play){
     play = false;
     gameText.innerText = "Paused";
-    gameText.style.fontSize = "xx-large";
+    gameText.style.fontSize = "50px";
     gameText.style.display = "flex";
     }
     else {
@@ -230,7 +230,7 @@ function hardDrop() {
 
 function showGameoverText() {
     gameText.innerText = "Game-over!!";
-    gameText.style.fontSize = "xx-large";
+    gameText.style.fontSize = "50px";
     gameText.style.display = "flex";
     restartButton.innerText ="Re-Start"
     restartButton.style.display = "flex";
