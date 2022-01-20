@@ -20,14 +20,11 @@ let duration = 1000;
 let downInterval;
 let tempMovingItem;
 let play = false;
-let pointAdded = 0;
-let oldScore = 0;
 let lineCount = 0;
 let stage = 1;
 let scoreMultiplier = 1;
 let drop = true;
-let prevMoveType;
-
+let linesRemoved = 0;
 const movingItem = {
     type: "",
     direction: 0,
@@ -110,24 +107,6 @@ function seizeBlock(){
         moving.classList.add("seized");
     })
     checkMatch()
-    pointAdded = score - oldScore;
-    if(pointAdded >= ((40*scoreMultiplier)-4)) { //Minimum score will be added as oldScoreMultiplier * 3 + newScoreMuliplier if stage changes after deletion of first 3 lines out of 4, oldScoreMultiplier has value of -1 thus -1(3)
-        //print Tetris
-        score += (80 *  scoreMultiplier);
-        scoreDisplay.innerText = "Score: " + score;
-        showTetrisText("Tetris");
-    }
-    else if(pointAdded >= ((30 * scoreMultiplier)-3)) { //Minimum Score will be added as oldScoreMultiplier * 2+ newScoreMuliplier if stage changes after deletion of first 2 lines out of 3
-        score += (30 * scoreMultiplier);
-        scoreDisplay.innerText = "Score: " + score;
-        showTetrisText("Triple");
-    }
-    else if(pointAdded >= ((20 * scoreMultiplier) -2)){ //Minimum Score will be added as oldScoreMultiplier + newScoreMuliplier if stage changes after deletion of first line out of 2
-        score += (10 * scoreMultiplier);
-        scoreDisplay.innerText = "Score: " + score;
-        showTetrisText("Double");
-    }
-    oldScore = score;
 }
 
 function checkMatch(){
@@ -137,6 +116,8 @@ function checkMatch(){
         let matched = true;
         child.children[0].childNodes.forEach(li => {
             if(!li.classList.contains("seized")){
+                
+                
                 matched = false;
             }
         })
@@ -145,6 +126,8 @@ function checkMatch(){
             prependNewLine();
             score+= (10*scoreMultiplier);
             lineCount += 1;
+            linesRemoved += 1;
+            console.log("linesRemoved = " + linesRemoved);
             if (lineCount == 10) {
                 duration = duration * 0.90;
                 lineCount = 0;
@@ -156,7 +139,8 @@ function checkMatch(){
             
         }
     })
-
+    checkTetris(linesRemoved);
+    linesRemoved = 0;
     generateNewBlock()
 }
 function pauseResume() {
@@ -287,14 +271,41 @@ document.addEventListener("keydown", e => {
             break;
     }
 })
+function checkTetris(lines) {
+    switch(lines)
+    {
+        case 4:
+            //print Tetris
+            score += (120 *  scoreMultiplier);
+            scoreDisplay.innerText = "Score: " + score;
+            showTetrisText("Tetris");
+            break;
+        case 3:
+            score += (50 * scoreMultiplier);
+            scoreDisplay.innerText = "Score: " + score;
+            showTetrisText("Triple");
+            break;
 
+        case 2:
+            console.log("score" )
+            var added = 20* scoreMultiplier;
+            console.log("score added: " + added );
+            score += added;
+            scoreDisplay.innerText = "Score: " + score;
+            
+            showTetrisText("Double");
+            break;
+
+        default:
+            break;
+        }
+}
 function reset() {
     gameText.style.display = "none";
     restartButton.style.display = "none";
     score = 0;
     stage = 1;
     scoreMultiplier = 1;
-    oldScore = 0;
     lineCount = 0;
     duration = 1000;
     play = true;
