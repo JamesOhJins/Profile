@@ -1,57 +1,54 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <head>
-            <title>Jinsang Oh</title>
-            <meta charset="utf-8">
-            <link href="style.css" rel="stylesheet">
-            <link href='https://fonts.googleapis.com/css?family=Optima' rel='stylesheet'>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-            <link rel="stylesheet" href="assets/css/style.css">
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        </head>
-        <h1>Games
-            <img id = "logo" src="images/logo/game.png">
-            <dl>
-                <li><a href="profile.html"> Profile</a></li>
-                <li><a href="photos.html"> Photos</a></li>
-                <li><a href="rashi.html"> Rashi</a></li>
-                <li><a id = "selected" href="games.html"> Games</a></li>
-                <li><a href="algorithm.html"> Algorithm</a></li>
-            </dl> 
-        </h1> 
-        <div id = grid>
-            <div class = "wrapper">
-                <div class = "tetris">Tetris
-                </div>
-                <div>
-                    <span class = "game-text">Game-Over!!</span>
-                    <ol class="high-scores">
-                    </ol>
-                <button class = "game-button">restart
-                </button>
-                </div>
-                <div class ="score"> Score: 0</div>
-                <div class ="stage"> Stage: 1</div>
-                <div class = "playground">
-                    <ul></ul>
-                </div>
-                <div class ="preview"></div>
-            </div>
-            <script src = "tetris.js" type = "module">
+
+<body>
+
+    <head>
+        <title>Jinsang Oh</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
             </script>
+        <script>
+            $(function () {
+                $("#header").load("header.html")
+                $(".footer-dark").load("footer.html")
+            });
+        </script>
+        <div id="header"></div>
+    </head>
+    <h1>Games
+        <img id="logo" src="images/logo/game.png">
+        <dl>
+            <li><a href="profile.html"> Profile</a></li>
+            <li><a href="photos.html"> Photos</a></li>
+            <li><a href="rashi.html"> Rashi</a></li>
+            <li><a id="selected" href="games.html"> Games</a></li>
+            <li><a href="algorithm.html"> Algorithm</a></li>
+        </dl>
+    </h1>
+    <div id=grid>
+        <div class="wrapper">
+            <div class="tetris">Tetris
+            </div>
+            <div>
+                <span class="game-text">Game-Over!!</span>
+                <ol class="high-scores">
+                </ol>
+                <button class="game-button">restart
+                </button>
+            </div>
+            <div class="score"> Score: 0</div>
+            <div class="stage"> Stage: 1</div>
+            <div class="playground">
+                <ul></ul>
+            </div>
+            <div class="preview"></div>
         </div>
-        <div class="footer-dark">
-            <footer>
-                <div class="container">
-                    <div class="row">
-                        <div class="col item social"><a href="https://www.facebook.com/jinsang.j.oh/"><i class="icon ion-social-facebook"></i></a><a href="mailto:fldhs2012@gmail.com"><i class="material-icons" style = "vertical-align: -20%">email</i></a><a href="https://www.linkedin.com/in/james-oh-b41a82215/"><i class="fa fa-linkedin-square"></i></a></div>
-                    </div>
-                    <p class="copyright">Jinsang Oh © 2022</p>
-                </div>
-            </footer>
-        </div>
-    </body>
-    
+        <script src="tetris.js" type="module">
+        </script>
+    </div>
+    <div class="footer-dark">
+    </div>
+</body>
+
 </html>
