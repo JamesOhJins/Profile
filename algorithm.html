@@ -9,8 +9,10 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script defer src="./modal.js"></script>
+        <script async src="https://kit.fontawesome.com/6cc05e1e8e.js" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body class = main>
         <h1>Algorithm Studies
             <dl>
                 <li><a href="profile.html"> Profile</a></li>
@@ -21,13 +23,13 @@
             </dl> 
         </h1> 
         <div id = grid>
-            
             <div id = column>
-                <figure> <img src="images/algorithm/DFS.png" width = 300px;>
+                <figure class = "gallery__item"
+                > <img src="images/algorithm/DFS.png" class = "photo">
                     <figcaption><span>Depth-first search (DFS)</span> is an algorithm for traversing a tree. It starts traversing from the root node and explores as far as possible along each branch before backtracking. Usually uses <span>stack</span> to find the shortest path. In geeral, DFS is faster than BFS.<br><span>Time complexity: </span> O(V+E)</figcaption>
                     </figure>
-                <figure>
-                    <img src="images/algorithm/BFS.png" width = 300px;>
+                <figure class = "gallery__item">
+                    <img src="images/algorithm/BFS.png" class = "photo">
                     <figcaption><span>Breadth-first search (BFS)</span> is an algorithm for searching a tree. It starts traversing from the root node and explores all nodes at the present depth prior to moving on to the nodes at the next depth level. Extra memory, usually a <span>queue</span>, is needed to keep track of the child nodes that were encountered but not yet explored. It is usually a better option when target is closer to source.<br> <span>Time complexity: O(V+E)</span></figcaption>
                 </figure>
             </div>

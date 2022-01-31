@@ -318,3 +318,4 @@ restartButton.addEventListener("click", () => {
     reset()
     init()
 })
+
