@@ -79,23 +79,19 @@ dl li a:hover {
 .photo {
     width: 100%;
 }
-.gallery__item {
-    padding-bottom: 35px;
-}
 
 #column .videoWrapper {
+    display: inline-table;
 	position:relative;
+    margin-top: 30px;
+    margin-bottom: 15px;
 	padding-bottom: 56.25%; /* 16:9 */
-	height: 0;
+	height: 50px;
+    width: 100%;
 }
 #column .videoWrapper iframe {
-    display: inline-block;
-	position:absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
+	position: absolute;
 	height: 100%;
-    padding-top: 50px;
 }
 #column {
     column-width: 300px;
@@ -188,6 +184,8 @@ dl li a:hover {
     cursor: pointer;
     overflow: hidden;
     border-radius: 4px;
+    padding-bottom: 35px;
+
 }
 
 .gallery__item img {
