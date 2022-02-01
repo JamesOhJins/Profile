@@ -202,6 +202,7 @@ dl li a:hover {
 /*profile*/
 #profile {
     width: 100%;
+    text-align: center;
     padding-top: 20%;
 }
 #profile img{
@@ -211,7 +212,7 @@ dl li a:hover {
     justify-content: center;
     border: 10px solid #ccc;
     border-color: rgb(30,30,30);
-    margin-left: 40%;
+    text-align: center;
 }
 
 ul {
