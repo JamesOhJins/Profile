@@ -4,27 +4,24 @@
 <head>
     <title>Photos</title>
     <link href="style.css" rel="stylesheet">
+    <script src="highlightSelected.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
         </script>
     <script>
         $(function () {
-            $("#header").load("header.html")
             $(".footer-dark").load("footer.html")
+            $(".navLinks").load("navBar.html")
+            $("#header").load("header.html")
         });
     </script>
-            <div id="header"></div>
+    <div id="header"></div>
 </head>
 
 <body>
     <h1>Photos
         <img id="logo" src="images/logo/camera.png" style="filter: invert();">
-        <dl id="navLinks">
-            <li><a href="profile.html"> Profile</a></li>
-            <li><a id="selected" href="photos.html"> Photos</a></li>
-            <li><a href="rashi.html"> Rashi</a></li>
-            <li><a href="games.html"> Games</a></li>
-            <li><a href="algorithm.html"> Algorithm</a></li>
+        <dl class="navLinks">
         </dl>
     </h1>
     <div id=grid>

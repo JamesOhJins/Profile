@@ -37,7 +37,7 @@ h1 {
 h1 img {
     background-color: transparent;
 }
-dl {
+.navLinks {
     display: flex;
     flex-wrap: wrap;
     position:fixed;
@@ -50,14 +50,14 @@ dl {
     list-style-type:none;
 }
 
-dl li a{
+.navLinks li a{
     color:white;
     opacity: 0.5;
     padding: 14px 16px;
 }
-dl li #selected{
-    color: white;
-    opacity: 1;
+.selected{
+    color: white !important;
+    opacity: 1 !important;
 }
 dl li a:hover {
     transition: 0.1s;
