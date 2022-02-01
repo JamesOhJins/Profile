@@ -2,13 +2,15 @@
 <html>
 <head>
     <link href="style.css" rel="stylesheet">
+    <script src="highlightSelected.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
-    </script>
+        </script>
     <script>
         $(function () {
-            $("#header").load("header.html");
             $(".footer-dark").load("footer.html")
+            $(".navLinks").load("navBar.html")
+            $("#header").load("header.html")
         });
     </script>
     <div id="header"></div>
@@ -16,12 +18,6 @@
 </head>
 <h1>Jinsang Oh
     <dl class="navLinks">
-        <li><a href="profile.html"> Profile</a></li>
-        <li><a href="photos.html"> Photos</a></li>
-        <li><a href="rashi.html"> Rashi</a></li>
-        <li><a href="games.html"> Games</a></li>
-        <li><a href="algorithm.html"> Algorithm</a></li>
-        <li><a href="aboutPage.html"> about</a></li>
     </dl>
 </h1>
 
