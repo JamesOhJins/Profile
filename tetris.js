@@ -26,16 +26,21 @@ let stage = 1;
 let scoreMultiplier = 1;
 let drop = true;
 let linesRemoved = 0;
-let gameover = new Audio("audio/try_again.ogg");
+let gameover = new Audio("../audio/try_again.ogg");
+let theme = new Audio("../audio/Solve_The_Puzzle.ogg");
+let theme2 = new Audio ("../audio/Interstellar_Odyssey.ogg");
+
+theme.loop = true;
 let playsound = true;
-let line = new Audio("audio/line.ogg");
-let double = new Audio("audio/double.ogg");
-let triple = new Audio("audio/triple.ogg");
-let tetris = new Audio("audio/tetris.ogg");
-let down = new Audio("audio/down.ogg");
+let line = new Audio("../audio/line.ogg");
+let double = new Audio("../audio/double.ogg");
+let triple = new Audio("../audio/triple.ogg");
+let tetris = new Audio("../audio/tetris.ogg");
+let down = new Audio("../audio/down.ogg");
 let mute = false;
-gameover.preload, line.preload, double.preload, triple.preload, tetris.preload, down.preload = "auto";
+gameover.preload, theme.preload, line.preload, double.preload, triple.preload, tetris.preload, down.preload = "auto";
 gameover.currentTime, line.currentTime, double.currentTime, triple.currentTime, tetris.currentTime, down.currentTime = 0.5;
+theme.volume = 0.15;
 line.volume = 0.07;
 down.volume = 0.07;
 double.volume = 0.15;
@@ -48,7 +53,17 @@ const movingItem = {
     top: 0,
     left: 0,
 };
+function changeTheme(){
+if (stage > 14){
+    console.log("change music");
+    theme.pause();
+    theme2.volume = 0.15;
+    theme2.play();
+}
+else{
 
+}
+}
 window.addEventListener("keydown", function (e) {
     if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
         e.preventDefault();
@@ -155,6 +170,7 @@ function checkMatch() {
                 duration = duration * 0.90;
                 lineCount = 0;
                 stage++;
+                changeTheme();
                 scoreMultiplier = (scoreMultiplier + ((stage - 1) / 10));
                 nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
                 stageDisplay.innerText = "Stage: " + stage;
@@ -270,6 +286,8 @@ function showTetrisText(msg) {
 }
 function muteUnmute() {
     if (!mute) {
+        theme.volume = 0;
+        theme2.volume = 0;
         line.volume = 0;
         down.volume = 0;
         double.volume = 0;
@@ -280,6 +298,8 @@ function muteUnmute() {
         console.log("muted");
     }
     else if (mute) {
+        theme.volume = 0.15;
+        theme2.volume = 0.15;
         line.volume = 0.07;
         down.volume = 0.07;
         double.volume = 0.25;
@@ -375,6 +395,7 @@ function reset() {
 }
 restartButton.addEventListener("click", () => {
     playground.innerHTML = "";
+    theme.play();
     reset()
     init()
 })
