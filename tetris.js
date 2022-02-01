@@ -54,7 +54,7 @@ const movingItem = {
     left: 0,
 };
 function changeTheme(){
-if (stage > 14){
+if (stage > 9){
     console.log("change music");
     theme.pause();
     theme2.volume = 0.15;
@@ -392,6 +392,7 @@ function reset() {
     scoreDisplay.innerText = "Score:" + score;
     stageDisplay.innerText = "Stage:" + stage;
     nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
+    theme2.pause();
 }
 restartButton.addEventListener("click", () => {
     playground.innerHTML = "";
