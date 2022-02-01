@@ -83,8 +83,7 @@ dl li a:hover {
 #column .videoWrapper {
     display: inline-table;
 	position:relative;
-    margin-top: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
 	padding-bottom: 56.25%; /* 16:9 */
 	height: 50px;
     width: 100%;
