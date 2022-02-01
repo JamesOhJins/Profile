@@ -38,9 +38,9 @@ gameover.preload, line.preload, double.preload, triple.preload, tetris.preload, 
 gameover.currentTime, line.currentTime, double.currentTime, triple.currentTime, tetris.currentTime, down.currentTime = 0.5;
 line.volume = 0.07;
 down.volume = 0.07;
-double.volume = 0.25;
-triple.volume = 0.3;
-tetris.volume = 0.35;
+double.volume = 0.15;
+triple.volume = 0.2;
+tetris.volume = 0.25;
 gameover.volume = 0.1;
 const movingItem = {
     type: "",
@@ -146,7 +146,6 @@ function checkMatch() {
         if (matched) {
             child.remove();
             prependNewLine();
-            line.play();
             score += (10 * scoreMultiplier);
             lineCount += 1;
             linesRemoved += 1;
@@ -352,6 +351,9 @@ function checkTetris(lines) {
             showTetrisText("Double");
             break;
 
+        case 1:
+            line.play();
+            break;
         default:
             break;
     }
