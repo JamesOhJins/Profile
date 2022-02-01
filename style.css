@@ -48,6 +48,7 @@ h1 img {
     font-size: 15pt;
     text-shadow: 0.5px 0.5px 2px;
     list-style-type:none;
+    padding-top: 1rem;
 }
 
 .navLinks li a{
@@ -224,11 +225,23 @@ ul {
     margin-bottom: 1rem;
     color: #ccc;
 }
+.info {
+    padding-bottom:1rem;
+    align-items: center;
+}
 .stage {
-    text-align: center;
+    margin-left: 0.5rem;
+    text-align: left;
     font-size: 18px;
     margin-bottom: 1rem;
     color: yellowgreen;
+}
+.next-level {
+    margin-left: 6rem;
+    text-align: right;
+    font-size: 16px;
+    margin-bottom: 1rem;
+    color: rgb(39, 170, 127);
 }
 /*tetris grid*/
 

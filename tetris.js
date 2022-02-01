@@ -8,6 +8,7 @@ const scoreDisplay = document.querySelector(".score");
 const restartButton = document.querySelector(".game-button");
 const tetrisDisplay = document.querySelector(".tetris");
 const stageDisplay = document.querySelector(".stage");
+const nextLevelDisplay = document.querySelector(".next-level");
 var high_scores = document.querySelector("ol.high-scores");
 
 //Setting
@@ -25,6 +26,22 @@ let stage = 1;
 let scoreMultiplier = 1;
 let drop = true;
 let linesRemoved = 0;
+let gameover = new Audio("/assets/sound_effects/try_again.ogg");
+let playsound = true;
+let line = new Audio("/assets/sound_effects/line.ogg");
+let double = new Audio("/assets/sound_effects/double.ogg");
+let triple = new Audio("/assets/sound_effects/triple.ogg");
+let tetris = new Audio("/assets/sound_effects/tetris.ogg");
+let down = new Audio("/assets/sound_effects/down.ogg");
+let mute = false;
+gameover.preload, line.preload, double.preload, triple.preload, tetris.preload, down.preload = "auto";
+gameover.currentTime, line.currentTime, double.currentTime, triple.currentTime, tetris.currentTime, down.currentTime = 0.5;
+line.volume = 0.07;
+down.volume = 0.07;
+double.volume = 0.25;
+triple.volume = 0.3;
+tetris.volume = 0.35;
+gameover.volume = 0.1;
 const movingItem = {
     type: "",
     direction: 0,
@@ -32,8 +49,8 @@ const movingItem = {
     left: 0,
 };
 
-window.addEventListener("keydown", function(e) {
-    if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+window.addEventListener("keydown", function (e) {
+    if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
         e.preventDefault();
     }
 }, false);
@@ -41,12 +58,12 @@ window.addEventListener("keydown", function(e) {
 init()
 
 function init() {
-    if(!play){
-    restartButton.innerText = "Play";
-    restartButton.style.display = "flex";
-    gameText.innerText ="Instructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop";
-    gameText.style.fontSize = "medium";
-    gameText.style.display = "flex";
+    if (!play) {
+        restartButton.innerText = "Play";
+        restartButton.style.display = "flex";
+        gameText.innerText = "Instructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop \n m: mute/unmute";
+        gameText.style.fontSize = "medium";
+        gameText.style.display = "flex";
     }
     tempMovingItem = movingItem;
     for (let i = 0; i < GAME_ROWS; i++) {
@@ -66,8 +83,8 @@ function prependNewLine() {
     playground.prepend(li)
 }
 
-function renderBlocks(moveType = ""){
-    const { type, direction, top, left} = tempMovingItem;
+function renderBlocks(moveType = "") {
+    const { type, direction, top, left } = tempMovingItem;
     const movingBlocks = document.querySelectorAll(".moving");
     movingBlocks.forEach(moving => {
         moving.classList.remove(type, "moving");
@@ -75,21 +92,26 @@ function renderBlocks(moveType = ""){
     BLOCKS[type][direction].some(block => {
         const x = block[0] + left;
         const y = block[1] + top;
-        const target = playground.childNodes[y] ? playground.childNodes[y].childNodes[0].childNodes[x]: null;
+        const target = playground.childNodes[y] ? playground.childNodes[y].childNodes[0].childNodes[x] : null;
         const isAvailable = checkEmpty(target);
-        if(isAvailable){
+        if (isAvailable) {
             target.classList.add(type, "moving")
         } else {
             tempMovingItem = { ...movingItem }
-            if(moveType === 'retry'){
+            if (moveType === 'retry') {
                 clearInterval(downInterval)
                 play = false;
+                if (playsound) {
+                    gameover.play();
+                    playsound = false;
+                }
                 showGameoverText()
             }
             setTimeout(() => {
                 renderBlocks('retry');
-                if(moveType === "top") {
+                if (moveType === "top") {
                     seizeBlock();
+                    down.play();
                 }
             }, 0)
             return true;
@@ -100,7 +122,7 @@ function renderBlocks(moveType = ""){
     movingItem.direction = direction;
 }
 
-function seizeBlock(){
+function seizeBlock() {
     const movingBlocks = document.querySelectorAll(".moving");
     movingBlocks.forEach(moving => {
         moving.classList.remove("moving");
@@ -109,34 +131,37 @@ function seizeBlock(){
     checkMatch()
 }
 
-function checkMatch(){
+function checkMatch() {
 
     const childNodes = playground.childNodes;
-    childNodes.forEach(child=> {
+    childNodes.forEach(child => {
         let matched = true;
         child.children[0].childNodes.forEach(li => {
-            if(!li.classList.contains("seized")){
-                
-                
+            if (!li.classList.contains("seized")) {
+
+
                 matched = false;
             }
         })
-        if(matched){
+        if (matched) {
             child.remove();
             prependNewLine();
-            score+= (10*scoreMultiplier);
+            line.play();
+            score += (10 * scoreMultiplier);
             lineCount += 1;
             linesRemoved += 1;
+            nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
             console.log("linesRemoved = " + linesRemoved);
             if (lineCount == 10) {
                 duration = duration * 0.90;
                 lineCount = 0;
-                stage ++;
+                stage++;
                 scoreMultiplier = (scoreMultiplier + ((stage - 1) / 10));
+                nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
                 stageDisplay.innerText = "Stage: " + stage;
             }
-            scoreDisplay.innerText = "Score: " + score;   
-            
+            scoreDisplay.innerText = "Score: " + score;
+
         }
     })
     checkTetris(linesRemoved);
@@ -144,30 +169,34 @@ function checkMatch(){
     generateNewBlock()
 }
 function pauseResume() {
-    if (play){
-    play = false;
-    gameText.innerText = "Paused";
-    gameText.style.fontSize = "50px";
-    gameText.style.display = "flex";
+    if (play) {
+        play = false;
+        gameText.style.fontSize = "medium";
+        gameText.style.display = "flex";
+        tetrisDisplay.style.color = "white";
+        tetrisDisplay.innerText = "Paused";
+        tetrisDisplay.style.display = "flex";
+        gameText.innerText = "\n\n\n\n\n\n\n\n\n\nInstructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop \n m: mute/unmute";
     }
     else {
         gameText.style.display = "none";
+        tetrisDisplay.style.display = "none";
         play = true;
         drop = true;
     }
 }
 
-function dropInterval (){
-    if(play && drop){ 
-         
+function dropInterval() {
+    if (play && drop) {
+
         clearInterval(downInterval);
-        downInterval = setInterval(()=>{
-            moveBlock('top',1)
-        },duration)
-    
+        downInterval = setInterval(() => {
+            moveBlock('top', 1)
+        }, duration)
+
     }
 }
-function generateNewBlock(){
+function generateNewBlock() {
     dropInterval();
     const blockArray = Object.entries(BLOCKS);
     const randomIndex = Math.floor(Math.random() * blockArray.length)
@@ -175,40 +204,38 @@ function generateNewBlock(){
     movingItem.top = 0;
     movingItem.left = 4;
     movingItem.direction = 0;
-    tempMovingItem = {...movingItem};
-    
-    if (play) {renderBlocks()
+    tempMovingItem = { ...movingItem };
+
+    if (play) {
+        renderBlocks()
     }
 }
-    // else{
 
-    // }
-// }
 function checkEmpty(target) {
-    if(!target || target.classList.contains("seized")) {
+    if (!target || target.classList.contains("seized")) {
         return false;
     }
     return true;
 }
 function moveBlock(movetype, amount) {
-    if (play){
-    tempMovingItem[movetype] += amount;
-    renderBlocks(movetype);
+    if (play) {
+        tempMovingItem[movetype] += amount;
+        renderBlocks(movetype);
     }
 }
-function changeDirection(){
-    if(play){
+function changeDirection() {
+    if (play) {
         const direction = tempMovingItem.direction;
-        direction === 3 ? tempMovingItem.direction = 0: tempMovingItem.direction += 1;
+        direction === 3 ? tempMovingItem.direction = 0 : tempMovingItem.direction += 1;
         renderBlocks();
     }
 }
 function hardDrop() {
     clearInterval(downInterval);
-    if(play){
-        downInterval = setInterval(()=> {
-            moveBlock('top',1)
-        },10)
+    if (play) {
+        downInterval = setInterval(() => {
+            moveBlock('top', 1)
+        }, 10)
     }
 }
 
@@ -216,36 +243,63 @@ function showGameoverText() {
     gameText.innerText = "Game-over!!";
     gameText.style.fontSize = "50px";
     gameText.style.display = "flex";
-    restartButton.innerText ="Re-Start"
+    restartButton.innerText = "Re-Start"
     restartButton.style.display = "flex";
+
 }
 function showTetrisText(msg) {
-    if (msg == "Double"){
+    if (msg == "Double") {
         tetrisDisplay.style.color = "yellow";
         tetrisDisplay.innerText = "Double";
+        double.play();
     }
-    else if (msg == "Triple"){
+    else if (msg == "Triple") {
         tetrisDisplay.style.color = "orange";
-        tetrisDisplay.innerText = "Triple"; 
+        tetrisDisplay.innerText = "Triple";
+        triple.play();
     }
     else {
         tetrisDisplay.style.color = "red";
         tetrisDisplay.innerText = "Tetris!!!";
+        tetris.play();
     }
-        tetrisDisplay.style.display = "flex";
-        setTimeout(function(){
-        tetrisDisplay.style.display = "none"}, 500);
+    tetrisDisplay.style.display = "flex";
+    setTimeout(function () {
+        tetrisDisplay.style.display = "none"
+    }, 500);
 
+}
+function muteUnmute() {
+    if (!mute) {
+        line.volume = 0;
+        down.volume = 0;
+        double.volume = 0;
+        triple.volume = 0;
+        tetris.volume = 0;
+        gameover.volume = 0;
+        mute = true;
+        console.log("muted");
+    }
+    else if (mute) {
+        line.volume = 0.07;
+        down.volume = 0.07;
+        double.volume = 0.25;
+        triple.volume = 0.3;
+        tetris.volume = 0.35;
+        gameover.volume = 0.1;
+        mute = false;
+        console.log("unmuted");
+    }
 }
 //event handling
 document.addEventListener("keydown", e => {
-    switch(e.keyCode){
+    switch (e.keyCode) {
         case 39:
             moveBlock("left", 1);
-
             break;
         case 37:
             moveBlock("left", -1);
+
             break;
         case 38:
             changeDirection();
@@ -254,11 +308,11 @@ document.addEventListener("keydown", e => {
             drop = false;
             clearInterval(downInterval);
             moveBlock("top", 1);
-            if (play){ //
-            setTimeout (function (){
-               drop = true;
-               dropInterval();
-            }, 100)
+            if (play) { //
+                setTimeout(function () {
+                    drop = true;
+                    dropInterval();
+                }, 100)
             }
             break;
         case 32:
@@ -267,16 +321,18 @@ document.addEventListener("keydown", e => {
         case 80:
             pauseResume();
             break;
+        case 77:
+            muteUnmute();
+            break;
         default:
             break;
     }
 })
 function checkTetris(lines) {
-    switch(lines)
-    {
+    switch (lines) {
         case 4:
             //print Tetris
-            score += (120 *  scoreMultiplier);
+            score += (120 * scoreMultiplier);
             scoreDisplay.innerText = "Score: " + score;
             showTetrisText("Tetris");
             break;
@@ -287,18 +343,18 @@ function checkTetris(lines) {
             break;
 
         case 2:
-            console.log("score" )
-            var added = 20* scoreMultiplier;
-            console.log("score added: " + added );
+            console.log("score")
+            var added = 20 * scoreMultiplier;
+            console.log("score added: " + added);
             score += added;
             scoreDisplay.innerText = "Score: " + score;
-            
+
             showTetrisText("Double");
             break;
 
         default:
             break;
-        }
+    }
 }
 function reset() {
     gameText.style.display = "none";
@@ -310,8 +366,10 @@ function reset() {
     duration = 1000;
     play = true;
     drop = true;
+    playsound = true;
     scoreDisplay.innerText = "Score:" + score;
     stageDisplay.innerText = "Stage:" + stage;
+    nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
 }
 restartButton.addEventListener("click", () => {
     playground.innerHTML = "";
