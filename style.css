@@ -221,7 +221,8 @@ ul {
 /*game*/
 .score {
     text-align: center;
-    font-size: 36px;
+    padding-right: 10.5rem;
+    font-size: 32px;
     margin-bottom: 1rem;
     color: #ccc;
 }
@@ -230,21 +231,22 @@ ul {
     align-items: center;
 }
 .stage {
-    margin-left: 0.5rem;
     text-align: left;
     font-size: 18px;
     margin-bottom: 1rem;
     color: yellowgreen;
 }
 .next-level {
-    margin-left: 6rem;
+    margin-left: 6.5rem;
     text-align: right;
     font-size: 16px;
     margin-bottom: 1rem;
     color: rgb(39, 170, 127);
 }
 /*tetris grid*/
-
+.playground {
+    display: inline-table;
+}
 .playground >ul{
     border: 1px solid #333;
     background-color: rgba(30,30,30,0.9);
@@ -317,7 +319,30 @@ ul {
     font-size: 50px;
     z-index: 1;
 }
+.preview {
+    display: inline-table;
+    padding-left: 2rem;
+}
+.preview >ul{
+    
+    width: 125px;
+    margin: 0 auto;
+}
+.preview > ul > li {
+    width: 100%;
+    height: 25px;
+    padding: 0;
+}
 
+.preview > ul > li > ul{
+    display: flex;
+}
+
+.preview > ul > li >ul > li{
+    width:25px;
+    height:25px;
+    outline: rgba(255, 255, 255, 0.9);
+}
 .game-button {
     display: none;
     justify-content: center;
@@ -337,11 +362,15 @@ ul {
     z-index: 2;
 }
 
+.wrapper {
+    padding-left: 8.5rem;
+}
 .tetris {
     display: none;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-right:8.5rem;
     position: fixed;
     width: 100%;
     height: 100%;

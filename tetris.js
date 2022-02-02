@@ -9,16 +9,20 @@ const restartButton = document.querySelector(".game-button");
 const tetrisDisplay = document.querySelector(".tetris");
 const stageDisplay = document.querySelector(".stage");
 const nextLevelDisplay = document.querySelector(".next-level");
-
+const preview = document.querySelector(".preview > ul");
 //Setting
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
+
+const PREVIEW_ROWS = 5;
+const PREVIEW_COLS = 5;
 
 //variables
 let score = 0;
 let duration = 1000;
 let downInterval;
 let tempMovingItem;
+let nextMovingItem;
 let play = false;
 let lineCount = 0;
 let stage = 1;
@@ -30,8 +34,12 @@ let theme = new Audio("audio/Solve_The_Puzzle.ogg");
 let theme2 = new Audio("audio/Interstellar_Odyssey.ogg");
 let count = 0;
 let lines = 0;
+let newBlock = false;
+let randomIndex2 = Math.floor(Math.random() * 7);
+
 
 theme.loop = true;
+theme2.loop = true;
 let playsound = true;
 let line = new Audio("audio/line.ogg");
 let double = new Audio("audio/double.ogg");
@@ -49,6 +57,12 @@ triple.volume = 0.2;
 tetris.volume = 0.25;
 gameover.volume = 0.1;
 const movingItem = {
+    type: "",
+    direction: 0,
+    top: 0,
+    left: 0,
+};
+const nextItem = {
     type: "",
     direction: 0,
     top: 0,
@@ -81,11 +95,26 @@ function init() {
         gameText.style.fontSize = "medium";
         gameText.style.display = "flex";
     }
+    nextMovingItem = movingItem;
     tempMovingItem = movingItem;
     for (let i = 0; i < GAME_ROWS; i++) {
         prependNewLine()
     }
+    for (let j = 0; j < PREVIEW_ROWS; j++) {
+        prependPreview()
+    }
     generateNewBlock()
+}
+
+function prependPreview() {
+    const li = document.createElement("li");
+    const ul = document.createElement("ul");
+    for (let j = 0; j < PREVIEW_COLS; j++) {
+        const matrix = document.createElement("li");
+        ul.prepend(matrix);
+    }
+    li.prepend(ul)
+    preview.prepend(li)
 }
 
 function prependNewLine() {
@@ -95,27 +124,42 @@ function prependNewLine() {
     for (let j = 0; j < GAME_COLS; j++) {
         const matrix = document.createElement("li");
         ul.prepend(matrix);
-
     }
     li.prepend(ul)
     count++;
-    console.log("count is: " + count);
-    console.log("lines + 20: " + (lines + 20));
-
-    while (count == lines + 20 && !ul.classList.contains("top_line")) {
+    while (count == lines + GAME_ROWS && !ul.classList.contains("top_line")) {
         ul.classList.add("top_line");
-        console.log("new top_line is selected");
     }
     const childNodes = playground.childNodes;
     childNodes.forEach(child => {
         child.childNodes.forEach(ul => {
             ul.classList.remove("top_line");
-            console.log("Previous top_line has been removed");
         })
     })
     playground.prepend(li)
 }
+function renderPreview() {
+    const { type, direction, top, left } = nextMovingItem;
+    if (newBlock) {
+        preview.innerHTML = "";
+        for (let j = 0; j < PREVIEW_ROWS; j++) {
+            prependPreview()
+        }
+    }
+    BLOCKS[type][direction].some(block => {
+        const x = block[0] + left;
+        const y = block[1] + top;
+        //const isAvailable = checkEmpty(target);
+            nextMovingItem = { ...nextItem };
+            const newTarget = preview.childNodes[y] ? preview.childNodes[y].childNodes[0].childNodes[x]: null;
+            newTarget.classList.add(type, "moving")
+            console.log("Creating new blocks" + nextItem.type);
 
+        
+
+    })
+    newBlock = false;
+}
 function renderBlocks(moveType = "") {
     const { type, direction, top, left } = tempMovingItem;
     const movingBlocks = document.querySelectorAll(".moving");
@@ -131,7 +175,7 @@ function renderBlocks(moveType = "") {
             target.classList.add(type, "moving")
         } else {
             tempMovingItem = { ...movingItem }
-            
+
             setTimeout(() => {
                 renderBlocks('retry');
                 if (moveType === "top") {
@@ -162,16 +206,16 @@ function checkGameover() {
         child.childNodes.forEach(ul => {
             if (ul.classList.contains("top_line")) {
                 child.children[0].childNodes.forEach(li => {
-                if (li.classList.contains("seized")) {
-                    console.log("Seized on the top line");
-                    clearInterval(downInterval)
-                    play = false;
-                    if (playsound) {
-                        gameover.play();
-                        playsound = false;
+                    if (li.classList.contains("seized")) {
+                        console.log("Seized on the top line");
+                        clearInterval(downInterval)
+                        play = false;
+                        if (playsound) {
+                            gameover.play();
+                            playsound = false;
+                        }
+                        showGameoverText()
                     }
-                    showGameoverText()
-                }
                 })
             }
 
@@ -245,15 +289,26 @@ function dropInterval() {
 }
 function generateNewBlock() {
     dropInterval();
+    newBlock = true;
     const blockArray = Object.entries(BLOCKS);
-    const randomIndex = Math.floor(Math.random() * blockArray.length)
+    let randomIndex = randomIndex2;
+    randomIndex2 = Math.floor(Math.random() * blockArray.length);
+
     movingItem.type = blockArray[randomIndex][0]
     movingItem.top = 0;
     movingItem.left = 4;
     movingItem.direction = 0;
+
+    nextItem.type = blockArray[randomIndex2][0]
+    nextItem.top = 2;
+    nextItem.left = 1;
+    nextItem.direction = 0;
+    
+    nextMovingItem = { ...nextItem };
     tempMovingItem = { ...movingItem };
 
     if (play) {
+        renderPreview()
         renderBlocks()
     }
 }
@@ -394,10 +449,9 @@ function checkTetris(lines) {
             break;
 
         case 2:
-            console.log("score")
-            var added = 20 * scoreMultiplier;
-            console.log("score added: " + added);
-            score += added;
+            console.log("double score")
+            console.log("score added: " + (20 * scoreMultiplier));
+            score += 20 * scoreMultiplier;
             scoreDisplay.innerText = "Score: " + score;
 
             showTetrisText("Double");
@@ -423,8 +477,8 @@ function reset() {
     play = true;
     drop = true;
     playsound = true;
-    scoreDisplay.innerText = "Score:" + score;
-    stageDisplay.innerText = "Stage:" + stage;
+    scoreDisplay.innerText = "Score: " + score;
+    stageDisplay.innerText = "Stage: " + stage;
     nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
     theme2.pause();
     theme.play();
@@ -432,6 +486,7 @@ function reset() {
 }
 restartButton.addEventListener("click", () => {
     playground.innerHTML = "";
+    preview.innerHTML = "";
     reset()
     init()
 })
