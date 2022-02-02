@@ -152,9 +152,7 @@ function renderPreview() {
         //const isAvailable = checkEmpty(target);
             nextMovingItem = { ...nextItem };
             const newTarget = preview.childNodes[y] ? preview.childNodes[y].childNodes[0].childNodes[x]: null;
-            console.log(newTarget);
             newTarget.classList.add(type, "static");
-            console.log("Creating new block: " + nextItem.type);
     })
     newBlock = false;
     
