@@ -300,8 +300,8 @@ function generateNewBlock() {
     movingItem.direction = 0;
 
     nextItem.type = blockArray[randomIndex2][0]
-    nextItem.top = 2;
-    nextItem.left = 1;
+    nextItem.top = 1;
+    nextItem.left = 0;
     nextItem.direction = 0;
     
     nextMovingItem = { ...nextItem };
