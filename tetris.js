@@ -36,7 +36,7 @@ let count = 0;
 let lines = 0;
 let newBlock = false;
 let randomIndex2 = Math.floor(Math.random() * 7);
-
+let oldTarget;
 
 theme.loop = true;
 theme2.loop = true;
@@ -147,18 +147,17 @@ function renderPreview() {
         }
     }
     BLOCKS[type][direction].some(block => {
-        const x = block[0] + left;
+        const x = block[0] + left; 
         const y = block[1] + top;
         //const isAvailable = checkEmpty(target);
             nextMovingItem = { ...nextItem };
             const newTarget = preview.childNodes[y] ? preview.childNodes[y].childNodes[0].childNodes[x]: null;
-            newTarget.classList.add(type, "moving")
-            console.log("Creating new blocks" + nextItem.type);
-
-        
-
+            console.log(newTarget);
+            newTarget.classList.add(type, "static");
+            console.log("Creating new block: " + nextItem.type);
     })
     newBlock = false;
+    
 }
 function renderBlocks(moveType = "") {
     const { type, direction, top, left } = tempMovingItem;
