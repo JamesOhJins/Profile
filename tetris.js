@@ -14,7 +14,7 @@ const preview = document.querySelector(".preview > ul");
 const GAME_ROWS = 20;
 const GAME_COLS = 10;
 
-const PREVIEW_ROWS = 5;
+const PREVIEW_ROWS = 4;
 const PREVIEW_COLS = 5;
 
 //variables
@@ -297,8 +297,8 @@ function generateNewBlock() {
     movingItem.direction = 0;
 
     nextItem.type = blockArray[randomIndex2][0]
-    nextItem.top = 1;
-    nextItem.left = 0;
+    nextItem.top = 0;
+    nextItem.left = 2;
     nextItem.direction = 0;
     
     nextMovingItem = { ...nextItem };

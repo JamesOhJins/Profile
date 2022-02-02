@@ -237,7 +237,7 @@ ul {
     color: yellowgreen;
 }
 .next-level {
-    margin-left: 6.5rem;
+    margin-left: 5.5rem;
     text-align: right;
     font-size: 16px;
     margin-bottom: 1rem;
@@ -321,7 +321,7 @@ ul {
 }
 .preview {
     display: inline-table;
-    padding-left: 2rem;
+    padding-left: 1rem;
 }
 .preview >ul{
     
@@ -361,7 +361,10 @@ ul {
     cursor:pointer;
     z-index: 2;
 }
-
+#next {
+    padding-left: 2.7rem;
+    color:#ccc;
+}
 .wrapper {
     padding-left: 8.5rem;
 }
