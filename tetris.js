@@ -9,7 +9,6 @@ const restartButton = document.querySelector(".game-button");
 const tetrisDisplay = document.querySelector(".tetris");
 const stageDisplay = document.querySelector(".stage");
 const nextLevelDisplay = document.querySelector(".next-level");
-var high_scores = document.querySelector("ol.high-scores");
 
 //Setting
 const GAME_ROWS = 20;
@@ -28,7 +27,9 @@ let drop = true;
 let linesRemoved = 0;
 let gameover = new Audio("audio/try_again.ogg");
 let theme = new Audio("audio/Solve_The_Puzzle.ogg");
-let theme2 = new Audio ("audio/Interstellar_Odyssey.ogg");
+let theme2 = new Audio("audio/Interstellar_Odyssey.ogg");
+let count = 0;
+let lines = 0;
 
 theme.loop = true;
 let playsound = true;
@@ -53,16 +54,16 @@ const movingItem = {
     top: 0,
     left: 0,
 };
-function changeTheme(){
-if (stage > 9){
-    console.log("change music");
-    theme.pause();
-    theme2.volume = 0.15;
-    theme2.play();
-}
-else{
+function changeTheme() {
+    if (stage > 9) {
+        console.log("change music");
+        theme.pause();
+        theme2.volume = 0.15;
+        theme2.play();
+    }
+    else {
 
-}
+    }
 }
 window.addEventListener("keydown", function (e) {
     if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
@@ -90,11 +91,28 @@ function init() {
 function prependNewLine() {
     const li = document.createElement("li");
     const ul = document.createElement("ul");
+
     for (let j = 0; j < GAME_COLS; j++) {
         const matrix = document.createElement("li");
         ul.prepend(matrix);
+
     }
     li.prepend(ul)
+    count++;
+    console.log("count is: " + count);
+    console.log("lines + 20: " + (lines + 20));
+
+    while (count == lines + 20 && !ul.classList.contains("top_line")) {
+        ul.classList.add("top_line");
+        console.log("new top_line is selected");
+    }
+    const childNodes = playground.childNodes;
+    childNodes.forEach(child => {
+        child.childNodes.forEach(ul => {
+            ul.classList.remove("top_line");
+            console.log("Previous top_line has been removed");
+        })
+    })
     playground.prepend(li)
 }
 
@@ -113,19 +131,12 @@ function renderBlocks(moveType = "") {
             target.classList.add(type, "moving")
         } else {
             tempMovingItem = { ...movingItem }
-            if (moveType === 'retry') {
-                clearInterval(downInterval)
-                play = false;
-                if (playsound) {
-                    gameover.play();
-                    playsound = false;
-                }
-                showGameoverText()
-            }
+            
             setTimeout(() => {
                 renderBlocks('retry');
                 if (moveType === "top") {
                     seizeBlock();
+                    checkGameover();
                     down.play();
                 }
             }, 0)
@@ -145,21 +156,42 @@ function seizeBlock() {
     })
     checkMatch()
 }
+function checkGameover() {
+    const childNodes = playground.childNodes;
+    childNodes.forEach(child => {
+        child.childNodes.forEach(ul => {
+            if (ul.classList.contains("top_line")) {
+                child.children[0].childNodes.forEach(li => {
+                if (li.classList.contains("seized")) {
+                    console.log("Seized on the top line");
+                    clearInterval(downInterval)
+                    play = false;
+                    if (playsound) {
+                        gameover.play();
+                        playsound = false;
+                    }
+                    showGameoverText()
+                }
+                })
+            }
 
+        })
+    })
+
+}
 function checkMatch() {
-
     const childNodes = playground.childNodes;
     childNodes.forEach(child => {
         let matched = true;
         child.children[0].childNodes.forEach(li => {
             if (!li.classList.contains("seized")) {
-
-
                 matched = false;
             }
         })
         if (matched) {
             child.remove();
+            lines += 1;
+            console.log("total lines " + lines);
             prependNewLine();
             score += (10 * scoreMultiplier);
             lineCount += 1;
@@ -386,6 +418,8 @@ function reset() {
     scoreMultiplier = 1;
     lineCount = 0;
     duration = 1000;
+    count = 0;
+    lines = 0;
     play = true;
     drop = true;
     playsound = true;
@@ -393,10 +427,11 @@ function reset() {
     stageDisplay.innerText = "Stage:" + stage;
     nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
     theme2.pause();
+    theme.play();
+
 }
 restartButton.addEventListener("click", () => {
     playground.innerHTML = "";
-    theme.play();
     reset()
     init()
 })
