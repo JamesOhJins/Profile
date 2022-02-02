@@ -56,27 +56,32 @@ h1 img {
     opacity: 0.5;
     padding: 14px 16px;
 }
+
+.navLinks ul {
+font-size: 80%;
+position:relative;
+padding:0;
+padding-top: 0.6rem;
+left:0;
+display:none; /* hides sublists */
+}
+.navLinks li:hover ul {display:flex;} /* shows sublist on hover */
 .selected{
     color: white !important;
     opacity: 1 !important;
 }
 dl li a:hover {
     transition: 0.1s;
-    font-size: 16pt;
+    font-size: 104%;
     opacity: 1;
 }
 #grid {
     display: grid;
-    grid-template-columns: 3.5fr;
     justify-content: center;
     padding-bottom: 60px;
     margin: 0 auto;
 }
-#rashi {
-    place-self: center;
-    align-content: center;
-    width:60%;
-}
+
 .photo {
     width: 100%;
 }
@@ -94,11 +99,11 @@ dl li a:hover {
 	height: 100%;
 }
 #column {
-    column-width: 300px;
+    column-width: 20rem;
     padding-top: 10px;
     place-self: center;
     align-content: center;
-    width: 65%;
+    width: 72%;
     background-color: rgba(30,30,30,0.5);
 }
 
@@ -118,12 +123,12 @@ dl li a:hover {
     padding: 10px;
     background-color:rgba(80,80,80,0.5);
     color:white;
-    font-size:13px;
+    font-size:15px;
 }
 
 #column figure figcaption span {
     font-weight: bold;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 
