@@ -25,7 +25,7 @@
         </dl>
     </h1>
     <div id=grid>
-        <button type="button" onclick="init(this)" style="margin-top: 3rem; font-size: larger;">Scan My Dog</button>
+        <button type="button" onclick="init(this)" style="margin-top: 10rem; font-size: 30px; border-radius: 10%; background-color: cornsilk;">Scan My Dog</button>
         <div id="webcam-container"></div>
         <div id="label-container"></div>
         <h1 id = "dog-breed"></h1>
@@ -40,33 +40,47 @@
             const URL = "my_model/";
 
             let model, webcam, labelContainer, maxPredictions;
-
+ 
             // Load the image model and setup the webcam
             async function init(x) {
-                const modelURL = URL + "model.json";
-                const metadataURL = URL + "metadata.json";
-                x.style.display = 'none';
-                // load the model and metadata
-                // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-                // or files from your local hard drive
-                // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-                model = await tmImage.load(modelURL, metadataURL);
-                maxPredictions = model.getTotalClasses();
+                if(x.innerHTML == 'Scan My Dog'){
+                    const modelURL = URL + "model.json";
+                    const metadataURL = URL + "metadata.json";
+                    x.innerHTML = 'Stop';
+                    // load the model and metadata
+                    // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+                    // or files from your local hard drive
+                    // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+                    model = await tmImage.load(modelURL, metadataURL);
+                    maxPredictions = model.getTotalClasses();
 
-                // Convenience function to setup a webcam
-                const flip = true; // whether to flip the webcam
-                webcam = new tmImage.Webcam(300, 300, flip); // width, height, flip
-                await webcam.setup(); // request access to the webcam
-                await webcam.play();
-                window.requestAnimationFrame(loop);
+                    // Convenience function to setup a webcam
+                    const flip = true; // whether to flip the webcam
+                    
+                    webcam = new tmImage.Webcam(300, 300, flip); // width, height, flip
+                    await webcam.setup({ facingMode: "environment" }); // request access to the webcam
+                    await webcam.play();
+                    window.requestAnimationFrame(loop);
 
-                // append elements to the DOM
-                document.getElementById("webcam-container").appendChild(webcam.canvas);
-                labelContainer = document.getElementById("label-container");
-                dogBreed = document.getElementById("dog-breed");
+                    // append elements to the DOM
+                    webcamContainer = document.getElementById("webcam-container");
+                    webcamContainer.appendChild(webcam.canvas);
+                    labelContainer = document.getElementById("label-container");
+                    labelContainer.style.display = 'initial';
+                    dogBreed = document.getElementById("dog-breed");
+                    dogBreed.style.display = 'initial';
 
-                for (let i = 0; i < maxPredictions; i++) { // and class labels
-                    labelContainer.appendChild(document.createElement("div"));
+                    for (let i = 0; i < maxPredictions; i++) { // and class labels
+                        labelContainer.appendChild(document.createElement("div"));
+                    }
+                }
+                else {
+                    x.innerHTML = 'Scan My Dog';
+                    webcamContainer.removeChild(webcam.canvas);
+                    labelContainer.style.display = 'none';
+                    dogBreed.style.display = 'none';
+                    webcam.pause();
+                    
                 }
             }
 
@@ -87,12 +101,12 @@
                     const classPrediction =
                         prediction[i].className + ": " + (prediction[i].probability.toFixed(2)*100) + "%";
 
-                        if(prediction[i].probability.toFixed(2)>0.1){
+                        if(prediction[i].probability>0.1){
                         labelContainer.childNodes[i].innerHTML = classPrediction;
                          } else {
                              labelContainer.childNodes[i].innerHTML = "";
                          }
-                        if(prediction[i].probability.toFixed(2) > 0.9){
+                        if(prediction[i].probability > 0.9){
                             dogBreed.innerHTML = prediction[i].className;
                         }
                         
