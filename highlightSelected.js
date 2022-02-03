@@ -33,7 +33,6 @@ $(document).ready(function () {
         if (url == href) {
             console.log("found a match");
             // Add active class
-            $(this).addClass('selected');
             $(this.children).addClass('selected');
         }
     });
