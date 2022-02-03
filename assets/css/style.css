@@ -448,8 +448,14 @@ ul {
 
   #label-container {
       color:#ccc;
+      align-items: center;
+  }
+  #webcam-container {
+      align-items: center;
   }
 
-  #dob-breed {
-      color:#ccc
+  #dog-breed {
+      color:#ccc;
+      font-size: 30px;
+      text-align: center;
   }
