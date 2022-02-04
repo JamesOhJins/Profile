@@ -484,7 +484,7 @@ ul {
   }
 
   video {
-    width: 320px;
-    aspect-ratio: auto 320 / 240;
-    height: 240px;
+    width: 480px;
+    aspect-ratio: auto 480 / 360;
+    height: 360px;
 }
