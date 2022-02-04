@@ -458,7 +458,24 @@ ul {
       color:#ccc;
       font-size: 30px;
       text-align: center;
+      margin-top: 5.5rem;
+      position:absolute;
+      left: 0; 
+      right: 0; 
+      margin-left: auto; 
+      margin-right: auto; 
+      width: 100%;
   }
   @media(max-width: 800px) {
     .navLinks { visibility: hidden; }
+  }
+
+  .scan-button {
+    margin-top: 10rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px; 
+    border-radius: 10%; 
+    background-color: cornsilk;
   }
