@@ -470,7 +470,7 @@ ul {
     .navLinks { visibility: hidden; }
   }
 
-  .scan-button {
+  #scan-button {
     margin-top: 10rem;
     display:flex;
     align-items: center;
