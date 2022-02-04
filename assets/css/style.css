@@ -491,6 +491,7 @@ ul {
 
 #scannerWrapper {
     width: 60%;
+    max-width:  500px;
     place-self: center;
     align-content: center;
 }
