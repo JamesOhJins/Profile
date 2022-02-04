@@ -459,3 +459,6 @@ ul {
       font-size: 30px;
       text-align: center;
   }
+  @media(max-width: 320px) {
+    .navLinks { visibility: hidden; }
+  }
