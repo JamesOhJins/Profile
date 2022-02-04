@@ -472,6 +472,7 @@ ul {
 
   #scan-button {
     height: 3.5rem;
+    width:100%;
     margin-top: 7rem;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -484,7 +485,12 @@ ul {
   }
 
   video {
-    width: 480px;
-    aspect-ratio: auto 480 / 360;
-    height: 360px;
+    width: 100%;
+    height: fit-content;
+}
+
+#scannerWrapper {
+    width: 60%;
+    place-self: center;
+    align-content: center;
 }
