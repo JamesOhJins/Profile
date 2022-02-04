@@ -482,3 +482,9 @@ ul {
     border-radius: 1.75rem; 
     background-color: cornsilk;
   }
+
+  video {
+    width: 320px;
+    aspect-ratio: auto 320 / 240;
+    height: 240px;
+}

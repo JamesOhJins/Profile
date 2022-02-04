@@ -55,7 +55,7 @@
                     labelContainer = document.getElementById("label-container");
                     dogBreed = document.getElementById("dog-breed");
                     const flip = false;
-                    webcam = new tmImage.Webcam(300, 300, flip); // width, height, flip
+                    webcam = new tmImage.Webcam(150, 150, flip); // width, height, flip
                     await webcam.setup({ facingMode: "environment" });
 
 
@@ -74,11 +74,8 @@
 
                         // request access to the webcam
                         if (count == 0) {
-                            //webcamContainer.appendChild(webcam.canvas);
                             document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
-
                             // grab video-object in any way you want and set the attributes --> **"muted" and "playsinline"**
-
                         }
                         // append elements to the DOM
                         let wc = document.getElementsByTagName('video')[0];
