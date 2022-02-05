@@ -504,6 +504,7 @@ ul {
     align-items: center;
     justify-content: center;
     display:none;
-    font-size: 30px;
+    font-size: 8px;
+    font-size: 4vw;
 
 }
