@@ -35,8 +35,7 @@ let theme2 = new Audio("assets/audio/Interstellar_Odyssey.ogg");
 let count = 0;
 let lines = 0;
 let newBlock = false;
-let randomIndex2 = Math.floor(Math.random() * 7);
-let oldTarget;
+let randomIndex = Math.floor(Math.random() * 7);
 
 theme.loop = true;
 theme2.loop = true;
@@ -50,6 +49,7 @@ let mute = false;
 gameover.preload, theme.preload, line.preload, double.preload, triple.preload, tetris.preload, down.preload = "auto";
 gameover.currentTime, line.currentTime, double.currentTime, triple.currentTime, tetris.currentTime, down.currentTime = 0.5;
 theme.volume = 0.15;
+theme2.volume = 0.15;
 line.volume = 0.07;
 down.volume = 0.07;
 double.volume = 0.15;
@@ -72,7 +72,6 @@ function changeTheme() {
     if (stage > 9) {
         console.log("change music");
         theme.pause();
-        theme2.volume = 0.15;
         theme2.play();
     }
     else {
@@ -220,6 +219,8 @@ function checkGameover() {
     })
 
 }
+
+
 function checkMatch() {
     const childNodes = playground.childNodes;
     childNodes.forEach(child => {
@@ -256,6 +257,7 @@ function checkMatch() {
     linesRemoved = 0;
     generateNewBlock()
 }
+//pause function
 function pauseResume() {
     if (play) {
         play = false;
@@ -274,6 +276,7 @@ function pauseResume() {
     }
 }
 
+//function that sets a new drop interval of the block
 function dropInterval() {
     if (play && drop) {
 
@@ -284,19 +287,21 @@ function dropInterval() {
 
     }
 }
+
+//generates new block and automatically makes it drop with current drop interval. copies randomIndex that is shown in preview to current block
 function generateNewBlock() {
     dropInterval();
     newBlock = true;
     const blockArray = Object.entries(BLOCKS);
-    let randomIndex = randomIndex2;
-    randomIndex2 = Math.floor(Math.random() * blockArray.length);
+    let BlockType = randomIndex;
+    randomIndex = Math.floor(Math.random() * blockArray.length);
 
-    movingItem.type = blockArray[randomIndex][0]
+    movingItem.type = blockArray[BlockType][0]
     movingItem.top = 0;
     movingItem.left = 4;
     movingItem.direction = 0;
 
-    nextItem.type = blockArray[randomIndex2][0]
+    nextItem.type = blockArray[randomIndex][0]
     nextItem.top = 0;
     nextItem.left = 2;
     nextItem.direction = 0;
@@ -310,18 +315,22 @@ function generateNewBlock() {
     }
 }
 
+//checks if block can move to target location
 function checkEmpty(target) {
     if (!target || target.classList.contains("seized")) {
         return false;
     }
     return true;
 }
+
+//receives direction and amount as parameter, and moves the block
 function moveBlock(movetype, amount) {
     if (play) {
         tempMovingItem[movetype] += amount;
         renderBlocks(movetype);
     }
 }
+//changes the direction of current block
 function changeDirection() {
     if (play) {
         const direction = tempMovingItem.direction;
@@ -329,6 +338,8 @@ function changeDirection() {
         renderBlocks();
     }
 }
+
+//fast auto-drop function when spacebar is pressed
 function hardDrop() {
     clearInterval(downInterval);
     if (play) {
@@ -346,6 +357,8 @@ function showGameoverText() {
     restartButton.style.display = "flex";
 
 }
+
+//shows and plays sound for each multi line clear
 function showTetrisText(msg) {
     if (msg == "Double") {
         tetrisDisplay.style.color = "yellow";
@@ -368,6 +381,8 @@ function showTetrisText(msg) {
     }, 500);
 
 }
+
+//mute function
 function muteUnmute() {
     if (!mute) {
         theme.volume = 0;
@@ -402,7 +417,6 @@ document.addEventListener("keydown", e => {
             break;
         case 37:
             moveBlock("left", -1);
-
             break;
         case 38:
             changeDirection();
@@ -431,6 +445,7 @@ document.addEventListener("keydown", e => {
             break;
     }
 })
+//checks how many lines were removed on one block drop
 function checkTetris(lines) {
     switch (lines) {
         case 4:
@@ -461,6 +476,7 @@ function checkTetris(lines) {
             break;
     }
 }
+//function to put variables to initial status
 function reset() {
     gameText.style.display = "none";
     restartButton.style.display = "none";
@@ -481,6 +497,7 @@ function reset() {
     theme.play();
 
 }
+//restart button
 restartButton.addEventListener("click", () => {
     playground.innerHTML = "";
     preview.innerHTML = "";

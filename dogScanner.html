@@ -43,25 +43,22 @@
                 // the link to your model provided by Teachable Machine export panel
                 const URL = "my_model/";
                 let model, webcam, labelContainer, maxPredictions;
+                const modelURL = URL + "model.json";
+                const metadataURL = URL + "metadata.json";                
+                scanButton = document.getElementById('scan-button');
+                loading = document.getElementById('loading');
+                webcamContainer = document.getElementById("webcam-container");
+                labelContainer = document.getElementById("label-container");
+                dogBreed = document.getElementById("dog-breed");
+                const flip = false;
 
                 // Load the image model and setup the webcam
                 async function init() {
-                    const modelURL = URL + "model.json";
-                    const metadataURL = URL + "metadata.json";
+                    webcam = new tmImage.Webcam(150, 150, flip); // width, height, flip
                     model = await tmImage.load(modelURL, metadataURL);
                     maxPredictions = model.getTotalClasses();
-                    scanButton = document.getElementById('scan-button');
-                    loading = document.getElementById('loading');
-                    webcamContainer = document.getElementById("webcam-container");
-                    labelContainer = document.getElementById("label-container");
-                    dogBreed = document.getElementById("dog-breed");
-                    const flip = false;
-                    webcam = new tmImage.Webcam(150, 150, flip); // width, height, flip
                     await webcam.setup({ facingMode: "environment" });
-
-
                     if (scanButton.innerHTML == 'Scan My Dog') {
-
                         scanButton.innerHTML = 'Stop';
                         loading.style.display = 'flex';
                         // load the model and metadata
@@ -79,7 +76,6 @@
                         document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
                         // grab video-object in any way you want and set the attributes --> **"muted" and "playsinline"**
                         console.log("appending webcam");
-                        
                         // append elements to the DOM
                         console.log("appending player")
                         let wc = document.getElementsByTagName('video')[0];
@@ -87,6 +83,10 @@
                             wc.muted = "true"
                             wc.id = "webcamVideo";
                         await webcam.play();
+                        
+                            
+                        
+                        
                         loading.style.display = 'none';
                         window.requestAnimationFrame(loop);
                         
@@ -108,10 +108,9 @@
                     else {
                         scanButton.innerHTML = 'Scan My Dog';
                         webcamContainer.innerHTML = "";
-                        //webcamContainer.removeChild(canvas);
                         labelContainer.style.display = 'none';
                         dogBreed.style.display = 'none';
-                        webcam.pause();
+                        await webcam.pause();
 
                     }
                 }
