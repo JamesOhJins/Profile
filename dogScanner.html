@@ -42,7 +42,6 @@
 
                 // the link to your model provided by Teachable Machine export panel
                 const URL = "my_model/";
-                let count = 0;
                 let model, webcam, labelContainer, maxPredictions;
 
                 // Load the image model and setup the webcam
@@ -76,11 +75,11 @@
 
                         // request access to the webcam
 
-                        if (count == 0) {
-                            document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
-                            // grab video-object in any way you want and set the attributes --> **"muted" and "playsinline"**
-                            console.log("appending webcam");
-                        }
+                        
+                        document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
+                        // grab video-object in any way you want and set the attributes --> **"muted" and "playsinline"**
+                        console.log("appending webcam");
+                        
                         // append elements to the DOM
                         console.log("appending player")
                         let wc = document.getElementsByTagName('video')[0];
