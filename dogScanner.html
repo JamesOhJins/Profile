@@ -29,6 +29,7 @@
         <h2 id="dog-breed">
             </h3>
             <button id="scan-button" type="button" onclick="init()">Scan My Dog</button>
+            <div id="loading">loading scanner...</div>
             <div id="webcam-container"></div>
             <div id="label-container"></div>
 
@@ -51,6 +52,7 @@
                     model = await tmImage.load(modelURL, metadataURL);
                     maxPredictions = model.getTotalClasses();
                     scanButton = document.getElementById('scan-button');
+                    loading = document.getElementById('loading');
                     webcamContainer = document.getElementById("webcam-container");
                     labelContainer = document.getElementById("label-container");
                     dogBreed = document.getElementById("dog-breed");
@@ -62,7 +64,7 @@
                     if (scanButton.innerHTML == 'Scan My Dog') {
 
                         scanButton.innerHTML = 'Stop';
-                        console.log(scanButton.innerHTML);
+                        loading.style.display = 'flex';
                         // load the model and metadata
                         // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
                         // or files from your local hard drive
@@ -73,16 +75,20 @@
                         // whether to flip the webcam
 
                         // request access to the webcam
+
                         if (count == 0) {
                             document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
                             // grab video-object in any way you want and set the attributes --> **"muted" and "playsinline"**
+                            console.log("appending webcam");
                         }
                         // append elements to the DOM
+                        console.log("appending player")
                         let wc = document.getElementsByTagName('video')[0];
                             wc.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise :-)
                             wc.muted = "true"
                             wc.id = "webcamVideo";
                         await webcam.play();
+                        loading.style.display = 'none';
                         window.requestAnimationFrame(loop);
                         
 

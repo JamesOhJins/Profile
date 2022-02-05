@@ -497,3 +497,13 @@ ul {
     align-content: center;
     padding-bottom: 8%;
 }
+
+#loading {
+    color:#ccc;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    display:none;
+    font-size: 50px;
+
+}
