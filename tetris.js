@@ -7,6 +7,7 @@ const gameText = document.querySelector(".game-text");
 const scoreDisplay = document.querySelector(".score");
 const restartButton = document.querySelector(".game-button");
 const tetrisDisplay = document.querySelector(".tetris");
+tetrisDisplay.style.fontFamily = 'Karma';
 const stageDisplay = document.querySelector(".stage");
 const nextLevelDisplay = document.querySelector(".next-level");
 const preview = document.querySelector(".preview > ul");
@@ -90,8 +91,11 @@ function init() {
     if (!play) {
         restartButton.innerText = "Play";
         restartButton.style.display = "flex";
+        restartButton.style.fontFamily = 'Karma';
+
         gameText.innerText = "Instructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop \n m: mute/unmute";
         gameText.style.fontSize = "medium";
+        gameText.style.fontFamily = 'Karma';
         gameText.style.display = "flex";
     }
     nextMovingItem = movingItem;
