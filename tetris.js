@@ -37,6 +37,7 @@ let count = 0;
 let lines = 0;
 let newBlock = false;
 let randomIndex = Math.floor(Math.random() * 7);
+let checkCount = 0;
 
 theme.loop = true;
 theme2.loop = true;
@@ -100,7 +101,7 @@ function init() {
     }
     nextMovingItem = movingItem;
     tempMovingItem = movingItem;
-    for (let i = 0; i < GAME_ROWS; i++) {
+    for (let i = 0; i < GAME_ROWS +1; i++) {
         prependNewLine()
     }
     for (let j = 0; j < PREVIEW_ROWS; j++) {
@@ -130,17 +131,40 @@ function prependNewLine() {
     }
     li.prepend(ul)
     count++;
-    while (count == lines + GAME_ROWS && !ul.classList.contains("top_line")) {
+
+    if (count == lines + GAME_ROWS && !ul.classList.contains("top_line")) {
+        console.log("top line was added at index of: " + lines + GAME_ROWS);
         ul.classList.add("top_line");
+        
     }
+    if (count == lines + GAME_ROWS +1 && !ul.classList.contains("invisible")) {
+        console.log("invisible line was added at index of: " + lines + GAME_ROWS + 1);
+        ul.classList.add("invisible");
+        ul.parentElement.style.display = "none";
+        checkCount = count;
+    }
+    
+
     const childNodes = playground.childNodes;
     childNodes.forEach(child => {
         child.childNodes.forEach(ul => {
-            ul.classList.remove("top_line");
+            if(count >  GAME_ROWS +1 &&ul.classList.contains("top_line")) {
+                ul.classList.remove("top_line");
+                console.log("old top_line removed")
+            }
+            if(count > GAME_ROWS +1 && ul.classList.contains("invisible")){
+            ul.classList.remove("invisible");
+            ul.classList.add("top_line");
+            ul.parentElement.style.display = "initial";
+            console.log("invisible changed to top_line");
+            checkCount++;
+            }
+            
         })
     })
     playground.prepend(li)
 }
+
 function renderPreview() {
     const { type, direction, top, left } = nextMovingItem;
     if (newBlock) {
@@ -168,7 +192,7 @@ function renderBlocks(moveType = "") {
     })
     BLOCKS[type][direction].some(block => {
         const x = block[0] + left;
-        const y = block[1] + top;
+        const y = block[1] + top + 1;
         const target = playground.childNodes[y] ? playground.childNodes[y].childNodes[0].childNodes[x] : null;
         const isAvailable = checkEmpty(target);
         if (isAvailable) {
@@ -238,12 +262,15 @@ function checkMatch() {
             child.remove();
             lines += 1;
             console.log("total lines " + lines);
+            // document.getElementsByClassName("top_line").classList.remove("top_line");
+            // document.getElementsByClassName("invisible").classList.add('top_line').classList.remove("invisible");
             prependNewLine();
             score += (10 * scoreMultiplier);
             lineCount += 1;
             linesRemoved += 1;
             nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
             console.log("linesRemoved = " + linesRemoved);
+
             if (lineCount == 10) {
                 duration = duration * 0.90;
                 lineCount = 0;
