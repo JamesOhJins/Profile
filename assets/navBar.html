@@ -18,7 +18,20 @@
     </ul>
 </li>
 <li><a href="algorithm.html"> Algorithm</a></li>
+<div class="burger">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+</div>
 
 <script>
     highlight();
+    const hamburger = document.querySelector(".burger");
+    const navMenu = document.querySelector(".navLinks");
+
+    hamburger.addEventListener("click", mobileMenu);
+    function mobileMenu() {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+}
 </script>
