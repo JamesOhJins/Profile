@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Photo Timeline</title>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script src="assets/js/highlightSelected.js"></script>
+    <script defer src="assets/js/modal.js"></script>
+    <script async src="https://kit.fontawesome.com/6cc05e1e8e.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $(".footer-dark").load("assets/footer.html")
+            $(".navLinks").load("assets/navBar.html")
+            $("#header").load("assets/header.html")
+        });
+    </script>
+    <div id="header"></div>
+</head>
+
+<body>
+    <div class=main>
+        <h1>Photo Timeline
+            <img id="logo" src="assets/images/logo/scenery.png">
+            <dl class="navLinks">
+            </dl>
+        </h1>
+        <div id=grid>
+            <span id=column>
+                <figure class="gallery__item">
+                    <img src="assets/images/timeline/peoria.jpeg" class="photo">
+                    <figcaption><span class = "timeline"> August, 2016 ~ May, 2018</span><br><br><span>Peoria</span> is where I started studying in the States. I went to a community college here. My plan was save money at community college, and transfer to another school after 2 years.
+                    </figcaption>
+                </figure>
+                <figure class="gallery__item">
+                    <img src="assets/images/timeline/chicago.jpeg" class="photo">
+                    <figcaption>My first school was located nearby <span>Chicago</span>, so it was where me and my friends went to hang out.
+                    </figcaption>
+                </figure>
+                <figure class="gallery__item">
+                    <img src="assets/images/timeline/buffalo.jpeg" class="photo">
+                    <figcaption><span class = "timeline">August, 2018 ~ May, 2019</span> <br><br> After 2 years at <span>Peoria</span>, I got accepted and transfered to SUNY, Buffalo.
+                    </figcaption>
+                </figure>
+                <figure class="gallery__item">
+                    <img src="assets/images/timeline/niagara.jpeg" class="photo">
+                    <figcaption>The school was located nearby <span>Niagara Falls</span>. It gave me an inner peace when listening to the sound of water falling. It became me and my friends' go to place during exam period.
+                    </figcaption>
+                </figure>
+                <figure class="gallery__item">
+                    <img src="assets/images/timeline/busan.jpeg" class="photo">
+                    <figcaption><span class = "timeline">May, 2019 ~ June, 2019</span><br><br> After finishing one academic year at the new school, I came back to South Korea to finish military duty. During a month, I mostly rested at home and travelled some places in South Korea. <span>Busan</span> was one place I visited right before I joined the army.</figcaption>
+                </figure>
+                <figure class="gallery__item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/K-9_%EC%9E%90%EC%A3%BC%ED%8F%AC_%287445556056%29_%282%29.jpg" class="photo">
+                    <!-- source: wikipedia -->
+                    <figcaption><span class = "timeline">June, 2019 ~ January, 2021</span><br><br>I served in a Battalion that has K9 Thunder. My role there was to drive k9 Thunder.</figcaption>
+                </figure>
+                <figure class="gallery__item">
+                    <img src="assets/images/timeline/jeju.jpeg" class="photo">
+                    <img src="assets/images/timeline/jeju2.jpeg" class="photo">
+                    <figcaption><span class = "timeline">January, 2021 ~ November, 2021</span> <br><br>After finishing one and a half years of military duty, I joined an IT company as a <span>QA tester(engineer)</span>. I had an opportunity to go for a business trip at the last month at this company. I used the app I was testing to shoot 3D dollhouses of accommodations in <span>JeJu Island</span>.
+                    </figcaption>
+                </figure>
+                <figure class="gallery__item">
+                    <img src="assets/images/timeline/covid.png" class = "photo">
+                    <figcaption><span class = "timeline">Dec, 2021 ~ Now</span> <br><br> After I quit the IT company I was working, I wanted started to prepare visa and documents to return to school. COVID-19 status in the States was really bad at the time, and I wanted to take courses in person. I decided to take another semester off and do personal projects.
+                    </figcaption>
+                </figure>
+            </span>
+        </div>
+    </div>
+    <div class="footer-dark">
+    </div>
+</body>
+
+</html>

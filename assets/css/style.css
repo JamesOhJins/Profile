@@ -24,8 +24,8 @@ h1 {
     text-align: left;
     font-size: 45px;
     padding-bottom: 20px;
-    padding-left: 30px;
-    padding-top: 20px;
+    padding-left: 5%;
+    padding-top: 2.5%;
     margin: 0;
     color: aliceblue;
     background-color: transparent;
@@ -78,6 +78,7 @@ dl li a:hover {
 #grid {
     display: grid;
     justify-content: center;
+    padding-top:2rem;
     padding-bottom: 2rem;
     margin: 0 auto;
 }
@@ -85,6 +86,7 @@ dl li a:hover {
 .photo {
     width: 100%;
 }
+
 
 #column .videoWrapper {
     display: inline-table;
@@ -106,7 +108,31 @@ dl li a:hover {
     width: 72%;
     background-color: rgba(30,30,30,0.5);
 }
-
+.linkWrapper {
+    padding-bottom: 2rem;
+}
+#half_column {
+    column-width: 25rem;
+    padding-top: 10px;
+    place-self: center;
+    align-content: center;
+    width: 70%;
+    /* background-color: rgba(30,30,30,0.5); */
+    padding-bottom: 1%;
+}
+.photo_links {
+    border-radius: 1rem 1rem 0 0;
+    width:100%
+}
+.link_name {
+    font-size: 4vh;
+    background-color:slategray;
+    border-radius: 1rem;
+    color:rgb(40, 40, 40) !important;
+    font-weight: bolder;
+    text-align: center !important;
+    padding-bottom: 5px;
+}
 #column figure {
     display: inline-block;
     border: 10px rgba(0,0,0,0.2);
@@ -115,15 +141,16 @@ dl li a:hover {
 
 #column figure img{
     width: 100%;
-    border-radius: 6px;
+    border-radius: 1rem 1rem 0 0;
 }
 
 #column figure figcaption{
-    border-top: 10px rgba(0,0,0,0.2);
+    /* border-top: 10px rgba(0,0,0,0.2); */
     padding: 10px;
     background-color:rgba(80,80,80,0.5);
     color:white;
     font-size:15px;
+    border-radius: 0 0 1rem 1rem;
 }
 
 #column figure figcaption span {
@@ -205,7 +232,10 @@ dl li a:hover {
     transform: scale(1.03);
 }
 
-
+.timeline {
+    font-size: 90% !important;
+    font-weight: lighter !important;
+}
 /*profile*/
 #profile {
     width: 100%;
@@ -478,7 +508,7 @@ ul {
   }
 
   #scan-button {
-    height: 3.5rem;
+    height: 5.5rem;
     width:100%;
     margin-top: 7rem;
     padding-left: 1rem;

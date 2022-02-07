@@ -59,6 +59,7 @@
                     maxPredictions = model.getTotalClasses();
                     await webcam.setup({ facingMode: "environment" });
                     if (scanButton.innerHTML == 'Scan My Dog') {
+                        scanButton.style.borderRadius = "1.75rem 1.75rem 0 0"; 
                         scanButton.innerHTML = 'Stop';
                         loading.style.display = 'flex';
                         // load the model and metadata
@@ -104,9 +105,11 @@
                         dogBreed.innerHTML = '';
                         labelContainer.style.display = 'none';
                         scanButton.innerHTML = 'Scan My Dog';
+                        scanButton.style.borderRadius = "1.75rem";
                     }
                     else {
                         scanButton.innerHTML = 'Scan My Dog';
+                        scanButton.style.borderRadius = "1.75rem";
                         webcamContainer.innerHTML = "";
                         labelContainer.style.display = 'none';
                         dogBreed.style.display = 'none';
