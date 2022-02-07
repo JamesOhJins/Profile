@@ -376,7 +376,7 @@ function hardDrop() {
     if (play) {
         downInterval = setInterval(() => {
             moveBlock('top', 1)
-        }, 10)
+        }, 10) //}, 10)
     }
 }
 
