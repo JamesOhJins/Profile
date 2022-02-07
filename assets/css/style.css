@@ -31,7 +31,7 @@ h1 {
     background-color: transparent;
 }   
 #logo {
-    max-height: 50px;
+    max-height: 6vh;
     width:auto;
 }
 h1 img {
@@ -506,6 +506,8 @@ ul {
   }
   @media(max-width: 800px) {
     .navLinks { visibility: hidden; }
+    h1 {font-size: 8vw;}
+    #logo{max-height: 4vh;}
   }
 
   #scan-button {
