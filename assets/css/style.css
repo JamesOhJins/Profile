@@ -36,10 +36,12 @@ h1 {
     cursor: pointer;
   }
   .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
+    display:block;
+    width: 32.5px;
+    top: 0;
+    right: 0;
+    height: 3.9px;
+    margin: 6.8px auto;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     background-color: #101010;
@@ -68,7 +70,7 @@ h1 img {
 }
 
 .navLinks li a{
-    color:white;
+    color:rgb(255, 255, 255);
     opacity: 0.5;
     padding-left: 1rem;
     padding-right:1rem;
@@ -91,7 +93,7 @@ display:none; /* hides sublists */
     }/* shows sublist on hover */
 }
 .selected{
-    color: white !important;
+    color: rgb(255,255,255) !important;
     opacity: 1 !important;
 }
 
@@ -122,7 +124,7 @@ display:none; /* hides sublists */
 	height: 100%;
 }
 #column {
-    column-width: 20rem;
+    column-width: 25rem;
     padding-top: 10px;
     place-self: center;
     align-content: center;
@@ -169,8 +171,8 @@ display:none; /* hides sublists */
     /* border-top: 10px rgba(0,0,0,0.2); */
     padding: 10px;
     background-color:rgba(80,80,80,0.5);
-    color:white;
-    font-size:15px;
+    color:rgb(255,255,255);
+    font-size:17px;
     border-radius: 0 0 1rem 1rem;
 }
 
@@ -562,8 +564,8 @@ ul {
       }
       .burger {
           position: fixed;
-          right: 0.5rem;
-          top: 0.5rem;
+          right: 0.25rem;
+          top: 0.25rem;
           display:block;
           cursor: pointer;
           filter: invert();
@@ -571,17 +573,17 @@ ul {
       .burger.active{
           position: fixed;
           display:block;
-          right: 0.5rem;
-          top: 0.5rem;
+          right: 0.25rem;
+          top: 0.25rem;
       }
       .burger.active .bar:nth-child(2) {
           opacity: 0;
       }
       .burger.active .bar:nth-child(1) {
-          transform: translateY(8px) rotate(45deg);
+          transform: translateY(10.4px) rotate(45deg);
       }
       .burger.active .bar:nth-child(3) {
-          transform: translateY(-8px) rotate(-45deg);
+          transform: translateY(-10.4px) rotate(-45deg);
       }
   }
 
