@@ -53,11 +53,12 @@
 
                 // Load the image model and setup the webcam
                 async function init() {
-                    webcam = new tmImage.Webcam(150, 150, flip); // width, height, flip
+                    
+                    if (scanButton.innerHTML == 'Scan My Dog') {
+                        webcam = new tmImage.Webcam(150, 150, flip); // width, height, flip
                     model = await tmImage.load(modelURL, metadataURL);
                     maxPredictions = model.getTotalClasses();
                     await webcam.setup({ facingMode: "environment" });
-                    if (scanButton.innerHTML == 'Scan My Dog') {
                         scanButton.style.borderRadius = "1.75rem 1.75rem 0 0"; 
                         scanButton.innerHTML = 'Stop';
                         loading.style.display = 'flex';
