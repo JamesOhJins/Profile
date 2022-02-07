@@ -37,6 +37,23 @@ let imgModal = (src) => {
         modal.remove();
     };
     modal.append(newImage, closeBtn);
+
+    modalImg = document.querySelector(".modal img");
+    modalImg.onclick = () => {
+        console.log("modalimg is pressed");
+        if (i < images.length - 1) {
+            i++;
+            console.log(i);
+            modal.remove();
+            newImage.removeAttribute("src", imgSrc);
+            getSource();
+            newImage.removeAttribute("src");
+            newImage.setAttribute("src", imgSrc);
+            modal.append(newImage);
+            document.querySelector(".main").append(modal);
+            return;
+        }
+    }
     var handler = function (e) {
                 switch (e.keyCode) {
                     case 27:
@@ -62,7 +79,6 @@ let imgModal = (src) => {
                         }
                         break;
                     case 37:
-
                         console.log("left is pressed");
                         if (i > 0) {
                             i--;
