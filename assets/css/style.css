@@ -534,7 +534,7 @@ ul {
     #logo{max-height: 4vh;}
       .navLinks {
         padding-bottom: 1rem;
-        justify-content:center !important;
+        justify-content:space-evenly !important;
         position: fixed;
         left: -101%;
         top: 1rem;
