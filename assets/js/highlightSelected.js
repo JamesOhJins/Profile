@@ -34,6 +34,7 @@ $(document).ready(function () {
             console.log("found a match");
             // Add active class
             $(this.children).addClass('selected');
+            $(this).parent().parent().addClass('parent');
         }
     });
 });

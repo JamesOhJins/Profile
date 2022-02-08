@@ -124,7 +124,7 @@ display:none; /* hides sublists */
 	height: 100%;
 }
 #column {
-    column-width: 25rem;
+    column-width: 20rem;
     padding-top: 10px;
     place-self: center;
     align-content: center;
@@ -552,9 +552,20 @@ ul {
         padding-bottom: 1.7vh;
         border: #ccc 4px!important;
       }
+      
       .navLinks ul {
           font-size: 70%;
-          display:contents !important;
+          /* display:contents !important; */
+          display: none;
+      }
+      .navLinks .parent ul{
+          display: contents !important;
+      }
+      .navLinks .selected ul {
+        display: contents !important;
+      }
+      .navLinks .selected  {
+          display: contents !important;
       }
       .navLinks.active {
           left:30%;
