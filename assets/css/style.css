@@ -529,7 +529,7 @@ ul {
   @media only screen and (max-width: 600px) {
     h1 {font-size: 8vw;}
     #column figure figcaption {
-        font-size:22px;
+        font-size:20px;
     }
     .wrapper{
         padding-left: 1rem;
@@ -560,7 +560,7 @@ ul {
       }
       
       .navLinks ul {
-          font-size: 70%;
+          font-size: 75%;
           /* display:contents !important; */
           display: none;
       }
@@ -582,8 +582,8 @@ ul {
       }
       .burger {
           position: fixed;
-          right: 0.25rem;
-          top: 0.25rem;
+          right: 0.3rem;
+          top: 0.3rem;
           display:block;
           cursor: pointer;
           filter: invert();
@@ -591,8 +591,8 @@ ul {
       .burger.active{
           position: fixed;
           display:block;
-          right: 0.25rem;
-          top: 0.25rem;
+          right: 0.3rem;
+          top: 0.3rem;
       }
       .burger.active .bar:nth-child(2) {
           opacity: 0;
