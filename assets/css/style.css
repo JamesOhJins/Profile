@@ -74,6 +74,7 @@ h1 img {
     opacity: 0.5;
     padding-left: 1rem;
     padding-right:1rem;
+/*  */
 }
 
 .navLinks ul {
@@ -534,7 +535,8 @@ ul {
     #logo{max-height: 4vh;}
       .navLinks {
         padding-bottom: 1rem;
-        justify-content:space-evenly !important;
+        justify-content:space-evenly;
+        /* justify-content:space-evenly !important; */
         position: fixed;
         left: -101%;
         top: 1rem;
@@ -549,7 +551,9 @@ ul {
         box-shadow: 0px 1px 4px rgba(131, 131, 131, 0.5);
       }
        .navLinks li {
-        padding-bottom: 1.7vh;
+           /* height: 3.5vh; */
+           display:block;
+           padding-top: 0.5rem !important;
         border: #ccc 4px!important;
       }
       
@@ -559,7 +563,7 @@ ul {
           display: none;
       }
       .navLinks .parent ul{
-          display: contents !important;
+          display: block !important;
       }
       .navLinks .selected ul {
         display: contents !important;
@@ -571,7 +575,7 @@ ul {
           left:30%;
       }
       .navLinks {
-          margin: 2.5rem 0;
+          margin: 0 0;
       }
       .burger {
           position: fixed;
