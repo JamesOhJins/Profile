@@ -536,6 +536,7 @@ ul {
     }
     #logo{max-height: 4vh;}
       .navLinks {
+        z-index: 3;
         padding-top: 1rem;
         justify-content:space-evenly;
         /* justify-content:space-evenly !important; */
