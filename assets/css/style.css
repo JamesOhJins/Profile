@@ -7,6 +7,7 @@ body{
     height:100vh;
     display:flex;
     flex-direction: column;
+    /* background-color:antiquewhite; */
     background-color: rgb(15,15,15);
 }
 #active {
@@ -20,14 +21,15 @@ a {
     text-decoration: none;
 }
 h1 {
-    font-family: 'Optima';    text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    font-family: 'Optima';    text-shadow: 2px 3.5px 2.5px rgba(177, 177, 177, 0.5);
     text-align: left;
     font-size: 45px;
     padding-bottom: 20px;
     padding-left: 5%;
     padding-top: 2.5%;
     margin: 0;
-    color: aliceblue;
+    color:#cccccc;
+    /* color:blanchedalmond; */
     background-color: transparent;
 }   
 .burger {
@@ -50,6 +52,8 @@ h1 {
 #logo {
     max-height: 6vh;
     width:auto;
+    filter:grayscale(100%);
+    opacity: 0.75;
 }
 h1 img {
     background-color: transparent;
@@ -71,13 +75,17 @@ h1 img {
 }
 
 .navLinks li a{
-    color:rgb(255, 255, 255);
+    color:#cccccc;
+    /* color:rgb(255, 255, 255); */
     opacity: 0.5;
     padding-left: 1rem;
     padding-right:1rem;
 /*  */
 }
-
+.navLinks .parent ul{
+    display: block;
+    text-align: left;
+}
 .navLinks ul {
 font-size: 80%;
 position:relative;
@@ -95,7 +103,7 @@ display:none; /* hides sublists */
     }/* shows sublist on hover */
 }
 .selected{
-    color: rgb(255,255,255) !important;
+    color: rgb(211, 211, 211) !important;
     opacity: 1 !important;
 }
 
@@ -153,7 +161,8 @@ display:none; /* hides sublists */
     font-size: 4vh;
     background-color: rgba(60, 60, 60, 0.2);
     border-radius: 1rem;
-    color:rgb(120, 120, 120) !important;
+    color: #cccccc;
+    /* color:rgb(120, 120, 120) !important; */
     font-weight: bolder;
     text-align: center !important;
     padding-bottom: 5px;
@@ -173,7 +182,7 @@ display:none; /* hides sublists */
     /* border-top: 10px rgba(0,0,0,0.2); */
     padding: 10px;
     background-color:rgba(80,80,80,0.2);
-    color:rgb(255,255,255);
+    color:#cccccc;
     font-size:17px;
     border-radius: 0 0 1rem 1rem;
 }
@@ -546,8 +555,7 @@ ul {
         justify-content:space-evenly;
         /* justify-content:space-evenly !important; */
         position: fixed;
-        left: -101%;
-        top: 1rem;
+        right: -100%;
         flex-direction: column;
         width: 50%;
         height: 40%;
@@ -555,7 +563,7 @@ ul {
         /* background: #202020; */
         background-color: rgb(17,17,17);
         font-size: 5vw;
-        transition: transform 0.3s ease;
+        transition: 0.3s;
         box-shadow: 0px 1px 4px rgba(131, 131, 131, 0.5);
       }
        .navLinks li {
@@ -571,7 +579,8 @@ ul {
           display: none;
       }
       .navLinks .parent ul{
-          display: block !important;
+          /* display: block !important; */
+          text-align: center !important;
       }
       .navLinks .selected ul {
         display: contents !important;
@@ -580,7 +589,7 @@ ul {
           display: contents !important;
       }
       .navLinks.active {
-          left:50%;
+          right:0%;
           top:0%
       }
       .navLinks {
