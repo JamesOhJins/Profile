@@ -34,6 +34,7 @@ h1 {
     display: none;
     padding: 0.5rem;
     cursor: pointer;
+    z-index: 3;
   }
   .bar {
     display:block;
@@ -150,9 +151,9 @@ display:none; /* hides sublists */
 }
 .link_name {
     font-size: 4vh;
-    background-color:slategray;
+    background-color: rgba(60, 60, 60, 0.2);
     border-radius: 1rem;
-    color:rgb(40, 40, 40) !important;
+    color:rgb(120, 120, 120) !important;
     font-weight: bolder;
     text-align: center !important;
     padding-bottom: 5px;
@@ -171,7 +172,7 @@ display:none; /* hides sublists */
 #column figure figcaption{
     /* border-top: 10px rgba(0,0,0,0.2); */
     padding: 10px;
-    background-color:rgba(80,80,80,0.5);
+    background-color:rgba(80,80,80,0.2);
     color:rgb(255,255,255);
     font-size:17px;
     border-radius: 0 0 1rem 1rem;
@@ -197,7 +198,7 @@ display:none; /* hides sublists */
     margin-top: -1px;
     animation: zoom 0.3s ease-in-out;
     margin-left: 0;
-    
+    z-index: 4;
     
 }
 
@@ -527,16 +528,20 @@ ul {
       width: 100%;
   }
   @media only screen and (max-width: 600px) {
+      .closeBtn {
+        top: 6vh;
+        right: 5vw;
+      }
     h1 {font-size: 8vw;}
     #column figure figcaption {
-        font-size:20px;
+        font-size: 18px;
     }
     .wrapper{
         padding-left: 1rem;
     }
     #logo{max-height: 4vh;}
       .navLinks {
-        z-index: 3;
+        z-index: 1;
         padding-top: 1rem;
         justify-content:space-evenly;
         /* justify-content:space-evenly !important; */
