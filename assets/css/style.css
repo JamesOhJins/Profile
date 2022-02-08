@@ -546,7 +546,7 @@ ul {
         text-align: center;
         /* background: #202020; */
         background-color: rgb(17,17,17);
-        font-size: 9.5vw;
+        font-size: 8vw;
         transition: transform 0.3s ease;
         box-shadow: 0px 1px 4px rgba(131, 131, 131, 0.5);
       }
