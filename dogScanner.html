@@ -60,6 +60,7 @@
                     maxPredictions = model.getTotalClasses();
                     await webcam.setup({ facingMode: "environment" });
                         scanButton.style.borderRadius = "1.75rem 1.75rem 0 0"; 
+                        scanButton.style.height = "4rem";
                         scanButton.innerHTML = 'Stop';
                         loading.style.display = 'flex';
                         // load the model and metadata
@@ -83,11 +84,7 @@
                             wc.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise :-)
                             wc.muted = "true"
                             wc.id = "webcamVideo";
-                        await webcam.play();
-                        
-                            
-                        
-                        
+                        await webcam.play();                        
                         loading.style.display = 'none';
                         window.requestAnimationFrame(loop);
                         
@@ -104,12 +101,14 @@
                         webcamContainer.innerHTML = "";
                         dogBreed.innerHTML = '';
                         labelContainer.style.display = 'none';
+                        scanButton.style.height ="8.5rem";
                         scanButton.innerHTML = 'Scan My Dog';
-                        scanButton.style.borderRadius = "1.75rem";
+                        scanButton.style.borderRadius = "4rem";
                     }
                     else {
                         scanButton.innerHTML = 'Scan My Dog';
-                        scanButton.style.borderRadius = "1.75rem";
+                        scanButton.style.borderRadius = "4rem";
+                        scanButton.style.height ="8.5rem";
                         webcamContainer.innerHTML = "";
                         labelContainer.style.display = 'none';
                         dogBreed.style.display = 'none';
