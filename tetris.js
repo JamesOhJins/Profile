@@ -38,6 +38,7 @@ let lines = 0;
 let newBlock = false;
 let randomIndex = Math.floor(Math.random() * 7);
 let checkCount = 0;
+let displayRestart = false;
 
 theme.loop = true;
 theme2.loop = true;
@@ -93,8 +94,7 @@ function init() {
         restartButton.innerText = "Play";
         restartButton.style.display = "flex";
         restartButton.style.fontFamily = 'Karma';
-
-        gameText.innerText = "Instructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop \n m: mute/unmute";
+        gameText.innerText = "Instructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop \n m: mute/unmute \n r: re-start";
         gameText.style.fontSize = "medium";
         gameText.style.fontFamily = 'Karma';
         gameText.style.display = "flex";
@@ -297,7 +297,7 @@ function pauseResume() {
         tetrisDisplay.style.color = "white";
         tetrisDisplay.innerText = "Paused";
         tetrisDisplay.style.display = "flex";
-        gameText.innerText = "\n\n\n\n\n\n\n\n\n\nInstructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop \n m: mute/unmute";
+        gameText.innerText = "\n\n\n\n\n\n\n\n\n\nInstructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop \n m: mute/unmute \n r: re-start";
     }
     else {
         gameText.style.display = "none";
@@ -472,10 +472,33 @@ document.addEventListener("keydown", e => {
         case 77:
             muteUnmute();
             break;
+        case 82:
+            if(!displayRestart) {
+            clearInterval(downInterval);
+            play = false;
+            restartButton.innerText = "Re-Start";
+            restartButton.style.display = "flex";
+            displayRestart = true;
+            }
+            else {
+                play = true;
+                drop = true;
+                dropInterval();
+                restartButton.style.display = "none";
+                displayRestart = false;
+            }
+            break;
         default:
             break;
     }
 })
+
+function restart() {
+    playground.innerHTML = "";
+    preview.innerHTML = "";
+    reset();
+    init();
+}
 //checks how many lines were removed on one block drop
 function checkTetris(lines) {
     switch (lines) {
@@ -530,9 +553,6 @@ function reset() {
 }
 //restart button
 restartButton.addEventListener("click", () => {
-    playground.innerHTML = "";
-    preview.innerHTML = "";
-    reset()
-    init()
+    restart();
 })
 

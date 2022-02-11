@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Machine Learning</title>
+    <script src="assets/js/highlightSelected.js"></script>
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script defer src="assets/js/modal.js"></script>
+    <script async src="https://kit.fontawesome.com/6cc05e1e8e.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+        </script>
+    <script>
+        $(function () {
+            $(".footer-dark").load("assets/footer.html")
+            $(".navLinks").load("assets/navBar.html")
+            $("#header").load("assets/header.html")
+        });
+    </script>
+    <div id="header"></div>
+</head>
+
+<body class=main>
+    <h1>ML Studies
+        <dl class="navLinks">
+        </dl>
+    </h1>
+    <div id=grid>
+        <div id=column>
+            <ul>
+            <figure class="gallery__item"><img src="assets/images/studies/ml/basketball.jpg"> 
+                <figcaption><span>Classification vs. Regression</span><br> Clasification is used when predicting a label(or a discrete class label) output, when regression is used to predict quantity(continuous quantit) of the output.
+                 For example, when I want to predict quantity of icecream sold for each degrees of temperature, it is a regression. When I want to predict the type of ball that has 75cm of circumference, brown in color, and has 620g of weight, it is a classification.</figcaption>
+            </figure>
+            </ul>
+            <ul>
+            <figure class="gallery__item">
+                <img src="assets/images/studies/ml/ai.png" class="photo">
+                <figcaption><span>AI vs. ML vs. DL</span><br>Artificial Intelligence covers all the range human's coginition, ability to learn, and perceptions taught to computer. Machine Learning is a way to teach machine with the past data. ML uses ANN(Artificial Neural Network) to get output. ML is used to process structureed datas like db.
+                    Deep Learning is a subcategory of Machine Learning, and it uses multiple layers to get the output. DL is used to process semi-strucutred data such as images, videos, voice or texts.
+                </figcaption>
+            </figure>
+        </ul>
+        </div>
+    </div>
+    <div class="footer-dark">
+    </div>
+</body>
+
+</html>

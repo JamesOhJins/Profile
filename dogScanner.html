@@ -28,9 +28,12 @@
         <h2 id="dog-breed">
             </h3>
             <button id="scan-button" type="button" onclick="init()">Scan My Dog</button>
+            <button id="upload-button" type="button" onclick="checkUploaded()">Upload dog Photo</button>
             <div id="loading">loading scanner...</div>
             <div id="webcam-container"></div>
             <div id="label-container"></div>
+            <img id="output_image">
+            <input type="file" accept="image/*" onchange="preview_image(event)">
 
             <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
             <script
@@ -43,23 +46,62 @@
                 const URL = "my_model/";
                 let model, webcam, labelContainer, maxPredictions;
                 const modelURL = URL + "model.json";
-                const metadataURL = URL + "metadata.json";                
+                const metadataURL = URL + "metadata.json";
+                model = tmImage.load(modelURL, metadataURL);
                 scanButton = document.getElementById('scan-button');
                 loading = document.getElementById('loading');
                 webcamContainer = document.getElementById("webcam-container");
                 labelContainer = document.getElementById("label-container");
                 dogBreed = document.getElementById("dog-breed");
+                uploadButton = document.getElementById("upload-button")
                 const flip = false;
 
+                async function preview_image(event) {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = document.getElementById('output_image');
+                        output.src = reader.result;
+                    }
+                    reader.readAsDataURL(event.target.files[0]);
+                    scanButton.style.display = "none";
+                    uploadButton.style.display = "flex";
+                }
+                async function checkUploaded(){
+                    var img = document.getElementById('output_image');
+                    model = await tmImage.load(modelURL, metadataURL);
+                    const prediction = await model.predict(img,false);
+                    const found = false;
+                    maxPredictions = model.getTotalClasses();
+                    for (let i = 0; i < maxPredictions; i++) {
+                        const classPrediction =
+                            console.log(prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%");
+                        if (prediction[i].probability > 0.9) {
+                            const dogName = prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%"
+                            dogBreed.innerHTML = dogName;
+                            //if(scanButton.innerHTML != 'Re-try'){
+                            // uploadButton.style.display = 'none';
+                            // scanButton.style.display = 'flex';
+                            found = true;
+                            //}
+                        }
+                        // else{
+                        //     dogBreed.innerHTML = "Found No Match";
+                        // }
+                    }
+                    if(!found) {
+                        dogBreed.innerHTML = "Found No Match";
+                    }
+
+                }
                 // Load the image model and setup the webcam
                 async function init() {
-                    
+
                     if (scanButton.innerHTML == 'Scan My Dog') {
                         webcam = new tmImage.Webcam(150, 150, flip); // width, height, flip
-                    model = await tmImage.load(modelURL, metadataURL);
-                    maxPredictions = model.getTotalClasses();
-                    await webcam.setup({ facingMode: "environment" });
-                        scanButton.style.borderRadius = "1.75rem 1.75rem 0 0"; 
+                        model = await tmImage.load(modelURL, metadataURL);
+                        maxPredictions = model.getTotalClasses();
+                        await webcam.setup({ facingMode: "environment" });
+                        scanButton.style.borderRadius = "1.75rem 1.75rem 0 0";
                         scanButton.style.height = "4rem";
                         scanButton.innerHTML = 'Stop';
                         loading.style.display = 'flex';
@@ -74,20 +116,20 @@
 
                         // request access to the webcam
 
-                        
+
                         document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
                         // grab video-object in any way you want and set the attributes --> **"muted" and "playsinline"**
                         console.log("appending webcam");
                         // append elements to the DOM
                         console.log("appending player")
                         let wc = document.getElementsByTagName('video')[0];
-                            wc.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise :-)
-                            wc.muted = "true"
-                            wc.id = "webcamVideo";
-                        await webcam.play();                        
+                        wc.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise :-)
+                        wc.muted = "true"
+                        wc.id = "webcamVideo";
+                        await webcam.play();
                         loading.style.display = 'none';
                         window.requestAnimationFrame(loop);
-                        
+
 
                         console.log(scanButton.innerHTML);
                         labelContainer.style.display = 'initial';
@@ -101,14 +143,14 @@
                         webcamContainer.innerHTML = "";
                         dogBreed.innerHTML = '';
                         labelContainer.style.display = 'none';
-                        scanButton.style.height ="8.5rem";
+                        scanButton.style.height = "8.5rem";
                         scanButton.innerHTML = 'Scan My Dog';
                         scanButton.style.borderRadius = "4rem";
                     }
                     else {
                         scanButton.innerHTML = 'Scan My Dog';
                         scanButton.style.borderRadius = "4rem";
-                        scanButton.style.height ="8.5rem";
+                        scanButton.style.height = "8.5rem";
                         webcamContainer.innerHTML = "";
                         labelContainer.style.display = 'none';
                         dogBreed.style.display = 'none';
