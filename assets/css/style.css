@@ -683,11 +683,15 @@ ul {
 #output_image {
     display: inline;
     border:#ccc 1px;
-    width: 60%;
+    width: 100%;
+    height:auto;
     max-width: 500px;
     place-self: center;
     align-content: center;
     padding-bottom: 8%;
+}
+::input[type="file"] {
+    z-index: 100;
 }
 #upload-button {
     height: 8.5rem;

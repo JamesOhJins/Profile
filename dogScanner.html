@@ -28,7 +28,7 @@
         <h2 id="dog-breed">
             </h3>
             <button id="scan-button" type="button" onclick="init()">Scan My Dog</button>
-            <button id="upload-button" type="button" onclick="checkUploaded()">Upload dog Photo</button>
+            <button id="upload-button" type="button" onclick="checkUploaded()">Scan Uploaded</button>
             <div id="loading">loading scanner...</div>
             <div id="webcam-container"></div>
             <div id="label-container"></div>
@@ -63,36 +63,48 @@
                         output.src = reader.result;
                     }
                     reader.readAsDataURL(event.target.files[0]);
-                    scanButton.style.display = "none";
-                    uploadButton.style.display = "flex";
-                }
-                async function checkUploaded(){
+                    // scanButton.style.display = "none";
+                    // uploadButton.style.display = "flex";
                     var img = document.getElementById('output_image');
                     model = await tmImage.load(modelURL, metadataURL);
-                    const prediction = await model.predict(img,false);
-                    const found = false;
+                    const prediction = await model.predict(img, flip);
+                    var found = false;
                     maxPredictions = model.getTotalClasses();
+                    dogBreed.style.display = 'initial';
                     for (let i = 0; i < maxPredictions; i++) {
                         const classPrediction =
                             console.log(prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%");
                         if (prediction[i].probability > 0.9) {
                             const dogName = prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%"
                             dogBreed.innerHTML = dogName;
-                            //if(scanButton.innerHTML != 'Re-try'){
-                            // uploadButton.style.display = 'none';
-                            // scanButton.style.display = 'flex';
                             found = true;
-                            //}
                         }
-                        // else{
-                        //     dogBreed.innerHTML = "Found No Match";
-                        // }
                     }
                     if(!found) {
                         dogBreed.innerHTML = "Found No Match";
                     }
-
                 }
+                
+                // async function checkUploaded(){
+                //     var img = document.getElementById('output_image');
+                //     model = await tmImage.load(modelURL, metadataURL);
+                //     const prediction = await model.predict(img, flip);
+                //     var found = false;
+                //     maxPredictions = model.getTotalClasses();
+                //     for (let i = 0; i < maxPredictions; i++) {
+                //         const classPrediction =
+                //             console.log(prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%");
+                //         if (prediction[i].probability > 0.9) {
+                //             const dogName = prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%"
+                //             dogBreed.innerHTML = dogName;
+                //             found = true;
+                //         }
+                //     }
+                //     if(!found) {
+                //         dogBreed.innerHTML = "Found No Match";
+                //     }
+
+                // }
                 // Load the image model and setup the webcam
                 async function init() {
 
