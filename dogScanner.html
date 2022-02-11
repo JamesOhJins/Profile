@@ -28,13 +28,36 @@
         <h2 id="dog-breed">
             </h3>
             <button id="scan-button" type="button" onclick="init()">Scan My Dog</button>
-            <button id="upload-button" type="button" onclick="checkUploaded()">Scan Uploaded</button>
+            <!-- <button id="upload-button" type="button" onclick="checkUploaded()">Scan Uploaded</button> -->
             <div id="loading">loading scanner...</div>
             <div id="webcam-container"></div>
             <div id="label-container"></div>
             <img id="output_image">
-            <input type="file" accept="image/*" onchange="preview_image(event)">
-
+            <br>
+            <input size= 120 type="file" accept="image/*" onchange="preview_image(event)">
+            <br><br><br>
+            <button type="button" class="collapsible">List of the Dogs trained</button>
+            <div class="content">
+            <p style="color: #ccc;">Affenpinscher, Alaskan Malamute, Beagle, Bichon Frise, British bulldog, Border collie,
+                Boxer, Bedlington terrier, Cavalier King Charles Spaniel, Chihuahua, Chow Chow, Dalmatian, Dobermann, Dachshund (Long-Haired), Dachshund (Smooth-Haired),
+                Dachshund (Wire-Haired), French Bulldog, German Shepherd, Golden Retriever, Labrador retriever, Maltese, Poodle (Toy), Poodle(miniature), Pug, Pomeranian, Pompits, Shiba Inu, Samoyed, St. Bernard, Siberian Husky, Shih zhu, Welsh Corgi, Yorkshire Terrier (33 Total)
+                </p>
+            </div>
+            <script>
+                var coll = document.getElementsByClassName("collapsible");
+                var i;
+                
+                for (i = 0; i < coll.length; i++) {
+                  coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                      content.style.display = "none";
+                    } else {
+                      content.style.display = "block";
+                    }
+                  });
+                }</script>
             <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
             <script
                 src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
