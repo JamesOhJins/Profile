@@ -648,6 +648,9 @@ ul {
         border-top: rgba(29,29,29,0.15) solid 0.8px;
         border-right:rgba(29,29,29,0.15) solid 0.8px;
     }
+    #dog-breed {
+    font-size: 21px;
+    }
   }
 
   #scan-button {
