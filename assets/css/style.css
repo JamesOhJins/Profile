@@ -47,7 +47,7 @@ h1 {
     margin: 5px auto;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    background-color: #101010;
+    background-color: #ccc;
 }
 #logo {
     max-height: 6vh;
@@ -605,13 +605,13 @@ ul {
           top: 0.3rem;
           display:block;
           cursor: pointer;
-          filter: invert();
-      }
+        }
       .burger.active{
           position: fixed;
           display:block;
           right: 0.3rem;
           top: 0.3rem;
+
       }
       .burger.active .bar:nth-child(2) {
           opacity: 0;
