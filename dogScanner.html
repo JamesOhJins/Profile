@@ -90,11 +90,15 @@
                 const flip = false;
 
                 async function preview_image(event) {
+                    
                     uploadLabel.innerHTML = "Upload Image";
                     var reader = new FileReader();
                     reader.onload = function () {
+                        console.log("new image uploaded");
                         var output = document.getElementById('output_image');
                         output.src = reader.result;
+                        dogBreed.style.display = 'initial';
+                        dogBreed.innerHTML = 'loading...';
                     }
                     reader.readAsDataURL(event.target.files[0]);
                     var img = document.getElementById('output_image');
@@ -104,10 +108,9 @@
                     const prediction = await model.predict(img, flip);
                     var found = false;
                     maxPredictions = model.getTotalClasses();
-                    dogBreed.style.display = 'initial';
                     for (let i = 0; i < maxPredictions; i++) {
-                        const classPrediction =
-                            console.log(prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%");
+                        // const classPrediction =
+                        //     console.log(prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%");
                         if (prediction[i].probability > 0.90) {
                             const dogName = prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%"
                             uploadLabel.innerHTML = "Try New Image";

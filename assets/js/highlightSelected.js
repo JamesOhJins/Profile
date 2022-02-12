@@ -18,20 +18,16 @@ $(document).ready(function () {
         url = 'index.html';
         console.log("URL is not found");
     }
-    console.log(url);
 
     // Loop all menu items
     $('.navLinks li').each(function () {
-        console.log("finding href");
         // select href
         var href = $(this).find('a').attr('href');
-        console.log(href);
         if(href == '') {
             console.log("Error finding href");
         }
         // Check filename
         if (url == href) {
-            console.log("found a match");
             // Add active class
             $(this.children).addClass('selected');
             // $(this).parent().parent().addClass('parent');
