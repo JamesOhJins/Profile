@@ -29,8 +29,8 @@
             </h3>
             <div id="buttons">
             <button id="scan-button" type="button" onclick="init()">Scan My Dog</button>
-            <button id="upload-button">
-            <label for="input-file">
+            <button id = upload-button>
+            <label id = "upload-label" for="input-file">
                 Upload Image
             </label>
             <input id = "input-file" type="file" onchange="preview_image(event)">
@@ -84,11 +84,13 @@
                 webcamContainer = document.getElementById("webcam-container");
                 labelContainer = document.getElementById("label-container");
                 dogBreed = document.getElementById("dog-breed");
-                uploadButton = document.getElementById("upload-button")
+                uploadLabel = document.getElementById("upload-label");
+                uploadButton = document.getElementById("upload-button");
                 imgPreview = document.getElementById("output_image")
                 const flip = false;
 
                 async function preview_image(event) {
+                    uploadLabel.innerHTML = "Upload Image";
                     var reader = new FileReader();
                     reader.onload = function () {
                         var output = document.getElementById('output_image');
@@ -106,14 +108,16 @@
                     for (let i = 0; i < maxPredictions; i++) {
                         const classPrediction =
                             console.log(prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%");
-                        if (prediction[i].probability > 0.9) {
+                        if (prediction[i].probability > 0.90) {
                             const dogName = prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%"
+                            uploadLabel.innerHTML = "Try New Image";
                             dogBreed.innerHTML = dogName;
                             found = true;
                         }
                     }
                     if(!found) {
                         dogBreed.innerHTML = "Found No Match";
+                        uploadLabel.innerHTML = "Try New Image";
                     }
                 }
 
@@ -121,13 +125,17 @@
                 // Load the image model and setup the webcam
                 async function init() {
                     if (scanButton.innerHTML == 'Scan My Dog') {
+                        dogBreed.innerHTML = '';
+                        uploadButton.style.display = 'none';
+                        dogBreed.style.display = "none";
                         imgPreview.style.display = 'none';
+                        scanButton.style.width = "100%";
+                        loading.style.display = 'flex';
                         webcam = new tmImage.Webcam(150, 150, flip); // width, height, flip
                         model = await tmImage.load(modelURL, metadataURL);
                         maxPredictions = model.getTotalClasses();
                         await webcam.setup({ facingMode: "environment" });
                         scanButton.innerHTML = 'Stop Scanning';
-                        loading.style.display = 'flex';
                         // load the model and metadata
                         // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
                         // or files from your local hard drive
@@ -167,12 +175,16 @@
                         dogBreed.innerHTML = '';
                         labelContainer.style.display = 'none';
                         scanButton.innerHTML = 'Scan My Dog';
+                        scanButton.style.width = "49%";
+                        uploadButton.style.display = "inline-block";
                     }
                     else {
                         scanButton.innerHTML = 'Scan My Dog';
                         webcamContainer.innerHTML = "";
                         labelContainer.style.display = 'none';
                         dogBreed.style.display = 'none';
+                        scanButton.style.width = "49%";
+                        uploadButton.style.display = "inline-block";
                         await webcam.pause();
 
                     }
@@ -194,17 +206,16 @@
                     for (let i = 0; i < maxPredictions; i++) {
                         const classPrediction =
                             prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%";
-
                         if (prediction[i].probability > 0.15) {
                             labelContainer.childNodes[i].innerHTML = classPrediction;
+                            const width = (prediction[i].probablity*100);
+                            labelContainer.childNodes[i].style.fontsize = 'width%';
                         } else {
                             labelContainer.childNodes[i].innerHTML = "";
                         }
                         if (prediction[i].probability == 1) {
                             dogBreed.innerHTML = prediction[i].className;
-                            //if(scanButton.innerHTML != 'Re-try'){
-                            scanButton.innerHTML = 'Re-try';
-                            //}
+                            scanButton.innerHTML = 'Scan New Dog';
                             webcam.pause();
                         }
                     }
