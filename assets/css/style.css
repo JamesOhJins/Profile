@@ -532,7 +532,7 @@ ul {
       color:#ccc;
       font-size: 30px;
       text-align: center;
-      margin-top: 3.5rem;
+      margin-top: -3rem;
       position:absolute;
       left: 0; 
       right: 0; 
@@ -651,22 +651,37 @@ ul {
   }
 
   #scan-button {
-    height: 8.5rem;
-    width:100%;
-    margin-top: 7rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    height: 4.5rem;
+    width:49%;    
     font-weight: bold;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px; 
+    display:inline-block;
+    text-align: center;
+    align-items: top;
+    font-size: 20px; 
     text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
-    box-shadow: 2px 2px 4px rgba(255, 248, 220, 0.315);
     color:rgb(46, 45, 45);
-    border-radius: 4rem; 
     background-color: rgb(204, 138, 53);
+    border-radius: 1rem;
+
   }
+  #buttons {
+        vertical-align: top;
+        height: 4.5rem;
+  }
+  #upload-button {
+    height: 4.5rem;
+    width:49%;    
+    font-weight: bold;
+    display:inline-block;
+    text-align: center;
+    align-items: top;
+    font-size: 20px; 
+    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
+    color:rgb(46, 45, 45);
+    background-color: rgb(204, 138, 53);
+    border-radius: 1rem;
+  }
+  input[type="file"] { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip:rect(0,0,0,0); border: 0; }
 
   video {
     width: 100%;
@@ -676,6 +691,7 @@ ul {
 #scannerWrapper {
     width: 60%;
     max-width:  500px;
+    padding-top: 20vh;
     place-self: center;
     align-content: center;
     padding-bottom: 8%;
@@ -714,23 +730,6 @@ ul {
     overflow: hidden;
     background-color: rgb(20, 20, 20);
   }
-#upload-button {
-    height: 8.5rem;
-    width:100%;
-    margin-top: 7rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    font-weight: bold;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px; 
-    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
-    box-shadow: 2px 2px 4px rgba(255, 248, 220, 0.315);
-    color:rgb(46, 45, 45);
-    border-radius: 4rem; 
-    background-color: rgb(204, 138, 53);
-    display:none;
-}
 #loading {
     color:#ccc;
     height: 100px;
