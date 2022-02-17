@@ -37,8 +37,9 @@ async function preview_image(event) {
     var found = false;
     maxPredictions = model.getTotalClasses();
     for (let i = 0; i < maxPredictions; i++) {
-        // const classPrediction =
-        //     console.log(prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%");
+        if (prediction[i].probability > 0.01){
+            console.log(prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%");
+            }
         if (prediction[i].probability > 0.90) {
             const dogName = prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%"
             uploadLabel.innerHTML = "Try New Image";
@@ -139,8 +140,8 @@ async function predict() {
             prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%";
         if (prediction[i].probability > 0.15) {
             labelContainer.childNodes[i].innerHTML = classPrediction;
-            const width = (prediction[i].probablity * 100);
-            labelContainer.childNodes[i].style.fontsize = 'width%';
+            // const width = (prediction[i].probablity * 100);
+            // labelContainer.childNodes[i].style.fontsize = 'width%';
         } else {
             labelContainer.childNodes[i].innerHTML = "";
         }

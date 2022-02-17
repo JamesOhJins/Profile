@@ -743,6 +743,10 @@ ul {
     height: 4.5rem;
 }
 
+#breed_list {
+    color: #ccc;
+}
+
 #upload-button {
     height: 4.5rem;
     width: 49%;

@@ -46,26 +46,15 @@
             <br><br><br>
             <button type="button" class="collapsible">List of the Dogs trained</button>
             <div class="content">
-            <p style="color: #ccc;">Affenpinscher, Alaskan Malamute, Beagle, Bichon Frise, British bulldog, Border collie,
-                Boxer, Bedlington terrier, Cavalier King Charles Spaniel, Chihuahua, Chow Chow, Dalmatian, Dobermann, Dachshund (Long-Haired), Dachshund (Smooth-Haired),
-                Dachshund (Wire-Haired), French Bulldog, German Shepherd Dog, German Shorthaired Pointer, Golden Retriever, Great Dane, Labrador retriever, Maltese, Papillon, Poodle (Toy), Poodle(miniature), Pug, Pomeranian, Rottweilers, Shiba Inu, Samoyed, St. Bernard, Siberian Husky, Shih zhu, Welsh Corgi, Yorkshire Terrier (38 Total)
+            <p id = 'breed_list'>
+                <script>$('#breed_list').load('assets/data/dog_list.txt', function(){
+                    // load dog list
+                 });
+                 </script>
                 </p>
             </div>
-            <script>
-                var coll = document.getElementsByClassName("collapsible");
-                var i;
-                
-                for (i = 0; i < coll.length; i++) {
-                  coll[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var content = this.nextElementSibling;
-                    if (content.style.display === "block") {
-                      content.style.display = "none";
-                    } else {
-                      content.style.display = "block";
-                    }
-                  });
-                }</script>
+            <!-- import collapsibile list -->
+            <script src="assets/js/collapsible.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
             <script
                 src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
