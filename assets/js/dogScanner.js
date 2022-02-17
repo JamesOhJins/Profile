@@ -140,8 +140,6 @@ async function predict() {
             prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%";
         if (prediction[i].probability > 0.15) {
             labelContainer.childNodes[i].innerHTML = classPrediction;
-            // const width = (prediction[i].probablity * 100);
-            // labelContainer.childNodes[i].style.fontsize = 'width%';
         } else {
             labelContainer.childNodes[i].innerHTML = "";
         }
