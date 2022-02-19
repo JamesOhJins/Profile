@@ -72,18 +72,6 @@ async function init() {
         maxPredictions = model.getTotalClasses();
         await webcam.setup({ facingMode: "environment" });
         scanButton.innerHTML = 'Stop Scanning';
-        // load the model and metadata
-        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-        // or files from your local hard drive
-        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-
-
-        // Convenience function to setup a webcam
-        // whether to flip the webcam
-
-        // request access to the webcam
-
-
         document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
         // grab video-object in any way you want and set the attributes --> **"muted" and "playsinline"**
         console.log("appending webcam");
@@ -106,6 +94,7 @@ async function init() {
         }
     }
     else if (scanButton.innerHTML == 'Scan My Dog' && !firstTime) {
+        //if it's not first time, do not ask access for camera and do not append new webcam Container
         console.log("not first time");
         dogBreed.innerHTML = '';
         uploadButton.style.display = 'none';
@@ -114,32 +103,7 @@ async function init() {
         scanButton.style.width = "100%";
         loading.style.display = 'flex';
         webcamContainer.style.display = 'flex';
-        // webcam = new tmImage.Webcam(150, 150, flip); // width, height, flip
-        // model = await tmImage.load(modelURL, metadataURL);
-        // maxPredictions = model.getTotalClasses();
-        // await webcam.setup({ facingMode: "environment" });
         scanButton.innerHTML = 'Stop Scanning';
-        // load the model and metadata
-        // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
-        // or files from your local hard drive
-        // Note: the pose library adds "tmImage" object to your window (window.tmImage)
-
-
-        // Convenience function to setup a webcam
-        // whether to flip the webcam
-
-        // request access to the webcam
-
-
-        // document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
-        // grab video-object in any way you want and set the attributes --> **"muted" and "playsinline"**
-        // console.log("appending webcam");
-        // append elements to the DOM
-        // console.log("appending player")
-        // let wc = document.getElementsByTagName('video')[0];
-        // wc.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise :-)
-        // wc.muted = "true"
-        // wc.id = "webcamVideo";
         await webcam.play();
         loading.style.display = 'none';
         window.requestAnimationFrame(loop);

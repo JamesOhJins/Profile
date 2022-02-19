@@ -516,8 +516,46 @@ ul {
     color: #f0f9ff;
     background-color: #16181b;
 }
-
-
+.mobile_button{
+    display:none;
+}
+#left_button{
+    top: 360px;
+    right:75px;
+    position:absolute;
+    width: 30px;
+    height: 30px;
+}
+#right_button{
+    top: 360px;
+    right:15px;
+    position:absolute;
+    width: 30px;
+    height: 30px;
+}
+#up_button {
+    top: 330px;
+    margin-bottom: 35px;
+    right:45px;
+    position:absolute;
+    width: 30px;
+    height: 30px;
+}
+#down_button{
+    top: 390px;
+    right:45px;
+    position:absolute;
+    width: 30px;
+    height: 30px;
+}
+#spacebar{
+    top: 420px;
+    right:15px;
+    margin-top: 35px;
+    position:absolute;
+    width: 90px;
+    height: 30px;
+}
 .footer-dark ul {
     padding: 0;
     list-style: none;
@@ -585,7 +623,7 @@ ul {
         top: 6vh;
         right: 5vw;
     }
-
+    
     h1 {
         font-size: 8vw;
     }
@@ -720,6 +758,9 @@ ul {
     #upload-label {
         display: block !important;
         padding: unset !important;
+    }
+    .mobile_button {
+        display:inline-block;
     }
 }
 

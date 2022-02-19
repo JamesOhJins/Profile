@@ -6,6 +6,12 @@ const playground = document.querySelector(".playground > ul");
 const gameText = document.querySelector(".game-text");
 const scoreDisplay = document.querySelector(".score");
 const restartButton = document.querySelector(".game-button");
+const leftButton = document.querySelector("#left_button");
+const rightButton = document.querySelector("#right_button");
+const upButton = document.querySelector("#up_button");
+const downButton = document.querySelector("#down_button");
+const spacebar = document.querySelector("#spacebar");
+
 const tetrisDisplay = document.querySelector(".tetris");
 tetrisDisplay.style.fontFamily = 'Karma';
 const stageDisplay = document.querySelector(".stage");
@@ -89,8 +95,40 @@ window.addEventListener("keydown", function (e) {
 
 init()
 
+function mobile() {
+    leftButton.onclick = function() {
+        moveBlock("left", -1);
+        console.log("leftbutton is pressed");
+        }
+    rightButton.onclick = function() {
+        moveBlock("left", 1);
+        console.log("rightbutton is presed");    
+        }
+    upButton.onclick = function() {
+        changeDirection();
+        console.log("upbutton is pressed");
+        }
+    downButton.onclick = function() {
+        console.log("downbutton is pressed");
+        drop = false;
+        clearInterval(downInterval);
+        moveBlock("top", 1);
+        if (play) { //
+            setTimeout(function () {
+                drop = true;
+                dropInterval();
+            }, 100)
+        }
+    }
+    spacebar.onclick = function() { 
+        hardDrop();
+        console.log("spacebar is pressed");
+    }
+    
+}
 function init() {
     if (!play) {
+        mobile();
         restartButton.innerText = "Play";
         restartButton.style.display = "flex";
         restartButton.style.fontFamily = 'Karma';
