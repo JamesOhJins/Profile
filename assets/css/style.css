@@ -520,14 +520,14 @@ ul {
     display:none;
 }
 #left_button{
-    top: 360px;
-    right:75px;
+    top: 365px;
+    right:85px;
     position:absolute;
     width: 30px;
     height: 30px;
 }
 #right_button{
-    top: 360px;
+    top: 365px;
     right:15px;
     position:absolute;
     width: 30px;
@@ -536,24 +536,24 @@ ul {
 #up_button {
     top: 330px;
     margin-bottom: 35px;
-    right:45px;
+    right:50px;
     position:absolute;
     width: 30px;
     height: 30px;
 }
 #down_button{
-    top: 390px;
-    right:45px;
+    top: 400px;
+    right:50px;
     position:absolute;
     width: 30px;
     height: 30px;
 }
 #spacebar{
-    top: 420px;
+    top: 430px;
     right:15px;
     margin-top: 35px;
     position:absolute;
-    width: 90px;
+    width: 100px;
     height: 30px;
 }
 .footer-dark ul {
