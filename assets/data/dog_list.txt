@@ -1,3 +1,6 @@
-Affenpinscher, Alaskan Malamute, Beagle, Bichon Frise, British bulldog, Border collie, Borzoi,
+<br>Affenpinscher, Alaskan Malamute, Beagle, Bichon Frise, British bulldog, Border collie, Borzoi,
                 Boxer, Bedlington terrier, Cavalier King Charles Spaniel, Chihuahua, Chow Chow, Dalmatian, Dobermann, Dachshund (Long-Haired), Dachshund (Smooth-Haired),
                 Dachshund (Wire-Haired), French Bulldog, German Shepherd Dog, German Shorthaired Pointer, Golden Retriever, Great Dane, Japanese Spits, Labrador retriever, Maltese, Papillon, Poodle (Toy), Poodle(miniature), Pug, Pomeranian, Rottweilers, Shiba Inu, Samoyed, St. Bernard, Siberian Husky, Shih zhu, Welsh Corgi, Yorkshire Terrier (40 Total)
+                <br>Model was created from: <a target="_blank" style = "color: blue" href = "//teachablemachine.withgoogle.com">Teachable Machine</a>
+                <br>
+

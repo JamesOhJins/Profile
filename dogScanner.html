@@ -28,13 +28,13 @@
         <h2 id="dog-breed">
             </h3>
             <div id="buttons">
-            <button id="scan-button" type="button" onclick="init()">Scan My Dog</button>
-            <button id = upload-button>
-            <label id = "upload-label" for="input-file">
-                Upload Image
-            </label>
-            <input id = "input-file" type="file" onchange="preview_image(event)">
-            </button>
+                <button id="scan-button" type="button" onclick="init()">Scan My Dog</button>
+                <button id=upload-button>
+                    <label id="upload-label" for="input-file">
+                        Upload Image
+                    </label>
+                    <input id="input-file" type="file" onchange="preview_image(event)">
+                </button>
             </div>
             <!-- <button id="upload-button" type="button" onclick="checkUploaded()">Scan Uploaded</button> -->
             <div id="loading">loading scanner...</div>
@@ -42,15 +42,15 @@
             <div id="label-container"></div>
             <img id="output_image">
             <br>
-            
+
             <br><br><br>
             <button type="button" class="collapsible">List of the Dogs trained</button>
             <div class="content">
-            <p id = 'breed_list'>
-                <script>$('#breed_list').load('assets/data/dog_list.txt', function(){
-                    // load dog list
-                 });
-                 </script>
+                <p id='breed_list'>
+                    <script>$('#breed_list').load('assets/data/dog_list.txt', function () {
+                            // load dog list
+                        });
+                    </script>
                 </p>
             </div>
             <!-- import collapsibile list -->
