@@ -480,6 +480,24 @@ ul {
     cursor: pointer;
     z-index: 2;
 }
+.resume-button {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 200px;
+    font-size: 30px;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 3px;
+    cursor: pointer;
+    z-index: 2;
+}
 
 #next {
     padding-left: 2.2rem;
@@ -520,21 +538,21 @@ ul {
     display:none;
 }
 #left_button{
-    top: 365px;
+    top: 415px;
     right:85px;
     position:absolute;
     width: 30px;
     height: 30px;
 }
 #right_button{
-    top: 365px;
+    top: 415px;
     right:15px;
     position:absolute;
     width: 30px;
     height: 30px;
 }
 #up_button {
-    top: 330px;
+    top: 380px;
     margin-bottom: 35px;
     right:50px;
     position:absolute;
@@ -542,14 +560,29 @@ ul {
     height: 30px;
 }
 #down_button{
-    top: 400px;
+    top: 450px;
     right:50px;
     position:absolute;
     width: 30px;
     height: 30px;
 }
+#pause_button{
+    top: 270px;
+    right: 60px;
+    position:absolute;
+    width: 25px;
+    height: 25px;
+}
+#mute_button{
+    top: 270px;
+    right: 30px;
+    position:absolute;
+    width: 25px;
+    height: 25px;
+    font-weight: bolder;
+}
 #spacebar{
-    top: 430px;
+    top: 480px;
     right:15px;
     margin-top: 35px;
     position:absolute;

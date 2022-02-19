@@ -11,6 +11,10 @@ const rightButton = document.querySelector("#right_button");
 const upButton = document.querySelector("#up_button");
 const downButton = document.querySelector("#down_button");
 const spacebar = document.querySelector("#spacebar");
+const pauseButton = document.querySelector("#pause_button");
+const resumeButton = document.querySelector(".resume-button");
+const muteButton = document.querySelector("#mute_button");
+
 
 const tetrisDisplay = document.querySelector(".tetris");
 tetrisDisplay.style.fontFamily = 'Karma';
@@ -123,6 +127,14 @@ function mobile() {
     spacebar.onclick = function() { 
         hardDrop();
         console.log("spacebar is pressed");
+    }
+
+    pauseButton.onclick = function() {
+        pauseResume();
+    }
+
+    muteButton.onclick = function() {
+        muteUnmute();
     }
     
 }
@@ -336,10 +348,13 @@ function pauseResume() {
         tetrisDisplay.innerText = "Paused";
         tetrisDisplay.style.display = "flex";
         gameText.innerText = "\n\n\n\n\n\n\n\n\n\nInstructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop \n m: mute/unmute \n r: re-start";
+        resumeButton.style.display = "flex";
+        console.log("resume button is unhidden");
     }
     else {
         gameText.style.display = "none";
         tetrisDisplay.style.display = "none";
+        resumeButton.style.display = "none";
         play = true;
         drop = true;
     }
@@ -594,3 +609,8 @@ restartButton.addEventListener("click", () => {
     restart();
 })
 
+resumeButton.addEventListener("click", () => {
+    if(!play){
+    pauseResume();
+    }
+})
