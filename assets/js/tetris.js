@@ -50,8 +50,7 @@ let randomIndex = Math.floor(Math.random() * 7);
 let checkCount = 0;
 let displayRestart = false;
 
-theme.loop = true;
-theme2.loop = true;
+theme.loop = theme2.loop = true;
 let playsound = true;
 let line = new Audio("assets/audio/line.ogg");
 let double = new Audio("assets/audio/double.ogg");
@@ -61,11 +60,8 @@ let down = new Audio("assets/audio/down.ogg");
 let mute = false;
 gameover.preload, theme.preload, line.preload, double.preload, triple.preload, tetris.preload, down.preload = "auto";
 gameover.currentTime, line.currentTime, double.currentTime, triple.currentTime, tetris.currentTime, down.currentTime = 0.5;
-theme.volume = 0.15;
-theme2.volume = 0.15;
-line.volume = 0.07;
-down.volume = 0.07;
-double.volume = 0.15;
+theme.volume = theme2.volume = double.volume = 0.15;
+line.volume = down.volume = 0.07;
 triple.volume = 0.2;
 tetris.volume = 0.25;
 gameover.volume = 0.1;
@@ -465,31 +461,14 @@ function showTetrisText(msg) {
     }, 500);
 
 }
-
 //mute function
 function muteUnmute() {
     if (!mute) {
-        theme.volume = 0;
-        theme2.volume = 0;
-        line.volume = 0;
-        down.volume = 0;
-        double.volume = 0;
-        triple.volume = 0;
-        tetris.volume = 0;
-        gameover.volume = 0;
-        mute = true;
+        theme.muted = theme2.muted = line.muted = down.muted = double.muted = triple.muted = tetris.muted = gameover.muted = mute = true;
         console.log("muted");
     }
     else if (mute) {
-        theme.volume = 0.15;
-        theme2.volume = 0.15;
-        line.volume = 0.07;
-        down.volume = 0.07;
-        double.volume = 0.25;
-        triple.volume = 0.3;
-        tetris.volume = 0.35;
-        gameover.volume = 0.1;
-        mute = false;
+        theme.muted = theme2.muted = line.muted = down.muted = double.muted = triple.muted = tetris.muted = gameover.muted = mute = false;
         console.log("unmuted");
     }
 }
@@ -534,8 +513,7 @@ document.addEventListener("keydown", e => {
             displayRestart = true;
             }
             else {
-                play = true;
-                drop = true;
+                play = drop = true;
                 dropInterval();
                 restartButton.style.display = "none";
                 displayRestart = false;
@@ -585,28 +563,21 @@ function checkTetris(lines) {
 }
 //function to put variables to initial status
 function reset() {
-    gameText.style.display = "none";
-    restartButton.style.display = "none";
-    score = 0;
-    stage = 1;
-    scoreMultiplier = 1;
-    lineCount = 0;
+    gameText.style.display = restartButton.style.display = "none";
+    stage = scoreMultiplier = 1;
     duration = 1000;
-    count = 0;
-    lines = 0;
-    play = true;
-    drop = true;
-    playsound = true;
+    score = count = lines = lineCount = 0;
+    play = drop = playsound = true;
     scoreDisplay.innerText = "Score: " + score;
     stageDisplay.innerText = "Stage: " + stage;
     nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
     theme2.pause();
     theme.play();
-
 }
 //restart button
 restartButton.addEventListener("click", () => {
     restart();
+    // theme.play();
 })
 
 resumeButton.addEventListener("click", () => {

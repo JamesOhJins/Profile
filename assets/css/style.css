@@ -536,6 +536,8 @@ ul {
 }
 .mobile_button{
     display:none;
+    color:#16181b;
+    text-align: center;
 }
 #left_button{
     top: 415px;
