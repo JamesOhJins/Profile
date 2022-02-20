@@ -652,6 +652,12 @@ ul {
 }
 
 @media only screen and (max-width: 600px) {
+    #tetris-body {
+        height: fit-content!important;
+    }
+    .tetris-footer{
+        display: none;
+    }
     .closeBtn {
         top: 6vh;
         right: 5vw;
