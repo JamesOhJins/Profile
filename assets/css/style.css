@@ -8,7 +8,8 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: rgb(15, 15, 15);
+    background: linear-gradient( rgb(15, 15, 15), rgb(32, 32, 32), rgb(15, 15, 15));
+    /* background-color: rgb(15, 15, 15); */
 }
 
 #active {
@@ -32,7 +33,11 @@ h1 {
     padding-left: 5%;
     padding-top: 2.5%;
     margin: 0;
-    color: #cccccc;
+    /* color: linear-gradient(20deg, #cccccc, #ccc);
+    color: #cccccc; */
+    background: -webkit-linear-gradient(#cccccc, rgb(85, 84, 84));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
     background-color: transparent;
 }
 /* burger icon on PC */
@@ -76,6 +81,7 @@ h1 {
     font-size: 15pt;
     text-shadow: 0.5px 0.5px 2px;
     list-style-type: none;
+    color: #cccccc;
     padding-top: 1rem;
 }
 
@@ -380,38 +386,38 @@ ul {
 
 /*tetris blocks*/
 .tBlock {
-    background: rgb(173, 0, 173);
-    opacity: 0.9;
+    background: linear-gradient(20deg, rgb(173, 0, 173), rgb(202, 60, 195));
+    /* opacity: 0.9; */
 }
 
 .zBlock {
-    background: rgb(238, 3, 3);
-    opacity: 0.9;
+    background: linear-gradient(20deg, rgb(238, 3, 3), rgb(209, 68, 68));
+    /* opacity: 0.9; */
 }
 
 .iBlock {
-    background: skyblue;
-    opacity: 0.9;
+    background: linear-gradient(20deg, rgb(135, 190, 235), rgb(164, 237, 247));
+    /* opacity: 0.9; */
 }
 
 .jBlock {
-    background: blue;
-    opacity: 0.9;
+    background: linear-gradient(20deg, blue, rgb(96, 85, 253));
+    /* opacity: 0.9; */
 }
 
 .lBlock {
-    background: orange;
-    opacity: 0.9;
+    background: linear-gradient(20deg, orange, rgb(255, 196, 86));
+    /* opacity: 0.9; */
 }
 
 .oBlock {
-    background: yellow;
-    opacity: 0.9;
+    background: linear-gradient(20deg, yellow, rgb(252, 243, 129));
+    /* opacity: 0.9; */
 }
 
 .sBlock {
-    background: yellowgreen;
-    opacity: 0.9;
+    background: linear-gradient(20deg, yellowgreen, rgb(200, 255, 127));
+    /* opacity: 0.9; */
 }
 
 .instructions {
@@ -532,7 +538,8 @@ ul {
 .footer-dark {
     margin-top: auto;
     color: #f0f9ff;
-    background-color: #16181b;
+    background: linear-gradient(90deg, #121416, rgb(39, 39, 39), #121416);
+    /* background-color: #16181b; */
 }
 .mobile_button{
     display:none;
@@ -816,7 +823,7 @@ ul {
     font-size: 20px;
     text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
     color: rgb(46, 45, 45);
-    background-color: rgb(204, 138, 53);
+    background: linear-gradient(20deg, rgb(187, 106, 0),40%, rgb(247, 181, 96)) ;
     border-radius: 1rem;
     box-shadow: 2px 2px 3px rgba(204, 138, 53, 0.6);
 }
@@ -840,7 +847,7 @@ ul {
     font-size: 20px;
     text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
     color: rgb(46, 45, 45);
-    background-color: rgb(204, 138, 53);
+    background: linear-gradient(20deg, rgb(187, 106, 0),40%, rgb(247, 181, 96)) ;
     border-radius: 1rem;
     box-shadow: 2px 2px 3px rgba(204, 138, 53, 0.6);
 
@@ -948,21 +955,24 @@ video {
 }
 
 .connect4>ul>li>ul>li {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
+    margin: 2.5px;
     border-radius: 50%;
-    background-color: rgba(187, 187, 187, 0.615);
+    background-color: rgba(187, 187, 187,0.8);
     /* border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
     border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
     border-right: rgba(29, 29, 29, 0.15) solid 0.8px; */
 }
 
 .player1 {
-    background-color: rgba(255, 0, 0, 0.692)!important;
+    background: linear-gradient(20deg, red, 25%, rgba(255, 133, 133, 0.945));
+    /* background-color: rgba(255, 133, 133, 0.945)!important; */
 }
 
 .player2 {
-    background-color: rgba(255, 255, 0, 0.705)!important;
+    background: linear-gradient(20deg, rgb(208, 255, 0), 25%, rgba(255, 255, 137, 0.884));
+    /* background-color: rgba(255, 255, 97, 0.884)!important; */
 }
 
 #player {
@@ -986,11 +996,19 @@ video {
     margin: 0 auto;
     display:flex;
 }
-
 .pick_line>ul>li {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    margin: 2.5px;
+    height: 45px;
     border-radius: 50%;
     background-color: rgba(187, 187, 187, 0.1);
     padding: 0;
+}
+
+#single_player {
+display:none;
+}
+
+#two_player {
+display: none;
 }
