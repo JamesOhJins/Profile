@@ -9,6 +9,8 @@ var verticalThree = false;
 var verticalThreeAi = false;
 var diagonalThree = false;
 var diagonalIndex = 0;
+var doNotPut = 0;
+var exception = false;
 var diagonalThreeAi = false;
 var horizontalThree = false;
 var horizontalIndex = 0;
@@ -68,7 +70,7 @@ function addpicker() {
             // }
             // }
             // else{
-                pickerIndex.style.background = changeColor();
+            pickerIndex.style.background = changeColor();
             // }
             // console.log("hovering on picker" + '.x' + j + '.picker');
         });
@@ -81,58 +83,61 @@ function addpicker() {
             if (!pvp) {
                 if (player1Turn) {
                     disk(j);
-                    if (verticalThreeAi) {
-                        console.log("verticalthreeai");
-                        setTimeout(function () {
-                            think(xIndex, true);
-                            verticalThreeAi = false;
-                        }, 300)
-                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    }
-                    else if(verticalThree){
-                        console.log("verticalthree");
-                        setTimeout(function () {
-                            think(j, true);
-                            verticalThree = false;
-                        }, 300)
-                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    }
-                    else if(diagonalThree) {
-                        console.log("diagonalthree");
-                        setTimeout(function () {
-                            think(diagonalIndex, true);
-                            diagonalThree = false;
-                        }, 300)
-                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    }
-                    else if(horizontalThree) {
-                        console.log("diagonalthree");
-                        setTimeout(function () {
-                            think(horizontalIndex, true);
-                            horizontalIndex = false;
-                        }, 300)
-                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    }
-                    else if (first) {
-                        setTimeout(function () {
-                            think(3, true);
-                        }, 300)
-                        first = false;
-                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    }
-                    else if (play && !verticalThree) {
-                        setTimeout(function () {
-                            think(j, false);
-                        }, 300)
-                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    }
-                    else {
-                        //defaunlt;
-                        setTimeout(function () {
-                            think(j, false);
-                        },300 )
-                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+                    if (!player1Turn) {
+                        if (verticalThreeAi) {
+                            console.log("verticalthreeai");
+                            setTimeout(function () {
+                                think(xIndex, true);
+                                verticalThreeAi = false;
+                            }, 300)
+                            pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+                        }
+                        else if (verticalThree) {
+                            console.log("verticalthree");
+                            setTimeout(function () {
+                                think(j, true);
+                                verticalThree = false;
+                            }, 300)
+                            pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+                        }
+                        else if (diagonalThree) {
+                            console.log("diagonalthree");
+                            setTimeout(function () {
+                                console.log("diagonal index: " + diagonalIndex);
+                                think(diagonalIndex, true);
+                                diagonalThree = false;
+                            }, 300)
+                            pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+                        }
+                        else if (horizontalThree) {
+                            console.log("diagonalthree");
+                            setTimeout(function () {
+                                think(horizontalIndex, true);
+                                horizontalIndex = false;
+                            }, 300)
+                            pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+                        }
+                        else if (first) {
+                            setTimeout(function () {
+                                think(3, true);
+                            }, 300)
+                            first = false;
+                            pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+                        }
+                        else if (play && !verticalThree) {
+                            setTimeout(function () {
+                                think(j, false);
+                            }, 300)
+                            pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+                        }
+                        else {
+                            //defaunlt;
+                            setTimeout(function () {
+                                think(j, false);
+                            }, 300)
+                            pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
 
+                        }
                     }
                 }
             }
@@ -148,38 +153,45 @@ function addpicker() {
 }
 
 function think(x, target) {
-    let randomNumb = x;//getRandomInt(x);
-    console.log("target: " + target);
-    console.log(randomNumb);
-    // if(verticalThreeAi){
-    //     disk(x);
-    // }
-    console.log("trying to put at: " + x);
-    if (yindex[x] < CONNECT4_ROWS) {
-        if(target && yindex[x] < CONNECT4_ROWS){
-            disk(x);
-            console.log("stacked at x");
-            // verticalThree = false;
+    if (!player1Turn) {
+        let randomNumb = x;//getRandomInt(x);
+        console.log("target: " + target);
+        console.log(randomNumb);
+        if (x == doNotPut && exception == true) {
+            newX = Math.floor(Math.random() * 7);
+            think(newX, target);
+            exception = false;
         }
-        else if (yindex[randomNumb] < CONNECT4_ROWS && !target) {
-            disk(randomNumb);
+        // if(verticalThreeAi){
+        //     disk(x);
+        // }
+        console.log("trying to put at: " + x);
+        if (yindex[x] < CONNECT4_ROWS) {
+            if (target && yindex[x] < CONNECT4_ROWS) {
+                disk(x);
+                console.log("stacked at x");
+                // verticalThree = false;
+            }
+            else if (yindex[randomNumb] < CONNECT4_ROWS && !target) {
+                disk(randomNumb);
+            }
+            else {
+                think(x, false);
+                console.log("trying again");
+            }
         }
         else {
-            think(x, false);
-            console.log("trying again");
+            console.log("line already full, trying new line");
+            newX = Math.floor(Math.random() * 7);
+            think(newX, false);
         }
+        // console.log("computer chose: " + (randomNumb));
     }
-    else {
-        console.log("line already full, trying new line");
-        newX = Math.floor(Math.random() * 7);
-        think(newX, false);
-    }
-    // console.log("computer chose: " + (randomNumb));
 }
 
 function changeColor() {
-    var playerColor =   "linear-gradient(20deg, red,25%, rgba(255, 133, 133, 0.945))";  
-;
+    var playerColor = "linear-gradient(20deg, red,25%, rgba(255, 133, 133, 0.945))";
+    ;
     if (player1Turn) {
         playerColor = "linear-gradient(20deg, red,25%, rgba(255, 133, 133, 0.945))";
     }
@@ -210,16 +222,17 @@ function disk(x) {
         console.log("diskclass is added for p1 at (" + (CONNECT4_COLS - x - 1) + ", " + yindex[x] + ")");
         player1Turn = false;
         yindex[x] += 1;
+        console.log("p2");
         // playerName.innerHTML = "Player2's turn";
         if (!pvp) {
             playerName.innerHTML = "Computer's turn";
         }
         else {
             playerName.innerHTML = "Player2's turn";
-
         }
     }
     else if (!player1Turn && yindex[x] < CONNECT4_ROWS) {
+        console.log("p1");
         index = (".y" + yindex[x] + " > ul > .x" + x)
         target = document.querySelector(index);
         // const preview = document.querySelector(".preview > ul");
@@ -231,7 +244,7 @@ function disk(x) {
     }
     else {
         console.log("Line is already full");
-        if(!(player1Turn || pvp)){
+        if (!(player1Turn || pvp)) {
             console.log("tryng new line");
             let randomNumb = Math.floor(Math.random() * 6)
             disk(randomNumb);
@@ -261,27 +274,27 @@ function checkX() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
-                if(p1Count == 2) {
-                    if (j> 2 && j < 6) {
+                if (p1Count == 2) {
+                    if (j > 2 && j < 6) {
                         console.log("height:" + i);
-                        if (i == yindex[j+1] && i  == yindex[j-2]) {
+                        if (i == yindex[j + 1] && i == yindex[j - 2]) {
                             horizontalThree = true;
-                            horizontalIndex = j+1;
+                            horizontalIndex = j + 1;
                             console.log("need to block horizontally");
                         }
                     }
                 }
-                if(p1Count == 3 &&!pvp) {
-                    if(j < 6){
-                        if(i - 1 == yindex[j + 1]){
+                if (p1Count == 3 && !pvp) {
+                    if (j < 6) {
+                        if (i - 1 == yindex[j + 1]) {
                             console.log("xVal" + j);
                             horizontalThree = true;
-                            horizontalIndex = (j+1);
+                            horizontalIndex = (j + 1);
                         }
-                        else if(j > 2) {
-                            if(yindex[j-2]-1 == yindex[j - 3]){
+                        else if (j > 2) {
+                            if (yindex[j - 2] - 1 == yindex[j - 3]) {
                                 horizontalThree = true;
-                                horizontalIndex = j-3;
+                                horizontalIndex = j - 3;
                             }
                         }
 
@@ -323,11 +336,11 @@ function checkY() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
-                if(p1Count == 3 && yindex[j] != CONNECT4_ROWS &&!pvp) {
-                    if(!document.querySelector(".y"+(j+1) + " >ul > .x" + i).classList.contains("player2")){
-                    console.log("3 disks are vertically stacked");
-                    verticalThree = true;
-                    // think(i, true);
+                if (p1Count == 3 && yindex[j] != CONNECT4_ROWS && !pvp) {
+                    if (!document.querySelector(".y" + (j + 1) + " >ul > .x" + i).classList.contains("player2")) {
+                        console.log("3 disks are vertically stacked");
+                        verticalThree = true;
+                        // think(i, true);
                     }
                 }
                 // console.log("p1Count increased: (" + (CONNECT4_COLS-i-1) + ", " + j + ") " + p1Count);
@@ -337,11 +350,11 @@ function checkY() {
                 }
             }
             else if (target.classList.contains("player2")) {
-                
+
                 p2Count++;
                 p1Count = 0;
                 // console.log("p2Count increased: (" + (CONNECT4_COLS-i-1) + ", " + j + ") " + p2Count);
-                if(p2Count == 3 && yindex[j] != CONNECT4_ROWS && (pvp || player1Turn)) {
+                if (p2Count == 3 && yindex[j] != CONNECT4_ROWS && (pvp || player1Turn)) {
                     console.log("end game");
                     xIndex = i;
                     verticalThreeAi = true;
@@ -388,20 +401,31 @@ function checkZDsc() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
-                if(p1Count == 3) {
-                    if(xVal < 6) {
-                        if(yVal == yindex [xVal + 1]){
-                            diagonalThree = true;
-                            diagonalIndex = xVal + 1;
-                            console.log("block at " + diagonalIndex);
+                if (p1Count == 3) {
+                    if (xVal < 6) {
+                        if (yVal == yindex[xVal + 1]) {
+                            doNotPut = xVal + 1;
+                            console.log("do not put at: " + (xVal + 1));
+                            exception = true;
                         }
-                        else if((yVal- 4) == yindex[xVal - 3]){
+                        else if (yVal + 1 == yindex[xVal + 1]) {
+                            diagonalThree = true;
+                            console.log("y: " + yVal);
+                            diagonalIndex = xVal + 1;
+                            console.log("block at case1: " + diagonalIndex);
+                        }
+                        else if ((yVal - 4) == yindex[xVal - 3]) {
+                            doNotPut = xVal - 3;
+                            console.log("do not put at: " + (xVal - 3));
+                            exception = true;
+                        }
+                        else if ((yVal - 3) == yindex[xVal - 3]) {
                             diagonalThree = true;
                             diagonalIndex = xVal - 3;
-                            console.log("block at " + diagonalIndex);
+                            console.log("block at case2:" + diagonalIndex);
                         }
-                    console.log("count3 at " + xVal + "\n yindex: " + yindex[xVal]);
-                    console.log("player check diagonal");
+                        console.log("count3 at " + xVal + "\n yindex: " + yindex[xVal]);
+                        console.log("player check diagonal");
                     }
                 }
                 if (p1Count == 4) {
@@ -413,7 +437,21 @@ function checkZDsc() {
                 p2Count++;
                 p1Count = 0;
                 if (p2Count == 3) {
-                    console.log("cpu check diagonal");
+                    if (xVal < 6) {
+                        if (yVal + 1 == yindex[xVal + 1]) {
+                            diagonalThree = true;
+                            console.log("y: " + yVal);
+                            diagonalIndex = xVal + 1;
+                            console.log("end with case1: " + diagonalIndex);
+                        }
+                        else if ((yVal - 3) == yindex[xVal - 3]) {
+                            diagonalThree = true;
+                            diagonalIndex = xVal - 3;
+                            console.log("end with case2:" + diagonalIndex);
+                        }
+                        console.log("count3 at " + xVal + "\n yindex: " + yindex[xVal]);
+                        console.log("cpu check diagonal");
+                    }
                 }
                 if (p2Count == 4) {
                     playerWin(2);
@@ -461,21 +499,20 @@ function checkZAsc() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
-                
-                if(p1Count == 3){
-                    if(xVal>0 && xVal < 6){
-                        if(yVal == yindex[xVal-1]){
+
+                if (p1Count == 3) {
+                    if (xVal > 0 && xVal < 6) {
+                        if (yVal == yindex[xVal - 1]) {
                             diagonalThree = true;
-                            diagonalIndex = (xVal -1);
-                            console.log(yVal + yindex[xVal -1]);
-                            console.log("case1 1: block with " + (xVal -1));
+                            diagonalIndex = (xVal - 1);
+                            console.log(yVal + yindex[xVal - 1]);
+                            console.log("case1 1: block with " + (xVal - 1));
                         }
-                        else if ((yVal-4) == yindex[xVal +3])
-                            {
-                                diagonalThree = true;
-                                diagonalIndex = (xVal +3);
-                                console.log("case 2: block with " + (xVal +3));
-                            }
+                        else if ((yVal - 4) == yindex[xVal + 3]) {
+                            diagonalThree = true;
+                            diagonalIndex = (xVal + 3);
+                            console.log("case 2: block with " + (xVal + 3));
+                        }
                     }
                 }
 
@@ -488,6 +525,21 @@ function checkZAsc() {
                 p2Count++;
                 p1Count = 0;
                 // console.log("p2Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p2Count);
+                if (p2Count == 3) {
+                    if (xVal > 0 && xVal < 6) {
+                        if (yVal + 1 == yindex[xVal - 1]) {
+                            diagonalThree = true;
+                            diagonalIndex = (xVal - 1);
+                            console.log(yVal + yindex[xVal - 1]);
+                            console.log("case1 1: end with " + (xVal - 1));
+                        }
+                        else if ((yVal - 4) == yindex[xVal + 3]) {
+                            diagonalThree = true;
+                            diagonalIndex = (xVal + 3);
+                            console.log("case 2: end with " + (xVal + 3));
+                        }
+                    }
+                }
                 if (p2Count == 4) {
                     playerWin(2);
                     return;
@@ -531,7 +583,7 @@ function playerWin(x) {
             pName = "computer";
         }
         else {
-        pName = "Player " + x;
+            pName = "Player " + x;
         }
         // alert(pName + " win!!");
         playerName.innerHTML = "Winner: " + pName + "<br> Press 'r' to restart";
@@ -571,6 +623,8 @@ function restart() {
     diagonalThree = false;
     diagonalIndex = 0;
     diagonalThreeAi = false;
-     horizontalThree = false;
+    horizontalThree = false;
     horizontalIndex = 0;
+    doNotPut = 0;
+    exception = false;
 }
