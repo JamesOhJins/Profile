@@ -277,7 +277,13 @@ function disk(x) {
         // console.log("diskclass is added for p2 at (" + (CONNECT4_COLS - x - 1) + ", " + yindex[x] + ")");
         player1Turn = true;
         yindex[x] += 1;
-        playerName.innerHTML = "Player1's turn";
+        if(pvp){
+            playerName.innerHTML = "Player1's turn";
+        }
+        else {
+            playerName.innerHTML = "Your turn";
+
+        }
     }
     else {
         console.log("Line is already full");
@@ -653,6 +659,9 @@ function playerWin(x) {
     else {
         if (!pvp && x == 2) {
             pName = "computer";
+        }
+        else if(!pvp && x == 1) {
+            pName = "You";
         }
         else {
             pName = "Player " + x;
