@@ -7,6 +7,9 @@ var CONNECT4_ROWS = 6;
 var first = true;
 var verticalThree = false;
 var verticalThreeAi = false;
+var diagonalThree = false;
+var diagonalIndex = 0;
+var diagonalThreeAi = false;
 var xIndex = 0;
 var yindex = [0, 0, 0, 0, 0, 0, 0]; //for each column, counts how many holes are already filled
 var play = true;
@@ -79,9 +82,23 @@ function addpicker() {
                     if(j == 3 && yindex[j]!= CONNECT4_ROWS) {
                         first= true;
                     }
+                   
                     if (verticalThreeAi) {
                         setTimeout(function () {
                             think(xIndex, true);
+                            verticalThreeAi = false;
+                        }, 300)
+                    }
+                    else if(verticalThree){
+                        setTimeout(function () {
+                            think(j, true);
+                            verticalThree = false;
+                        }, 300)
+                    }
+                    else if(diagonalThree) {
+                        setTimeout(function () {
+                            think(diagonalIndex, true);
+                            diagonalThree = false;
                         }, 300)
                     }
                     else if (first) {
@@ -96,14 +113,12 @@ function addpicker() {
                         }, 300)
                         pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
                     }
-                    else if(play){
-                        setTimeout(function () {
-                            think(j, true);
-                        }, 300)
-                    }
                 }
             }
             else {
+                // var bodyRect = document.pickerIndex.getBoundingClientRect(),
+                // elemRect = yindex.getBoundingClientRect(),
+                // offset   = elemRect.top - bodyRect.top;
                 disk(j);
                 pickerIndex.style.background = changeColor();
             }
@@ -249,6 +264,10 @@ function checkX() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
+                if(p1Count == 3 &&!pvp) {
+                    console.log("xVal" + xVal);
+                    // think(i, true);   
+                }
                 // console.log("p1Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p1Count);
                 if (p1Count == 4) {
                     playerWin(1);
@@ -351,7 +370,20 @@ function checkZDsc() {
                 p1Count++;
                 p2Count = 0;
                 if(p1Count == 3) {
+                    if(xVal < 6) {
+                        if(yVal == yindex [xVal + 1]){
+                            diagonalThree = true;
+                            diagonalIndex = xVal + 1;
+                            console.log("block at " + diagonalIndex);
+                        }
+                        else if((yVal- 4) == yindex[xVal - 3]){
+                            diagonalThree = true;
+                            diagonalIndex = xVal - 3;
+                            console.log("block at " + diagonalIndex);
+                        }
+                    console.log("count3 at " + xVal + "\n yindex: " + yindex[xVal]);
                     console.log("player check diagonal");
+                    }
                 }
                 if (p1Count == 4) {
                     playerWin(1);
@@ -410,6 +442,24 @@ function checkZAsc() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
+                
+                if(p1Count == 3){
+                    if(xVal>0 && xVal < 6){
+                        if(yVal == yindex[xVal-1]){
+                            diagonalThree = true;
+                            diagonalIndex = (xVal -1);
+                            console.log(yVal + yindex[xVal -1]);
+                            console.log("case1 1: block with " + (xVal -1));
+                        }
+                        else if ((yVal-4) == yindex[xVal +3])
+                            {
+                                diagonalThree = true;
+                                diagonalIndex = (xVal +3);
+                                console.log("case 2: block with " + (xVal +3));
+                            }
+                    }
+                }
+
                 if (p1Count == 4) {
                     playerWin(1);
                     return;

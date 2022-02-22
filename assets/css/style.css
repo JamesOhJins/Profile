@@ -939,7 +939,8 @@ video {
 
 .connect4>ul {
     border: 1px solid #333;
-    background-color: rgba(30, 30, 30, 0.9);
+    background-color: rgba(7, 8, 88, 0.9);
+    /* background-color: rgba(30, 30, 30, 0.9); */
     width: 350px;
     margin: 0 auto;
 }
@@ -967,13 +968,15 @@ video {
 
 .player1 {
     background: linear-gradient(20deg, red, 25%, rgba(255, 133, 133, 0.945));
+ 
     /* background-color: rgba(255, 133, 133, 0.945)!important; */
 }
 
 .player2 {
-    background: linear-gradient(20deg, rgb(208, 255, 0), 25%, rgba(255, 255, 137, 0.884));
+    background: linear-gradient(20deg, rgb(208, 255, 0), 25%, rgba(255, 255, 137, 0.884));;
     /* background-color: rgba(255, 255, 97, 0.884)!important; */
 }
+
 
 #player {
     padding:0;
@@ -991,7 +994,7 @@ video {
 
 .pick_line>ul {
     border: 1px solid #333;
-    background-color: rgba(30, 30, 30, 0.9);
+    background-color: rgba(7, 8, 88, 0.9);
     width: 350px;
     margin: 0 auto;
     display:flex;
