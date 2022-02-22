@@ -660,6 +660,215 @@ ul {
     width: 100%;
 }
 
+#scan-button {
+    height: 4.5rem;
+    width: 49%;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    align-items: top;
+    font-size: 20px;
+    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
+    color: rgb(46, 45, 45);
+    background: linear-gradient(20deg, rgb(187, 106, 0),40%, rgb(247, 181, 96)) ;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 3px rgba(204, 138, 53, 0.6);
+}
+
+#buttons {
+    vertical-align: top;
+    height: 4.5rem;
+}
+
+#breed_list {
+    color: #ccc;
+}
+
+#upload-button {
+    height: 4.5rem;
+    width: 49%;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    align-items: top;
+    font-size: 20px;
+    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
+    color: rgb(46, 45, 45);
+    background: linear-gradient(20deg, rgb(187, 106, 0),40%, rgb(247, 181, 96)) ;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 3px rgba(204, 138, 53, 0.6);
+
+}
+
+#upload-label {
+    display: inline-block;
+    padding: 1rem 0rem 1rem;
+    width: 100%;
+}
+
+input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+video {
+    width: 100%;
+    height: fit-content;
+}
+
+#scannerWrapper {
+    width: 60%;
+    max-width: 500px;
+    padding-top: 20vh;
+    place-self: center;
+    align-content: center;
+    padding-bottom: 8%;
+}
+
+#output_image {
+    display: inline;
+    border: #ccc 1px;
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    place-self: center;
+    align-content: center;
+    padding-bottom: 8%;
+}
+
+.collapsible {
+    background-color: rgb(20, 20, 20);
+    color: rgb(163, 163, 163);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+    background-color: rgb(30, 30, 30);
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: rgb(20, 20, 20);
+}
+
+#loading {
+    color: #ccc;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    font-size: 8px;
+    font-size: 4vw;
+
+}
+/* connect4 game */
+.connect4 {
+    padding-bottom: 12vh;
+    align-items: center;
+    display: inline-table;
+}
+
+.connect4>ul {
+    border: 1px solid #333;
+    background-color: rgba(7, 8, 88, 0.9);
+    /* background-color: rgba(30, 30, 30, 0.9); */
+    width: 455px;
+    margin: 0 auto;
+}
+
+.connect4>ul>li {
+    width: 100%;
+    height: 65px;
+    padding: 0;
+}
+
+.connect4>ul>li>ul {
+    display: flex;
+}
+
+.connect4>ul>li>ul>li {
+    width: 60px;
+    height: 60px;
+    margin: 2.5px;
+    border-radius: 50%;
+    background-color: rgba(187, 187, 187,0.3);
+    /* border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
+    border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
+    border-right: rgba(29, 29, 29, 0.15) solid 0.8px; */
+}
+
+.player1 {
+    background: linear-gradient(20deg, red, 25%, rgba(255, 133, 133, 0.945));
+ 
+    /* background-color: rgba(255, 133, 133, 0.945)!important; */
+}
+
+.player2 {
+    background: linear-gradient(20deg, rgb(208, 255, 0), 25%, rgba(255, 255, 137, 0.884));;
+    /* background-color: rgba(255, 255, 97, 0.884)!important; */
+}
+
+
+#player {
+    padding:0;
+    text-align: center;
+    padding-top: 10vh;
+    padding-bottom: 6vh;
+    margin: 0;
+    font-size: 36px;
+    color: #CCC;
+    font-weight: 900;
+}
+
+
+
+.pick_line {
+    align-items: center;
+}
+
+.pick_line>ul {
+    border: 1px solid #333;
+    background-color: rgba(3, 4, 71, 0.9);
+    width: 455px;
+    margin: 0 auto;
+    display:flex;
+}
+.pick_line>ul>li {
+    width: 60px;
+    margin: 2.5px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(187, 187, 187, 0.1);
+    padding: 0;
+}
+
+#single_player {
+display:none;
+}
+
+#two_player {
+display: none;
+}
+
+
+/* mobile View */
+
 @media only screen and (max-width: 600px) {
     #tetris-body {
         height: fit-content!important;
@@ -889,210 +1098,4 @@ ul {
         background-color: rgba(187, 187, 187, 0.1);
         padding: 0;
     }
-}
-
-#scan-button {
-    height: 4.5rem;
-    width: 49%;
-    font-weight: bold;
-    display: inline-block;
-    text-align: center;
-    align-items: top;
-    font-size: 20px;
-    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
-    color: rgb(46, 45, 45);
-    background: linear-gradient(20deg, rgb(187, 106, 0),40%, rgb(247, 181, 96)) ;
-    border-radius: 1rem;
-    box-shadow: 2px 2px 3px rgba(204, 138, 53, 0.6);
-}
-
-#buttons {
-    vertical-align: top;
-    height: 4.5rem;
-}
-
-#breed_list {
-    color: #ccc;
-}
-
-#upload-button {
-    height: 4.5rem;
-    width: 49%;
-    font-weight: bold;
-    display: inline-block;
-    text-align: center;
-    align-items: top;
-    font-size: 20px;
-    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
-    color: rgb(46, 45, 45);
-    background: linear-gradient(20deg, rgb(187, 106, 0),40%, rgb(247, 181, 96)) ;
-    border-radius: 1rem;
-    box-shadow: 2px 2px 3px rgba(204, 138, 53, 0.6);
-
-}
-
-#upload-label {
-    display: inline-block;
-    padding: 1rem 0rem 1rem;
-    width: 100%;
-}
-
-input[type="file"] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
-
-video {
-    width: 100%;
-    height: fit-content;
-}
-
-#scannerWrapper {
-    width: 60%;
-    max-width: 500px;
-    padding-top: 20vh;
-    place-self: center;
-    align-content: center;
-    padding-bottom: 8%;
-}
-
-#output_image {
-    display: inline;
-    border: #ccc 1px;
-    width: 100%;
-    height: auto;
-    max-width: 500px;
-    place-self: center;
-    align-content: center;
-    padding-bottom: 8%;
-}
-
-.collapsible {
-    background-color: rgb(20, 20, 20);
-    color: rgb(163, 163, 163);
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
-    background-color: rgb(30, 30, 30);
-}
-
-/* Style the collapsible content. Note: hidden by default */
-.content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: rgb(20, 20, 20);
-}
-
-#loading {
-    color: #ccc;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
-    display: none;
-    font-size: 8px;
-    font-size: 4vw;
-
-}
-/* connect4 game */
-.connect4 {
-    padding-bottom: 12vh;
-    align-items: center;
-    display: inline-table;
-}
-
-.connect4>ul {
-    border: 1px solid #333;
-    background-color: rgba(7, 8, 88, 0.9);
-    /* background-color: rgba(30, 30, 30, 0.9); */
-    width: 455px;
-    margin: 0 auto;
-}
-
-.connect4>ul>li {
-    width: 100%;
-    height: 65px;
-    padding: 0;
-}
-
-.connect4>ul>li>ul {
-    display: flex;
-}
-
-.connect4>ul>li>ul>li {
-    width: 60px;
-    height: 60px;
-    margin: 2.5px;
-    border-radius: 50%;
-    background-color: rgba(187, 187, 187,0.3);
-    /* border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
-    border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
-    border-right: rgba(29, 29, 29, 0.15) solid 0.8px; */
-}
-
-.player1 {
-    background: linear-gradient(20deg, red, 25%, rgba(255, 133, 133, 0.945));
- 
-    /* background-color: rgba(255, 133, 133, 0.945)!important; */
-}
-
-.player2 {
-    background: linear-gradient(20deg, rgb(208, 255, 0), 25%, rgba(255, 255, 137, 0.884));;
-    /* background-color: rgba(255, 255, 97, 0.884)!important; */
-}
-
-
-#player {
-    padding:0;
-    text-align: center;
-    padding-top: 10vh;
-    padding-bottom: 6vh;
-    margin: 0;
-    font-size: 36px;
-    color: #CCC;
-    font-weight: 900;
-}
-
-
-
-.pick_line {
-    align-items: center;
-}
-
-.pick_line>ul {
-    border: 1px solid #333;
-    background-color: rgba(3, 4, 71, 0.9);
-    width: 455px;
-    margin: 0 auto;
-    display:flex;
-}
-.pick_line>ul>li {
-    width: 60px;
-    margin: 2.5px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: rgba(187, 187, 187, 0.1);
-    padding: 0;
-}
-
-#single_player {
-display:none;
-}
-
-#two_player {
-display: none;
 }
