@@ -10,6 +10,8 @@ var verticalThreeAi = false;
 var diagonalThree = false;
 var diagonalIndex = 0;
 var diagonalThreeAi = false;
+var horizontalThree = false;
+var horizontalIndex = 0;
 var xIndex = 0;
 var yindex = [0, 0, 0, 0, 0, 0, 0]; //for each column, counts how many holes are already filled
 var play = true;
@@ -79,39 +81,58 @@ function addpicker() {
             if (!pvp) {
                 if (player1Turn) {
                     disk(j);
-                    if(j == 3 && yindex[j]!= CONNECT4_ROWS) {
-                        first= true;
-                    }
-                   
                     if (verticalThreeAi) {
+                        console.log("verticalthreeai");
                         setTimeout(function () {
                             think(xIndex, true);
                             verticalThreeAi = false;
                         }, 300)
+                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
                     }
                     else if(verticalThree){
+                        console.log("verticalthree");
                         setTimeout(function () {
                             think(j, true);
                             verticalThree = false;
                         }, 300)
+                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
                     }
                     else if(diagonalThree) {
+                        console.log("diagonalthree");
                         setTimeout(function () {
                             think(diagonalIndex, true);
                             diagonalThree = false;
                         }, 300)
+                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+                    }
+                    else if(horizontalThree) {
+                        console.log("diagonalthree");
+                        setTimeout(function () {
+                            think(horizontalIndex, true);
+                            horizontalIndex = false;
+                        }, 300)
+                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
                     }
                     else if (first) {
                         setTimeout(function () {
                             think(3, true);
                         }, 300)
                         first = false;
+                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
                     }
                     else if (play && !verticalThree) {
                         setTimeout(function () {
                             think(j, false);
                         }, 300)
                         pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+                    }
+                    else {
+                        //defaunlt;
+                        setTimeout(function () {
+                            think(j, false);
+                        },300 )
+                        pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+
                     }
                 }
             }
@@ -125,57 +146,33 @@ function addpicker() {
         });
     }
 }
-function getRandomInt(playerPick) {
-    min = 0; 
-    max = 2000;
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    let randomNum = Math.floor(Math.random() * (max - min) + min);
-    if(playerPick != 0 && yindex[playerPick] -1 == yindex[playerPick -1]) 
-    {
-        console.log("righthand side of player's pick is empty");
-        return (playerPick -1);
-    }
-    else if(playerPick != CONNECT4_COLS-1 && yindex[playerPick] -1 == yindex[playerPick +1]) {
-        console.log("leftthand side of player's pick is empty");
-        return (playerPick +1);
-    }
-    else {
-    if (randomNum < 1000) {
-        if(playerPick != 0 && yindex[playerPick] == yindex[playerPick -1] -1){ //if left side of disk is 1 height behind
-            return (playerPick -1);
+
+function think(x, target) {
+    let randomNumb = x;//getRandomInt(x);
+    console.log("target: " + target);
+    console.log(randomNumb);
+    // if(verticalThreeAi){
+    //     disk(x);
+    // }
+    console.log("trying to put at: " + x);
+    if (yindex[x] < CONNECT4_ROWS) {
+        if(target && yindex[x] < CONNECT4_ROWS){
+            disk(x);
+            console.log("stacked at x");
+            // verticalThree = false;
         }
-        else{
-        return(playerPick+1);
-        }
-    }
-    else{
-        if(playerPick != CONNECT4_COLS-1 && yindex[playerPick] == yindex[playerPick +1] +1) {
-        return (playerPick +1);
+        else if (yindex[randomNumb] < CONNECT4_ROWS && !target) {
+            disk(randomNumb);
         }
         else {
-            return(playerPick -1);
+            think(x, false);
+            console.log("trying again");
         }
     }
-    }
-
-}
-function think(x, vertical3) {
-    let randomNumb = getRandomInt(x);
-    if(verticalThreeAi){
-        disk(x);
-    }
-    else if(vertical3 && yindex[x] != CONNECT4_ROWS){
-        disk(x);
-        console.log("stacked at x");
-        verticalThree = false;
-    }
-    else if (yindex[randomNumb] != CONNECT4_ROWS && !vertical3) {
-        disk(randomNumb);
-    }
     else {
-        think();
-        console.log("trying again");
+        console.log("line already full, trying new line");
+        newX = Math.floor(Math.random() * 7);
+        think(newX, false);
     }
     // console.log("computer chose: " + (randomNumb));
 }
@@ -264,9 +261,31 @@ function checkX() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
+                if(p1Count == 2) {
+                    if (j> 2 && j < 6) {
+                        console.log("height:" + i);
+                        if (i == yindex[j+1] && i  == yindex[j-2]) {
+                            horizontalThree = true;
+                            horizontalIndex = j+1;
+                            console.log("need to block horizontally");
+                        }
+                    }
+                }
                 if(p1Count == 3 &&!pvp) {
-                    console.log("xVal" + xVal);
-                    // think(i, true);   
+                    if(j < 6){
+                        if(i - 1 == yindex[j + 1]){
+                            console.log("xVal" + j);
+                            horizontalThree = true;
+                            horizontalIndex = (j+1);
+                        }
+                        else if(j > 2) {
+                            if(yindex[j-2]-1 == yindex[j - 3]){
+                                horizontalThree = true;
+                                horizontalIndex = j-3;
+                            }
+                        }
+
+                    }
                 }
                 // console.log("p1Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p1Count);
                 if (p1Count == 4) {
@@ -549,4 +568,9 @@ function restart() {
     verticalThree = false;
     verticalThreeAi = false;
     first = true;
+    diagonalThree = false;
+    diagonalIndex = 0;
+    diagonalThreeAi = false;
+     horizontalThree = false;
+    horizontalIndex = 0;
 }
