@@ -181,10 +181,19 @@ function think() {
         else {
             //defaunlt;
             console.log("default");
+            if(playerIndex != doNotPut){
+            console.log("playerIndex is not equal to donoput");
             setTimeout(function () {
                 aiDisk(playerIndex);
             }, 500)
-            return;
+            }
+            else{
+                setTimeout(function () {
+                    aiDisk(playerIndex);
+                    newX = Math.floor(Math.random() * 7);
+                    aiDisk(newX);
+                }, 500)
+            }            return;
         }
     }
 
@@ -199,9 +208,9 @@ function aiDisk(x) {
         }
 
         if (x == doNotPut && exception == true && sum < 36 && !end) {
+            console.log("trying to seize at do not put");
             newX = Math.floor(Math.random() * 7);
             think(newX);
-            exception = false;
             return;
         }
         console.log("seizing at x: " + x + " y: " + yindex[x]);
@@ -329,7 +338,7 @@ function checkX() {
                 p2Count = 0;
                 if (p1Count == 2) {
                     if (j > 2 && j < 6) {
-                        // console.log("height:" + i);
+                        console.log("height:" + i);
                         checkC1 = (".y" + i + " > ul > .x" + (j -3));
                         checkC2 = (".y" + i + " > ul > .x" + (j -2));
 
@@ -339,7 +348,7 @@ function checkX() {
                             horizontalIndex = j + 1;
                             console.log("need to block horizontally");
                         }
-                        else if (i + 1 == yindex[j + 1] && document.querySelector(checkC1).classList.contains("player1") && !document.querySelector(checkC2).classList.contains("player2")) {
+                        else if (i == yindex[j + 2] && document.querySelector(checkC1).classList.contains("player1") && !document.querySelector(checkC2).classList.contains("player2")) {
                             horizontalThree = true;
                             horizontalIndex = j - 2;
                             console.log("2 + 1");
@@ -360,6 +369,7 @@ function checkX() {
                                 horizontalIndex = j - 3;
                             }
                         }
+                        
 
                     }
                 }
@@ -374,11 +384,17 @@ function checkX() {
                 p1Count = 0;
                 if (p2Count == 2) {
                     if (j > 2 && j < 6) {
-                        // console.log("height:" + i);
+                        checkC1 = (".y" + i + " > ul > .x" + (j -3));
+                        checkC2 = (".y" + i + " > ul > .x" + (j -2));
                         if (i == yindex[j + 1] && i == yindex[j - 2]) {
                             horizontalThreeAi = true;
                             horizontalIndexAi = j + 1;
                             console.log("need to end horizontally");
+                        }
+                        else if (i == yindex[j + 2] && document.querySelector(checkC1).classList.contains("player2") && !document.querySelector(checkC2).classList.contains("player1")) {
+                            horizontalThreeAi = true;
+                            horizontalIndexAi = j - 2;
+                            console.log("end with 2 + 1");
                         }
                     }
                 }
@@ -729,6 +745,7 @@ function restart() {
     verticalIndex = 0;
     verticalIndexAi = 0;
     playerIndex = 0;
+    end = false;
     if(!pvp){
         // player1Turn = false;
         // think();
