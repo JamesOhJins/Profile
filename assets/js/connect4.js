@@ -16,6 +16,7 @@ var exception = false;
 var diagonalThreeAi = false;
 var horizontalThree = false;
 var horizontalIndex = 0;
+var playerIndex = 0;
 
 var yindex = [0, 0, 0, 0, 0, 0, 0]; //for each column, counts how many holes are already filled
 var play = true;
@@ -86,63 +87,9 @@ function addpicker() {
             if (!pvp) {
                 if (player1Turn) {
                     disk(j);
+                    playerIndex = j;
                     pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
                     think();
-                    // if (!player1Turn) {
-                    //     if (verticalThreeAi) {
-                    //         console.log("verticalthreeai");
-                    //         pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    //         setTimeout(function () {
-                    //             think(verticalIndexAi, true);
-                    //             verticalThreeAi = false;
-                    //         }, 500)
-                    //     }
-                    //     else if (verticalThree) {
-                    //         console.log("verticalthree");
-                    //         pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    //         setTimeout(function () {
-                    //             think(j, true);
-                    //             verticalThree = false;
-                    //         }, 500)
-                    //     }
-                    //     else if (diagonalThree) {
-                    //         console.log("diagonalthree");
-                    //         pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    //         setTimeout(function () {
-                    //             console.log("diagonal index: " + diagonalIndex);
-                    //             think(diagonalIndex, true);
-                    //             diagonalThree = false;
-                    //         }, 500)
-                    //     }
-                    //     else if (horizontalThree) {
-                    //         console.log("diagonalthree");
-                    //         pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    //         setTimeout(function () {
-                    //             think(horizontalIndex, true);
-                    //             horizontalIndex = false;
-                    //         }, 500)
-                    //     }
-                    //     else if (first) {
-                    //         pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    //         setTimeout(function () {
-                    //             think(3, true);
-                    //         }, 500)
-                    //         first = false;
-                    //     }
-                    //     else if (play && !verticalThree) {
-                    //         pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    //         setTimeout(function () {
-                    //             think(j, false);
-                    //         }, 500)
-                    //     }
-                    //     else {
-                    //         //defaunlt;
-                    //         pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-                    //         setTimeout(function () {
-                    //             think(j, false);
-                    //         }, 500)
-                    //     }
-                    // }
                 }
                 else {
                     
@@ -184,24 +131,24 @@ function think() {
             console.log("verticalthree");
             setTimeout(function () {
                 aiDisk(verticalIndex);
-                verticalThree = false;
             }, 500)
+            verticalThree = false;
             return;
         }
         else if (diagonalThree) {
             console.log("diagonalthree");
             setTimeout(function () {
                 aiDisk(diagonalIndex);
-                diagonalThree = false;
             }, 500)
+            diagonalThree = false;
             return;
         }
         else if (horizontalThree) {
             console.log("horizontalthree");
             setTimeout(function () {
                 aiDisk(horizontalIndex);
-                horizontalThree = false;
             }, 500)
+            horizontalThree = false;
             return;
         }
         else if (first) {
@@ -212,16 +159,17 @@ function think() {
             first = false;
             return;
         }
-        else if (play && !verticalThree) {
-            setTimeout(function () {
-                aiDisk(verticalIndex);
-            }, 500)
-            return;
-        }
+        // else if (play && !verticalThree) {
+        //     setTimeout(function () {
+        //         aiDisk(verticalIndex);
+        //     }, 500)
+        //     return;
+        // }
         else {
             //defaunlt;
+            console.log("default");
             setTimeout(function () {
-                aiDisk(verticalIndex);
+                aiDisk(playerIndex);
             }, 500)
             return;
         }
@@ -254,11 +202,13 @@ function aiDisk(x) {
                 return;
             }
             else {
-                aiDisk(x, false);
+                console.log("aiDisk(x)");
+                aiDisk(x);
                 return;
             }
         }
         else {
+            console.log("default, seizing at random index");
             newX = Math.floor(Math.random() * 7);
             aiDisk(newX);
             return;
@@ -301,7 +251,7 @@ function disk(x) {
         index = (".y" + yindex[x] + " > ul > .x" + x)
         target = document.querySelector(index);
         target.classList.add("player1");
-        console.log("diskclass is added for p1 at (" + (CONNECT4_COLS - x - 1) + ", " + yindex[x] + ")");
+        // console.log("diskclass is added for p1 at (" + (CONNECT4_COLS - x - 1) + ", " + yindex[x] + ")");
         player1Turn = false;
         yindex[x] += 1;
         console.log("p2");
@@ -319,7 +269,7 @@ function disk(x) {
         target = document.querySelector(index);
         // const preview = document.querySelector(".preview > ul");
         target.classList.add("player2");
-        console.log("diskclass is added for p2 at (" + (CONNECT4_COLS - x - 1) + ", " + yindex[x] + ")");
+        // console.log("diskclass is added for p2 at (" + (CONNECT4_COLS - x - 1) + ", " + yindex[x] + ")");
         player1Turn = true;
         yindex[x] += 1;
         playerName.innerHTML = "Player1's turn";
@@ -418,10 +368,10 @@ function checkY() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
-                if (p1Count == 3 && yindex[j] != CONNECT4_ROWS){ //&& !pvp) {
+                if (p1Count == 3 && yindex[j] != CONNECT4_ROWS && j < 5){ //&& !pvp) {
                     if (!document.querySelector(".y" + (j + 1) + " >ul > .x" + i).classList.contains("player2")) {
                         verticalThree = true;
-                        console.log("vertical Three" + i);
+                        console.log("vertical Three at :" + i);
                         verticalIndex = i;
                     }
                 }
@@ -436,7 +386,7 @@ function checkY() {
                 p2Count++;
                 p1Count = 0;
                 // console.log("p2Count increased: (" + (CONNECT4_COLS-i-1) + ", " + j + ") " + p2Count);
-                if (p2Count == 3 && yindex[j] != CONNECT4_ROWS && (pvp || player1Turn)) {
+                if (p2Count == 3 && yindex[j] != CONNECT4_ROWS && (pvp || player1Turn) && j < 5) {
                     // console.log("end game");
                     verticalThreeAi = true;
                     verticalIndexAi = i;
@@ -484,7 +434,6 @@ function checkZDsc() {
                 p1Count++;
                 p2Count = 0;
                 if (p1Count == 3) {
-                    console.log("p1Count = 3");
                     if (xVal < 6) {
                         if (yVal == yindex[xVal + 1]) {
                             doNotPut = xVal + 1;
@@ -719,4 +668,7 @@ function restart() {
     horizontalIndex = 0;
     doNotPut = 0;
     exception = false;
+    verticalIndex = 0;
+    verticalIndexAi = 0;
+    playerIndex = 0;
 }

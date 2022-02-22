@@ -960,7 +960,7 @@ video {
     height: 45px;
     margin: 2.5px;
     border-radius: 50%;
-    background-color: rgba(187, 187, 187,0.8);
+    background-color: rgba(187, 187, 187,0.3);
     /* border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
     border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
     border-right: rgba(29, 29, 29, 0.15) solid 0.8px; */
@@ -982,8 +982,11 @@ video {
     padding:0;
     text-align: center;
     padding-top: 10vh;
-    padding-bottom: 8vh;
+    padding-bottom: 6vh;
     margin: 0;
+    font-size: 36px;
+    color: #CCC;
+    font-weight: 900;
 }
 
 
@@ -994,7 +997,7 @@ video {
 
 .pick_line>ul {
     border: 1px solid #333;
-    background-color: rgba(7, 8, 88, 0.9);
+    background-color: rgba(3, 4, 71, 0.9);
     width: 350px;
     margin: 0 auto;
     display:flex;
