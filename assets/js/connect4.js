@@ -22,16 +22,21 @@ var yindex = [0, 0, 0, 0, 0, 0, 0]; //for each column, counts how many holes are
 var play = true;
 count = 0;
 var player1Turn = true;
+
 var pvp = false;
+
 function init() {
     prependPickLine();
     for (let j = 0; j < CONNECT4_ROWS; j++) {
         prependNewLine();
     }
     addpicker();
+    if(!pvp){
+        player1Turn = false;
+    }
 }
 init();
-
+think();
 function prependNewLine() {
     const li = document.createElement("li");
     const ul = document.createElement("ul");
@@ -92,7 +97,7 @@ function addpicker() {
                     think();
                 }
                 else {
-                    
+
                 }
             }
             else {
@@ -107,7 +112,7 @@ function addpicker() {
 }
 
 function think() {
-     if (!player1Turn) {
+    if (!player1Turn) {
         if (verticalThreeAi) {
             console.log("verticalthreeai");
             setTimeout(function () {
@@ -181,23 +186,23 @@ function think() {
 function aiDisk(x) {
     if (play && !player1Turn) {
         let sum = 0;
-            for (let i = 0; i < yindex.length; i ++) {
-                sum += yindex[i];
-            }
-        
+        for (let i = 0; i < yindex.length; i++) {
+            sum += yindex[i];
+        }
+
         if (x == doNotPut && exception == true && sum < 36) {
             newX = Math.floor(Math.random() * 7);
             think(newX);
-            exception = false;    
+            exception = false;
             return;
-            }
-            console.log("seizing at x: "+ x + " y: " + yindex[x]);
-        if (yindex[x] <= CONNECT4_ROWS -1) {
-            if (yindex[x] <= CONNECT4_ROWS -1) {
+        }
+        console.log("seizing at x: " + x + " y: " + yindex[x]);
+        if (yindex[x] <= CONNECT4_ROWS - 1) {
+            if (yindex[x] <= CONNECT4_ROWS - 1) {
                 disk(x);
                 return;
             }
-            else if (yindex[x] <= CONNECT4_ROWS -1) {
+            else if (yindex[x] <= CONNECT4_ROWS - 1) {
                 disk(x);
                 return;
             }
@@ -219,7 +224,7 @@ function aiDisk(x) {
 function changeColor() {
     var playerColor = "linear-gradient(20deg, red,25%, rgba(255, 133, 133, 0.945))";
     ;
-    if(pvp){
+    if (pvp) {
         if (player1Turn) {
             playerColor = "linear-gradient(20deg, red,25%, rgba(255, 133, 133, 0.945))";
         }
@@ -292,8 +297,8 @@ function checkFour() {
     checkY();
     checkZAsc();
     checkZDsc();
-    if(play){
-    checkTie();
+    if (play) {
+        checkTie();
     }
 }
 
@@ -343,6 +348,32 @@ function checkX() {
             else if (target.classList.contains("player2")) {
                 p2Count++;
                 p1Count = 0;
+                if (p2Count == 2) {
+                    if (j > 2 && j < 6) {
+                        // console.log("height:" + i);
+                        if (i == yindex[j + 1] && i == yindex[j - 2]) {
+                            horizontalThree = true;
+                            horizontalIndex = j + 1;
+                            console.log("need to end horizontally");
+                        }
+                    }
+                }
+                if (p2Count == 3 && !pvp) {
+                    if (j < 6) {
+                        if (i == yindex[j + 1]) {
+                            console.log("xVal" + j);
+                            horizontalThree = true;
+                            horizontalIndex = (j + 1);
+                        }
+                        else if (j > 2) {
+                            if (yindex[j - 2] - 1 == yindex[j - 3]) {
+                                horizontalThree = true;
+                                horizontalIndex = j - 3;
+                            }
+                        }
+
+                    }
+                }
                 // console.log("p2Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p2Count);
                 if (p2Count == 4) {
                     playerWin(2);
@@ -368,7 +399,7 @@ function checkY() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
-                if (p1Count == 3 && yindex[j] != CONNECT4_ROWS && j < 5){ //&& !pvp) {
+                if (p1Count == 3 && yindex[j] != CONNECT4_ROWS && j < 5) { //&& !pvp) {
                     if (!document.querySelector(".y" + (j + 1) + " >ul > .x" + i).classList.contains("player2")) {
                         verticalThree = true;
                         console.log("vertical Three at :" + i);
@@ -534,19 +565,19 @@ function checkZAsc() {
 
                 if (p1Count == 3) {
                     if (xVal > 0 && xVal < 6) {
-                        if  (yVal == yindex[xVal - 1]) {
-                            doNotPut = (xVal -1);
+                        if (yVal == yindex[xVal - 1]) {
+                            doNotPut = (xVal - 1);
                             exception = true;
                         }
-                        else if (yVal  == yindex[xVal - 1] -1) {
+                        else if (yVal == yindex[xVal - 1] - 1) {
                             diagonalThree = true;
                             diagonalIndex = (xVal - 1);
                             // console.log(yVal + yindex[xVal - 1]);
                             // console.log("case1 1: block with " + (xVal - 1));
                         }
                         else if ((yVal - 4) == yindex[xVal + 3]) {
-                           doNotPut = (xVal + 3);
-                           exception = true;
+                            doNotPut = (xVal + 3);
+                            exception = true;
                         }
                         else if ((yVal - 3) == yindex[xVal + 3]) {
                             diagonalThree = true;
@@ -568,13 +599,13 @@ function checkZAsc() {
                 // console.log("p2Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p2Count);
                 if (p2Count == 3) {
                     if (xVal > 0 && xVal < 6) {
-                        if (yVal + 1 == yindex[xVal - 1]) {
+                        if (yVal == yindex[xVal - 1] - 1) {
                             diagonalThree = true;
                             diagonalIndex = (xVal - 1);
                             console.log(yVal + yindex[xVal - 1]);
                             // console.log("case1 1: end with " + (xVal - 1));
                         }
-                        else if ((yVal - 4) == yindex[xVal + 3]) {
+                        else if ((yVal - 3) == yindex[xVal + 3]) {
                             diagonalThree = true;
                             diagonalIndex = (xVal + 3);
                             // console.log("case 2: end with " + (xVal + 3));
@@ -671,4 +702,8 @@ function restart() {
     verticalIndex = 0;
     verticalIndexAi = 0;
     playerIndex = 0;
+    if(!pvp){
+        player1Turn = false;
+        think();
+    }
 }
