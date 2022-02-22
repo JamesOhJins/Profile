@@ -14,9 +14,13 @@ var diagonalIndex = 0;
 var doNotPut = 0;
 var exception = false;
 var diagonalThreeAi = false;
+var diagonalIndexAi = 0;
 var horizontalThree = false;
 var horizontalIndex = 0;
+var horizontalThreeAi = false;
+var horizontalIndexAi = 0;
 var playerIndex = 0;
+var end = false;
 
 var yindex = [0, 0, 0, 0, 0, 0, 0]; //for each column, counts how many holes are already filled
 var play = true;
@@ -31,12 +35,13 @@ function init() {
         prependNewLine();
     }
     addpicker();
-    if(!pvp){
-        player1Turn = false;
-    }
+    // if(!pvp){
+    //     player1Turn = false;
+    // think();
+    // }
 }
 init();
-think();
+
 function prependNewLine() {
     const li = document.createElement("li");
     const ul = document.createElement("ul");
@@ -115,23 +120,31 @@ function think() {
     if (!player1Turn) {
         if (verticalThreeAi) {
             console.log("verticalthreeai");
+            end = true;
             setTimeout(function () {
                 aiDisk(verticalIndexAi);
                 verticalThreeAi = false;
             }, 500)
             return;
         }
-        // else if(diagonalThreeAi){
-        //     console.log("diagonalThreeAi");{
-        //         setTimeout(function () {
-        //             disk(diagonalIndex);
-        //             verticalThreeAi = false;
-        //         }, 500)
-        //     }
-        // }
-        // else if(horizontalAi) {
-
-        // }
+        else if (diagonalThreeAi) {
+            console.log("diagonalthreeAi");
+            end = true;
+            setTimeout(function () {
+                aiDisk(diagonalIndexAi);
+            }, 500)
+            diagonalThreeAi = false;
+            return;
+        }
+        else if (horizontalThreeAi) {
+            console.log("horizontalthreeAi");
+            end = true;
+            setTimeout(function () {
+                aiDisk(horizontalIndexAi);
+            }, 500)
+            horizontalThreeAi = false;
+            return;
+        }
         else if (verticalThree) {
             console.log("verticalthree");
             setTimeout(function () {
@@ -164,12 +177,7 @@ function think() {
             first = false;
             return;
         }
-        // else if (play && !verticalThree) {
-        //     setTimeout(function () {
-        //         aiDisk(verticalIndex);
-        //     }, 500)
-        //     return;
-        // }
+
         else {
             //defaunlt;
             console.log("default");
@@ -190,7 +198,7 @@ function aiDisk(x) {
             sum += yindex[i];
         }
 
-        if (x == doNotPut && exception == true && sum < 36) {
+        if (x == doNotPut && exception == true && sum < 36 && !end) {
             newX = Math.floor(Math.random() * 7);
             think(newX);
             exception = false;
@@ -322,11 +330,21 @@ function checkX() {
                 if (p1Count == 2) {
                     if (j > 2 && j < 6) {
                         // console.log("height:" + i);
+                        checkC1 = (".y" + i + " > ul > .x" + (j -3));
+                        checkC2 = (".y" + i + " > ul > .x" + (j -2));
+
+                        console.log("c1:" + checkC1);
                         if (i == yindex[j + 1] && i == yindex[j - 2]) {
                             horizontalThree = true;
                             horizontalIndex = j + 1;
                             console.log("need to block horizontally");
                         }
+                        else if (i + 1 == yindex[j + 1] && document.querySelector(checkC1).classList.contains("player1") && !document.querySelector(checkC2).classList.contains("player2")) {
+                            horizontalThree = true;
+                            horizontalIndex = j - 2;
+                            console.log("2 + 1");
+                        }
+                        // }
                     }
                 }
                 if (p1Count == 3 && !pvp) {
@@ -358,8 +376,8 @@ function checkX() {
                     if (j > 2 && j < 6) {
                         // console.log("height:" + i);
                         if (i == yindex[j + 1] && i == yindex[j - 2]) {
-                            horizontalThree = true;
-                            horizontalIndex = j + 1;
+                            horizontalThreeAi = true;
+                            horizontalIndexAi = j + 1;
                             console.log("need to end horizontally");
                         }
                     }
@@ -368,13 +386,13 @@ function checkX() {
                     if (j < 6) {
                         if (i == yindex[j + 1]) {
                             console.log("xVal" + j);
-                            horizontalThree = true;
-                            horizontalIndex = (j + 1);
+                            horizontalThreeAi = true;
+                            horizontalIndexAi = (j + 1);
                         }
                         else if (j > 2) {
                             if (yindex[j - 2] - 1 == yindex[j - 3]) {
-                                horizontalThree = true;
-                                horizontalIndex = j - 3;
+                                horizontalThreeAi = true;
+                                horizontalIndexAi = j - 3;
                             }
                         }
 
@@ -508,14 +526,14 @@ function checkZDsc() {
                 if (p2Count == 3) {
                     if (xVal < 6) {
                         if (yVal + 1 == yindex[xVal + 1]) {
-                            diagonalThree = true;
+                            diagonalThreeAi = true;
                             // console.log("y: " + yVal);
-                            diagonalIndex = xVal + 1;
+                            diagonalIndexAi = xVal + 1;
                             // console.log("end with case1: " + diagonalIndex);
                         }
                         else if ((yVal - 3) == yindex[xVal - 3]) {
-                            diagonalThree = true;
-                            diagonalIndex = xVal - 3;
+                            diagonalThreeAi = true;
+                            diagonalIndexAi = xVal - 3;
                             // console.log("end with case2:" + diagonalIndex);
                         }
                         // console.log("count3 at " + xVal + "\n yindex: " + yindex[xVal]);
@@ -606,14 +624,14 @@ function checkZAsc() {
                 if (p2Count == 3) {
                     if (xVal > 0 && xVal < 6) {
                         if (yVal == yindex[xVal - 1] - 1) {
-                            diagonalThree = true;
-                            diagonalIndex = (xVal - 1);
+                            diagonalThreeAi = true;
+                            diagonalIndexAi = (xVal - 1);
                             console.log(yVal + yindex[xVal - 1]);
                             // console.log("case1 1: end with " + (xVal - 1));
                         }
                         else if ((yVal - 3) == yindex[xVal + 3]) {
-                            diagonalThree = true;
-                            diagonalIndex = (xVal + 3);
+                            diagonalThreeAi = true;
+                            diagonalIndexAi = (xVal + 3);
                             // console.log("case 2: end with " + (xVal + 3));
                         }
                     }
@@ -712,7 +730,7 @@ function restart() {
     verticalIndexAi = 0;
     playerIndex = 0;
     if(!pvp){
-        player1Turn = false;
-        think();
+        // player1Turn = false;
+        // think();
     }
 }
