@@ -81,7 +81,7 @@ h1 {
     font-size: 15pt;
     text-shadow: 0.5px 0.5px 2px;
     list-style-type: none;
-    color: #cccccc;
+    /* color: #cccccc; */
     padding-top: 1rem;
 }
 
@@ -386,37 +386,37 @@ ul {
 
 /*tetris blocks*/
 .tBlock {
-    background: linear-gradient(20deg, rgb(173, 0, 173), rgb(202, 60, 195));
+    background: linear-gradient(20deg, rgb(165, 1, 165),40%, rgb(255, 82, 246));
     /* opacity: 0.9; */
 }
 
 .zBlock {
-    background: linear-gradient(20deg, rgb(238, 3, 3), rgb(209, 68, 68));
+    background: linear-gradient(20deg, rgb(165, 1, 1),40%, rgb(255, 0, 0));
     /* opacity: 0.9; */
 }
 
 .iBlock {
-    background: linear-gradient(20deg, rgb(135, 190, 235), rgb(164, 237, 247));
+    background: linear-gradient(20deg, rgb(0, 131, 148),40%, rgb(0, 225, 255));
     /* opacity: 0.9; */
 }
 
 .jBlock {
-    background: linear-gradient(20deg, blue, rgb(96, 85, 253));
+    background: linear-gradient(20deg, rgb(29, 29, 167),40%, rgb(29, 29, 255));
     /* opacity: 0.9; */
 }
 
 .lBlock {
-    background: linear-gradient(20deg, orange, rgb(255, 196, 86));
+    background: linear-gradient(20deg, rgb(168, 109, 0),40%, rgb(255, 166, 0));
     /* opacity: 0.9; */
 }
 
 .oBlock {
-    background: linear-gradient(20deg, yellow, rgb(252, 243, 129));
+    background: linear-gradient(20deg, rgb(148, 148, 0),40%, rgb(255, 238, 0));
     /* opacity: 0.9; */
 }
 
 .sBlock {
-    background: linear-gradient(20deg, yellowgreen, rgb(200, 255, 127));
+    background: linear-gradient(20deg, rgb(126, 168, 41),40%, rgb(200, 255, 127));
     /* opacity: 0.9; */
 }
 
