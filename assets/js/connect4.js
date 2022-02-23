@@ -1,6 +1,9 @@
-connect4 = document.querySelector(".connect4 > ul");
-pickline = document.querySelector(".pick_line");
-playerName = document.querySelector("#player");
+const connect4 = document.querySelector(".connect4 > ul");
+const pickline = document.querySelector(".pick_line");
+const playerName = document.querySelector("#player");
+const restartButton = document.querySelector(".game-button");
+const gameText = document.querySelector(".game-text");
+
 
 var CONNECT4_COLS = 7;
 var CONNECT4_ROWS = 6;
@@ -23,13 +26,20 @@ var playerIndex = 0;
 var end = false;
 
 var yindex = [0, 0, 0, 0, 0, 0, 0]; //for each column, counts how many holes are already filled
-var play = true;
+let play = false;
 count = 0;
 var player1Turn = true;
 
 var pvp = false;
 
 function init() {
+    if(!play) {
+        restartButton.innerText = "Play";
+        restartButton.style.display = "flex";
+        gameText.innerText = "\n Select one column from the top row you want to put a disk. \n Disks will be stacked from the bottom. \n If you link 4 disks horizontally, verticall, or diagonally, \n Congratulations, you win!! \n Try defeating AI";
+        gameText.style.fontSize = "large";
+        gameText.style.display = "flex";
+    }
     prependPickLine();
     for (let j = 0; j < CONNECT4_ROWS; j++) {
         prependNewLine();
@@ -150,6 +160,7 @@ function think() {
             console.log("verticalthree");
             setTimeout(function () {
                 aiDisk(verticalIndex);
+                end = false;
             }, 500)
             verticalThree = false;
             return;
@@ -159,6 +170,7 @@ function think() {
             console.log("diagonalthree");
             setTimeout(function () {
                 aiDisk(diagonalIndex);
+                end = false;
             }, 500)
             diagonalThree = false;
             return;
@@ -168,6 +180,7 @@ function think() {
             console.log("horizontalthree");
             setTimeout(function () {
                 aiDisk(horizontalIndex);
+                end = false;
             }, 500)
             horizontalThree = false;
             return;
@@ -192,8 +205,9 @@ function think() {
             }
             else{
                 setTimeout(function () {
-                    aiDisk(playerIndex);
-                    newX = Math.floor(Math.random() * 7);
+                    // aiDisk(playerIndex);
+                    let newX = Math.floor(Math.random() * 7);
+                    console.log("trying with new index x: "+newX);
                     aiDisk(newX);
                 }, 500)
             }            return;
@@ -242,18 +256,18 @@ function aiDisk(x) {
 }
 
 function changeColor() {
-    var playerColor = "linear-gradient(20deg, red,25%, rgba(255, 133, 133, 0.945))";
+    var playerColor = "radial-gradient(circle at 40px 25px, #ff3e3e, rgb(49, 0, 0))";
     ;
     if (pvp) {
         if (player1Turn) {
-            playerColor = "linear-gradient(20deg, red,25%, rgba(255, 133, 133, 0.945))";
+            playerColor = "radial-gradient(circle at 40px 25px, #ff3e3e, rgb(49, 0, 0))";
         }
         else {
-            playerColor = "linear-gradient(20deg, rgb(208, 255, 0),25%, rgba(255, 255, 137, 0.884))";
+            playerColor = "linear-gradient(20deg, rgb(208, 255, 0), 25%, rgba(255, 255, 137, 0.884))";
         }
     }
     else {
-        playerColor = "linear-gradient(20deg, red,25%, rgba(255, 133, 133, 0.945))";
+        playerColor = "radial-gradient(circle at 40px 25px, #ff3e3e, rgb(49, 0, 0))";
     }
     return playerColor;
 }
@@ -360,25 +374,31 @@ function checkX() {
                     }
                 }
                 if (p1Count == 3 && !pvp) {
-                    if (j < 6) {
-                        if (i == yindex[j + 1] -1) {
-                            console.log("donotPut" + (j + 1));
-                            donotput = j + 1;
+                    console.log("p1Count is three: " + j);
+                    if (j < 6 && j > 2) {
+                        if (i == yindex[j - 3] + 1) {
+                            console.log("donotPut" + (j -3));
+                            donotput = j - 3;
                             exception = true;
-                        } 
-                        // else if (i == yindex[j + 1]) {
-                        else if (i == yindex[j + 1]) {
-                            console.log("xVal" + j);
+                        }
+                        else if(i == yindex[j - 3]) {
+                            console.log("block at " + (j-3));
                             horizontalThree = true;
-                            horizontalIndex = (j + 1);
-                        }
-                        else if (j > 2) {
-                            if (yindex[j - 2] - 1 == yindex[j - 3]) {
-                                console.log(j + " is greater than 2");
-                                horizontalThree = true;
-                                horizontalIndex = j - 3;
-                            }
-                        }
+                            horizontalIndex = (j - 3);
+                        }                         
+                        // else if (i == yindex[j + 1]) {
+                        // else if (i == yindex[j + 1]) {
+                        //     console.log("xVal" + j);
+                        //     horizontalThree = true;
+                        //     horizontalIndex = (j + 1);
+                        // }
+                        // else if (j > 2) {
+                        //     if (yindex[j - 2] - 1 == yindex[j - 3]) {
+                        //         console.log(j + " is greater than 2");
+                        //         horizontalThree = true;
+                        //         horizontalIndex = j - 3;
+                        //     }
+                        // }
                         
 
                     }
@@ -715,6 +735,8 @@ function playerWin(x) {
     }
     play = false;
     pickline.style.display = 'none';
+    restartButton.innerHTML = "Re-start";
+    restartButton.style.display = 'flex';
     return;
     // removeListener();
 }
@@ -761,3 +783,9 @@ function restart() {
         // think();
     }
 }
+restartButton.addEventListener("click", () => {
+    restart();
+    restartButton.style.display = "none";
+    gameText.style.display = "none";
+    // theme.play();
+})

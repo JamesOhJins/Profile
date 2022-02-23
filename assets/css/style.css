@@ -813,17 +813,15 @@ video {
     border-right: rgba(29, 29, 29, 0.15) solid 0.8px; */
 }
 
+
 .player1 {
-    background: linear-gradient(20deg, red, 25%, rgba(255, 133, 133, 0.945));
- 
-    /* background-color: rgba(255, 133, 133, 0.945)!important; */
+    /* background: linear-gradient(20deg, rgb(100, 1, 1), 25%, rgb(255, 0, 0)); */
+    background: radial-gradient(circle at 40px 25px, rgb(255,62,62), rgba(49, 0, 0));
 }
 
 .player2 {
-    background: linear-gradient(20deg, rgb(208, 255, 0), 25%, rgba(255, 255, 137, 0.884));;
-    /* background-color: rgba(255, 255, 97, 0.884)!important; */
+    background: radial-gradient(circle at 40px 25px, rgb(255,251,0), rgba(49, 44, 0));
 }
-
 
 #player {
     padding:0;
@@ -1055,18 +1053,14 @@ display: none;
         border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
         border-right: rgba(29, 29, 29, 0.15) solid 0.8px; */
     }
-    
     .player1 {
-        background: linear-gradient(20deg, red, 25%, rgba(255, 133, 133, 0.945));
-     
-        /* background-color: rgba(255, 133, 133, 0.945)!important; */
+        /* background: linear-gradient(20deg, rgb(100, 1, 1), 25%, rgb(255, 0, 0)); */
+        background: radial-gradient(circle at 32px 20px, rgb(255,62,62), rgba(49, 0, 0));
     }
     
     .player2 {
-        background: linear-gradient(20deg, rgb(208, 255, 0), 25%, rgba(255, 255, 137, 0.884));;
-        /* background-color: rgba(255, 255, 97, 0.884)!important; */
+        background: radial-gradient(circle at 32px 20px, rgb(255,251,0), rgba(49, 44, 0));
     }
-    
     
     #player {
         padding:0;
