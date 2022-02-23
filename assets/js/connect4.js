@@ -146,6 +146,7 @@ function think() {
             return;
         }
         else if (verticalThree) {
+            end = true;
             console.log("verticalthree");
             setTimeout(function () {
                 aiDisk(verticalIndex);
@@ -154,6 +155,7 @@ function think() {
             return;
         }
         else if (diagonalThree) {
+            end = true;
             console.log("diagonalthree");
             setTimeout(function () {
                 aiDisk(diagonalIndex);
@@ -162,6 +164,7 @@ function think() {
             return;
         }
         else if (horizontalThree) {
+            end = true;
             console.log("horizontalthree");
             setTimeout(function () {
                 aiDisk(horizontalIndex);
@@ -358,13 +361,20 @@ function checkX() {
                 }
                 if (p1Count == 3 && !pvp) {
                     if (j < 6) {
-                        if (i == yindex[j + 1]) {
+                        if (i == yindex[j + 1] -1) {
+                            console.log("donotPut" + (j + 1));
+                            donotput = j + 1;
+                            exception = true;
+                        } 
+                        // else if (i == yindex[j + 1]) {
+                        else if (i == yindex[j + 1]) {
                             console.log("xVal" + j);
                             horizontalThree = true;
                             horizontalIndex = (j + 1);
                         }
                         else if (j > 2) {
                             if (yindex[j - 2] - 1 == yindex[j - 3]) {
+                                console.log(j + " is greater than 2");
                                 horizontalThree = true;
                                 horizontalIndex = j - 3;
                             }
