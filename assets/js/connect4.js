@@ -18,6 +18,10 @@ var doNotPut = 0;
 var exception = false;
 var diagonalThreeAi = false;
 var diagonalIndexAi = 0;
+var horizontalTwo = false;
+var horizontalTwoIndex = 0;
+var horizontalTwoAi = false;
+var horizontalTwoIndexAi = 0;
 var horizontalThree = false;
 var horizontalIndex = 0;
 var horizontalThreeAi = false;
@@ -87,21 +91,11 @@ function addpicker() {
         let pickerIndex = document.querySelector('.x' + j + '.picker');
 
         pickerIndex.addEventListener("mouseover", function () {
-            // if(!pvp){
-            // if (player1Turn) {
-            //     pickerIndex.style.backgroundColor = changeColor();
-            // }
-            // }
-            // else{
-
             pickerIndex.style.background = changeColor();
-            // }
-            // console.log("hovering on picker" + '.x' + j + '.picker');
         });
 
         pickerIndex.addEventListener("mouseout", function () {
             pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
-            // console.log("back to original styler" + '.x' + j + '.picker');
         });
         pickerIndex.addEventListener("click", function () {
             if (!pvp) {
@@ -116,9 +110,6 @@ function addpicker() {
                 }
             }
             else {
-                // var bodyRect = document.pickerIndex.getBoundingClientRect(),
-                // elemRect = yindex.getBoundingClientRect(),
-                // offset   = elemRect.top - bodyRect.top;
                 disk(j);
                 pickerIndex.style.background = changeColor();
             }
@@ -183,6 +174,22 @@ function think() {
                 end = false;
             }, 500)
             horizontalThree = false;
+            return;
+        }
+        else if (horizontalTwoAi){
+            console.log("horizontalTwoAi");
+            setTimeout(function () {
+                aiDisk(horizontalTwoIndexAi);
+            }, 500)
+            horizontalTwoAi = false;
+            return;
+        }
+        else if (horizontalTwo) {
+            console.log("horizontalTwo");
+            setTimeout(function () {
+                aiDisk(horizontalTwoIndex);
+            }, 500)
+            horizontalTwo = false;
             return;
         }
         else if (first) {
@@ -361,8 +368,8 @@ function checkX() {
 
                         console.log("c1:" + checkC1);
                         if (i == yindex[j + 1] && i == yindex[j - 2]) {
-                            horizontalThree = true;
-                            horizontalIndex = j + 1;
+                            horizontalTwo = true;
+                            horizontalTwoIndex = j + 1;
                             console.log("need to block horizontally");
                         }
                         else if (i == yindex[j + 2] && document.querySelector(checkC1).classList.contains("player1") && !document.querySelector(checkC2).classList.contains("player2")) {
@@ -374,7 +381,6 @@ function checkX() {
                     }
                 }
                 if (p1Count == 3 && !pvp) {
-                    console.log("p1Count is three: " + j);
                     if (j < 6 && j > 2) {
                         if (i == yindex[j - 3] + 1) {
                             console.log("donotPut" + (j -3));
@@ -405,6 +411,7 @@ function checkX() {
                 }
                 // console.log("p1Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p1Count);
                 if (p1Count == 4) {
+                    target.classList.add("last_move");
                     playerWin(1);
                     return;
                 }
@@ -417,8 +424,8 @@ function checkX() {
                         checkC1 = (".y" + i + " > ul > .x" + (j -3));
                         checkC2 = (".y" + i + " > ul > .x" + (j -2));
                         if (i == yindex[j + 1] && i == yindex[j - 2]) {
-                            horizontalThreeAi = true;
-                            horizontalIndexAi = j + 1;
+                            horizontalTwoAi = true;
+                            horizontalTwoIndexAi = j + 1;
                             console.log("need to end horizontally");
                         }
                         else if (i == yindex[j + 2] && document.querySelector(checkC1).classList.contains("player2") && !document.querySelector(checkC2).classList.contains("player1")) {
@@ -446,6 +453,7 @@ function checkX() {
                 }
                 // console.log("p2Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p2Count);
                 if (p2Count == 4) {
+                    target.classList.add("last_move");
                     playerWin(2);
                     return;
                 }
@@ -469,15 +477,17 @@ function checkY() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
-                if (p1Count == 3 && yindex[j] != CONNECT4_ROWS && j < 5) { //&& !pvp) {
+                if (p1Count == 3 && yindex[i] != CONNECT4_ROWS && j < 5) { //&& !pvp) {
                     if (!document.querySelector(".y" + (j + 1) + " >ul > .x" + i).classList.contains("player2")) {
                         verticalThree = true;
-                        console.log("vertical Three at :" + i);
+                        console.log("vertical Three at :" + i + " y: " + yindex[i]);
+                        
                         verticalIndex = i;
                     }
                 }
                 // console.log("p1Count increased: (" + (CONNECT4_COLS-i-1) + ", " + j + ") " + p1Count);
                 if (p1Count == 4) {
+                    target.classList.add("last_move");
                     playerWin(1);
                     return;
                 }
@@ -487,12 +497,13 @@ function checkY() {
                 p2Count++;
                 p1Count = 0;
                 // console.log("p2Count increased: (" + (CONNECT4_COLS-i-1) + ", " + j + ") " + p2Count);
-                if (p2Count == 3 && yindex[j] != CONNECT4_ROWS && (pvp || player1Turn) && j < 5) {
+                if (p2Count == 3 && yindex[i] != CONNECT4_ROWS && (pvp || player1Turn) && j < 5) {
                     // console.log("end game");
                     verticalThreeAi = true;
                     verticalIndexAi = i;
                 }
                 if (p2Count == 4) {
+                    target.classList.add("last_move");
                     playerWin(2);
                     return;
                 }
@@ -562,6 +573,7 @@ function checkZDsc() {
                     }
                 }
                 if (p1Count == 4) {
+                    target.classList.add("last_move");
                     playerWin(1);
                     return;
                 }
@@ -587,6 +599,7 @@ function checkZDsc() {
                     }
                 }
                 if (p2Count == 4) {
+                    target.classList.add("last_move");
                     playerWin(2);
                     return;
                 }
@@ -659,6 +672,7 @@ function checkZAsc() {
                 }
 
                 if (p1Count == 4) {
+                    target.classList.add("last_move");
                     playerWin(1);
                     return;
                 }
@@ -683,6 +697,7 @@ function checkZAsc() {
                     }
                 }
                 if (p2Count == 4) {
+                    target.classList.add("last_move");
                     playerWin(2);
                     return;
                 }
@@ -731,7 +746,7 @@ function playerWin(x) {
             pName = "Player " + x;
         }
         // alert(pName + " win!!");
-        playerName.innerHTML = "Winner: " + pName + "<br> Press 'r' to restart";
+        playerName.innerHTML = "Winner: " + pName;
     }
     play = false;
     pickline.style.display = 'none';
@@ -750,10 +765,16 @@ function restart() {
                 if (li.classList.contains("player1")) {
                     li.classList.remove("player1");
                     console.log("player1 disks are removed");
+                    if(li.classList.contains("last_move")) {
+                        li.classList.remove("last_move");
+                    }
                 }
                 else if (li.classList.contains("player2")) {
                     li.classList.remove("player2");
                     console.log("player2 disks are removed");
+                    if(li.classList.contains("last_move")) {
+                        li.classList.remove("last_move");
+                    }
                 }
             })
         })
@@ -778,10 +799,14 @@ function restart() {
     verticalIndexAi = 0;
     playerIndex = 0;
     end = false;
-    if(!pvp){
-        // player1Turn = false;
-        // think();
-    }
+    horizontalTwo = false;
+    horizontalTwoIndex = 0;
+    horizontalTwoAi = false;
+    horizontalTwoIndexAi = 0;
+    // if(!pvp){
+    //     player1Turn = false;
+    //     think();
+    // }
 }
 restartButton.addEventListener("click", () => {
     restart();

@@ -8,7 +8,7 @@ const modelURL = URL + "model.json";
 const metadataURL = URL + "metadata.json";
 model = tmImage.load(modelURL, metadataURL);
 scanButton = document.getElementById('scan-button');
-loading = document.getElementById('loading');
+spinner = document.getElementById('spinner');
 webcamContainer = document.getElementById("webcam-container");
 labelContainer = document.getElementById("label-container");
 dogBreed = document.getElementById("dog-breed");
@@ -66,7 +66,8 @@ async function init() {
         dogBreed.style.display = "none";
         imgPreview.style.display = 'none';
         scanButton.style.width = "100%";
-        loading.style.display = 'flex';
+        // loading.style.display = 'flex';
+        spinner.style.display = 'flex';
         webcam = new tmImage.Webcam(150, 150, flip); // width, height, flip
         model = await tmImage.load(modelURL, metadataURL);
         maxPredictions = model.getTotalClasses();
@@ -82,7 +83,8 @@ async function init() {
         wc.muted = "true"
         wc.id = "webcamVideo";
         await webcam.play();
-        loading.style.display = 'none';
+        // loading.style.display = 'none';
+        spinner.style.display = 'none';
         window.requestAnimationFrame(loop);
         firstTime = false;
         console.log(scanButton.innerHTML);
@@ -101,11 +103,13 @@ async function init() {
         dogBreed.style.display = "none";
         imgPreview.style.display = 'none';
         scanButton.style.width = "100%";
-        loading.style.display = 'flex';
+        // loading.style.display = 'flex';
+        spinner.style.display = 'flex';
         webcamContainer.style.display = 'flex';
         scanButton.innerHTML = 'Stop Scanning';
         await webcam.play();
-        loading.style.display = 'none';
+        // loading.style.display = 'none';
+        spinner.style.display = 'none';
         window.requestAnimationFrame(loop);
 
         console.log(scanButton.innerHTML);
