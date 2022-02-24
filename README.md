@@ -34,7 +34,7 @@ Think() function will find the best moves corresponding to user's move. There ar
                                                           [0][0][0][0][0]
                                                           [0][0][0][0][0]
                                                           [1][1][t][1][0]
-                                                          [0][0][h][0][h]
+                                                          [0][0][h][0][0]
    
    If yes, put disc at target, if not, move to step b)
    
