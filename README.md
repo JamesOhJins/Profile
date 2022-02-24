@@ -2,10 +2,10 @@
 Tetris theme music by Patrick de Arteaga (https://patrickdearteaga.com/arcade-music/)
 Tetris (https://jins10.github.io/Profile/games.html)
 
-#Dog Scanner
+# Dog Scanner
 Dog scanner(https://jins10.github.io/Profile/dogScanner.html)
 
-#Connect4
+# Connect4
 Connect4 (https://jins10.github.io/Profile/connect4.html)
 
 Algorithm used to make AI.
