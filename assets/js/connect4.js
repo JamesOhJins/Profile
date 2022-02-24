@@ -412,25 +412,17 @@ function checkX() {
                             horizontalThree = true;
                             horizontalIndex = (j - 3);
                         }                         
-                        // else if (i == yindex[j + 1]) {
-                        // else if (i == yindex[j + 1]) {
-                        //     console.log("xVal" + j);
-                        //     horizontalThree = true;
-                        //     horizontalIndex = (j + 1);
-                        // }
-                        // else if (j > 2) {
-                        //     if (yindex[j - 2] - 1 == yindex[j - 3]) {
-                        //         console.log(j + " is greater than 2");
-                        //         horizontalThree = true;
-                        //         horizontalIndex = j - 3;
-                        //     }
-                        // }
+
                         
 
                     }
                 }
                 // console.log("p1Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p1Count);
                 if (p1Count == 4) {
+                    for (let k = 1; k < 4; k++){
+                        lastMoveTarget = document.querySelector(".y" + i + " > ul > .x" + (j-k));
+                        lastMoveTarget.classList.add("last_move");
+                    }
                     target.classList.add("last_move");
                     playerWin(1);
                     return;
@@ -473,6 +465,10 @@ function checkX() {
                 }
                 // console.log("p2Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p2Count);
                 if (p2Count == 4) {
+                    for (let k = 1; k < 4; k++){
+                        lastMoveTarget = document.querySelector(".y" + i + " > ul > .x" + (j-k));
+                        lastMoveTarget.classList.add("last_move");
+                    }
                     target.classList.add("last_move");
                     playerWin(2);
                     return;
@@ -507,6 +503,10 @@ function checkY() {
                 }
                 // console.log("p1Count increased: (" + (CONNECT4_COLS-i-1) + ", " + j + ") " + p1Count);
                 if (p1Count == 4) {
+                    for (let k = 1; k < 4; k++){
+                        lastMoveTarget = document.querySelector(".y" + (j-k) + " > ul > .x" + i);
+                        lastMoveTarget.classList.add("last_move");
+                    }
                     target.classList.add("last_move");
                     playerWin(1);
                     return;
@@ -523,6 +523,10 @@ function checkY() {
                     verticalIndexAi = i;
                 }
                 if (p2Count == 4) {
+                    for (let k = 1; k < 4; k++){
+                        lastMoveTarget = document.querySelector(".y" + (j-k) + " > ul > .x" + i);
+                        lastMoveTarget.classList.add("last_move");
+                    }
                     target.classList.add("last_move");
                     playerWin(2);
                     return;
@@ -593,6 +597,10 @@ function checkZDsc() {
                     }
                 }
                 if (p1Count == 4) {
+                    for (let k = 1; k < 4; k++){
+                        lastMoveTarget = document.querySelector(".y" + (yVal-k) + " > ul > .x" + (xVal-k));
+                        lastMoveTarget.classList.add("last_move");
+                    }
                     target.classList.add("last_move");
                     playerWin(1);
                     return;
@@ -619,6 +627,10 @@ function checkZDsc() {
                     }
                 }
                 if (p2Count == 4) {
+                    for (let k = 1; k < 4; k++){
+                        lastMoveTarget = document.querySelector(".y" + (yVal-k) + " > ul > .x" + (xVal-k));
+                        lastMoveTarget.classList.add("last_move");
+                    }
                     target.classList.add("last_move");
                     playerWin(2);
                     return;
@@ -692,6 +704,10 @@ function checkZAsc() {
                 }
 
                 if (p1Count == 4) {
+                    for (let k = 1; k < 4; k++){
+                        lastMoveTarget = document.querySelector(".y" + (yVal-k) + " > ul > .x" + (xVal+k));
+                        lastMoveTarget.classList.add("last_move");
+                    }
                     target.classList.add("last_move");
                     playerWin(1);
                     return;
@@ -706,7 +722,7 @@ function checkZAsc() {
                         if (yVal == yindex[xVal - 1] - 1) {
                             diagonalThreeAi = true;
                             diagonalIndexAi = (xVal - 1);
-                            console.log(yVal + yindex[xVal - 1]);
+                            // console.log(yVal + yindex[xVal - 1]);
                             // console.log("case1 1: end with " + (xVal - 1));
                         }
                         else if ((yVal - 3) == yindex[xVal + 3]) {
@@ -717,6 +733,10 @@ function checkZAsc() {
                     }
                 }
                 if (p2Count == 4) {
+                    for (let k = 1; k < 4; k++){
+                        lastMoveTarget = document.querySelector(".y" + (yVal-k) + " > ul > .x" + (xVal+k));
+                        lastMoveTarget.classList.add("last_move");
+                    }
                     target.classList.add("last_move");
                     playerWin(2);
                     return;
