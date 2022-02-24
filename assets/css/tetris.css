@@ -1,0 +1,359 @@
+.score {
+    text-align: center;
+    font-family: 'Karma', sans-serif;
+    padding-right: 8.5rem;
+    font-size: 32px;
+    margin-bottom: 1rem;
+    color: #ccc;
+}
+
+.info {
+    padding-bottom: 1rem;
+    font-family: 'Karma', sans-serif;
+    align-items: center;
+}
+
+.stage {
+    text-align: left;
+    font-family: 'Karma', sans-serif;
+    font-size: 18px;
+    margin-bottom: 1rem;
+    color: yellowgreen;
+}
+
+.next-level {
+    margin-left: 5rem;
+    font-family: 'Karma', sans-serif;
+    text-align: right;
+    font-size: 16px;
+    margin-bottom: 1rem;
+    color: rgb(39, 170, 127);
+}
+
+/*tetris grid*/
+.playground {
+    display: inline-table;
+}
+
+.playground>ul {
+    border: 1px solid #333;
+    background-color: rgba(30, 30, 30, 0.9);
+    width: 250px;
+    margin: 0 auto;
+}
+
+.playground>ul>li {
+    width: 100%;
+    height: 25px;
+    padding: 0;
+}
+
+.playground>ul>li>ul {
+    display: flex;
+}
+
+.playground>ul>li>ul>li {
+    width: 25px;
+    height: 25px;
+    /* outline: rgba(255, 255, 255, 0.9); */
+    border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
+    border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
+    border-right: rgba(29, 29, 29, 0.15) solid 0.8px;
+}
+
+/*tetris blocks*/
+.tBlock {
+    background: linear-gradient(20deg, rgb(165, 1, 165), 30%, rgb(255, 82, 246));
+    /* opacity: 0.9; */
+}
+
+.zBlock {
+    background: linear-gradient(20deg, rgb(165, 1, 1), 30%, rgb(255, 0, 0));
+    /* opacity: 0.9; */
+}
+
+.iBlock {
+    background: linear-gradient(20deg, rgb(0, 131, 148), 30%, rgb(0, 225, 255));
+    /* opacity: 0.9; */
+}
+
+.jBlock {
+    background: linear-gradient(20deg, rgb(29, 29, 167), 30%, rgb(29, 29, 255));
+    /* opacity: 0.9; */
+}
+
+.lBlock {
+    background: linear-gradient(20deg, rgb(168, 109, 0), 30%, orange);
+    /* opacity: 0.9; */
+}
+
+.oBlock {
+    background: linear-gradient(20deg, rgb(148, 148, 0), 30%, rgb(255, 238, 0));
+    /* opacity: 0.9; */
+}
+
+.sBlock {
+    background: linear-gradient(20deg, rgb(82, 122, 0), 30%, rgb(145, 255, 0));
+    /* opacity: 0.9; */
+}
+
+.instructions {
+    font-size: 40;
+    color: #ccc;
+    width: auto;
+}
+
+.game-text {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    left: 0;
+    top: 0;
+    color: #fff;
+    font-size: 50px;
+    z-index: 1;
+}
+
+.preview {
+    display: inline-table;
+    padding-left: 1rem;
+}
+
+.preview>ul {
+    width: 100px;
+    margin: 0 auto;
+}
+
+.preview>ul>li {
+    width: 100%;
+    height: 20px;
+    padding: 0;
+}
+
+.preview>ul>li>ul {
+    display: flex;
+}
+
+.preview>ul>li>ul>li {
+    width: 20px;
+    height: 20px;
+    outline: rgba(255, 255, 255, 0.9);
+}
+
+.game-button {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 100px;
+    font-size: 30px;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 3px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.resume-button {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 200px;
+    font-size: 30px;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 3px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#next {
+    padding-left: 2.2rem;
+    color: #ccc;
+}
+
+
+
+.tetris {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0.5rem;
+    top: 0;
+    color: rgb(255, 217, 0);
+    font-size: 30px;
+    font-weight: bolder;
+    z-index: 1;
+}
+
+.high-scores {
+    text-align: left;
+}
+
+
+.preview {
+    display: inline-table;
+    padding-left: 1rem;
+}
+
+.preview>ul {
+    width: 100px;
+    margin: 0 auto;
+}
+
+.preview>ul>li {
+    width: 100%;
+    height: 20px;
+    padding: 0;
+}
+
+.preview>ul>li>ul {
+    display: flex;
+}
+
+.preview>ul>li>ul>li {
+    width: 20px;
+    height: 20px;
+    outline: rgba(255, 255, 255, 0.9);
+}
+
+
+#next {
+    padding-left: 2.2rem;
+    color: #ccc;
+}
+
+.tetris {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0.5rem;
+    top: 0;
+    color: rgb(255, 217, 0);
+    font-size: 30px;
+    font-weight: bolder;
+    z-index: 1;
+}
+
+.high-scores {
+    text-align: left;
+}
+
+
+.playground>ul {
+    border: 1px solid #333;
+    background-color: rgba(30, 30, 30, 0.9);
+    width: 230px;
+    margin: 0 auto;
+}
+
+.mobile_button{
+    display:none;
+    color:#16181b;
+    text-align: center;
+}
+#left_button{
+    top: 415px;
+    right:85px;
+    position:absolute;
+    width: 30px;
+    height: 30px;
+}
+#right_button{
+    top: 415px;
+    right:15px;
+    position:absolute;
+    width: 30px;
+    height: 30px;
+}
+#up_button {
+    top: 380px;
+    margin-bottom: 35px;
+    right:50px;
+    position:absolute;
+    width: 30px;
+    height: 30px;
+}
+#down_button{
+    top: 450px;
+    right:50px;
+    position:absolute;
+    width: 30px;
+    height: 30px;
+}
+#pause_button{
+    top: 270px;
+    right: 60px;
+    position:absolute;
+    width: 25px;
+    height: 25px;
+}
+#mute_button{
+    top: 270px;
+    right: 30px;
+    position:absolute;
+    width: 25px;
+    height: 25px;
+    font-weight: bolder;
+}
+#spacebar{
+    top: 480px;
+    right:15px;
+    margin-top: 35px;
+    position:absolute;
+    width: 100px;
+    height: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .playground>ul>li {
+        width: 100%;
+        height: 23px;
+        padding: 0;
+    }
+
+    .next-level {
+        margin-left: 3rem;
+    }
+
+    .playground>ul>li>ul {
+        display: flex;
+    }
+
+    .playground>ul>li>ul>li {
+        width: 23px;
+        height: 23px;
+        /* outline: rgba(255, 255, 255, 0.9); */
+        border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
+        border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
+        border-right: rgba(29, 29, 29, 0.15) solid 0.8px;
+    }
+    .mobile_button {
+        display:inline-block;
+    }
+}

@@ -1,0 +1,205 @@
+
+#label-container {
+    color: #ccc;
+    align-items: center;
+}
+
+#webcam-container {
+    align-items: center;
+}
+
+#dog-breed {
+    color: #ccc;
+    font-size: 30px;
+    text-align: center;
+    margin-top: -3rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+#scan-button {
+    height: 4.5rem;
+    width: 49%;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    align-items: top;
+    font-size: 20px;
+    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
+    color: rgb(46, 45, 45);
+    background: linear-gradient(20deg, rgb(187, 106, 0),40%, rgb(247, 181, 96)) ;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 3px rgba(204, 138, 53, 0.6);
+}
+
+#buttons {
+    vertical-align: top;
+    height: 4.5rem;
+    
+}
+
+#breed_list {
+    color: #ccc;
+}
+
+#upload-button {
+    height: 4.5rem;
+    width: 49%;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    align-items: top;
+    font-size: 20px;
+    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
+    color: rgb(46, 45, 45);
+    background: linear-gradient(20deg, rgb(187, 106, 0),40%, rgb(247, 181, 96)) ;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 3px rgba(204, 138, 53, 0.6);
+
+}
+
+#upload-label {
+    display: inline-block;
+    padding: 1rem 0rem 1rem;
+    width: 100%;
+}
+
+input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+video {
+    width: 100%;
+    height: fit-content;
+}
+
+#scannerWrapper {
+    width: 60%;
+    max-width: 500px;
+    padding-top: 20vh;
+    place-self: center;
+    align-content: center;
+    padding-bottom: 8%;
+}
+
+#output_image {
+    display: inline;
+    border: #ccc 1px;
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    place-self: center;
+    align-content: center;
+    padding-bottom: 8%;
+}
+
+.collapsible {
+    background-color: rgb(20, 20, 20);
+    color: rgb(163, 163, 163);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+    background-color: rgb(30, 30, 30);
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: rgb(20, 20, 20);
+}
+
+#loading {
+    color: #ccc;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    font-size: 8px;
+    font-size: 4vw;
+
+}
+
+#spinner {
+    display:none;
+    margin: 50px auto;
+    width: 14vw;
+    height: 14vw;
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50%;
+    /* background: #ccc; */
+    background: linear-gradient(to right, #ccc 10%, rgba(255, 255, 255, 0) 42%);
+    position: relative;
+    animation: load3 1s infinite linear;
+    transform: translateZ(0);
+  }
+  #spinner:before {
+    width: 50%;
+    height: 50%;
+    background: #ccc;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+  }
+  #spinner:after {
+    background: rgb(30,30,30);
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  @keyframes load3 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  
+
+
+@media only screen and (max-width: 600px) {
+
+#dog-breed {
+    font-size: 21px;
+}
+
+#upload-label {
+    display: block !important;
+    padding: unset !important;
+}
+
+}

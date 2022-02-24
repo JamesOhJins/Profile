@@ -8,7 +8,8 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background: linear-gradient( rgb(15, 15, 15), rgb(32, 32, 32), rgb(15, 15, 15));
+    /* background: rgb(15,15,15); */
+    background: linear-gradient( rgb(15, 15, 15), rgb(20, 20, 20), rgb(15, 15, 15));
     /* background-color: rgb(15, 15, 15); */
 }
 
@@ -231,7 +232,7 @@ h1 {
     align-items: center;
     background-color: rgba(0, 0, 0, 0.733);
     margin-top: -1px;
-    animation: zoom 0.3s ease-in-out;
+    animation: zoom 0.2s ease-in-out;
     margin-left: 0;
     z-index: 4;
 
@@ -264,8 +265,10 @@ h1 {
     color: rgba(255, 255, 255, 0.87);
     font-size: 25px;
     position: absolute;
-    top: 30px;
-    right: 30px;
+    /* top: 30px; */
+    top: 2vh;
+    /* right: 30px; */
+    right: 1.5vw;
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
@@ -273,7 +276,6 @@ h1 {
 .closeBtn:hover {
     color: rgb(255, 255, 255);
 }
-
 
 .gallery__item {
     cursor: pointer;
@@ -319,113 +321,6 @@ h1 {
 ul {
     list-style: none;
 }
-
-/*game*/
-.score {
-    text-align: center;
-    font-family: 'Karma', sans-serif;
-    padding-right: 8.5rem;
-    font-size: 32px;
-    margin-bottom: 1rem;
-    color: #ccc;
-}
-
-.info {
-    padding-bottom: 1rem;
-    font-family: 'Karma', sans-serif;
-    align-items: center;
-}
-
-.stage {
-    text-align: left;
-    font-family: 'Karma', sans-serif;
-    font-size: 18px;
-    margin-bottom: 1rem;
-    color: yellowgreen;
-}
-
-.next-level {
-    margin-left: 5rem;
-    font-family: 'Karma', sans-serif;
-    text-align: right;
-    font-size: 16px;
-    margin-bottom: 1rem;
-    color: rgb(39, 170, 127);
-}
-
-/*tetris grid*/
-.playground {
-    display: inline-table;
-}
-
-.playground>ul {
-    border: 1px solid #333;
-    background-color: rgba(30, 30, 30, 0.9);
-    width: 250px;
-    margin: 0 auto;
-}
-
-.playground>ul>li {
-    width: 100%;
-    height: 25px;
-    padding: 0;
-}
-
-.playground>ul>li>ul {
-    display: flex;
-}
-
-.playground>ul>li>ul>li {
-    width: 25px;
-    height: 25px;
-    /* outline: rgba(255, 255, 255, 0.9); */
-    border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
-    border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
-    border-right: rgba(29, 29, 29, 0.15) solid 0.8px;
-}
-
-/*tetris blocks*/
-.tBlock {
-    background: linear-gradient(20deg, rgb(165, 1, 165),30%, rgb(255, 82, 246));
-    /* opacity: 0.9; */
-}
-
-.zBlock {
-    background: linear-gradient(20deg, rgb(165, 1, 1),30%, rgb(255, 0, 0));
-    /* opacity: 0.9; */
-}
-
-.iBlock {
-    background: linear-gradient(20deg, rgb(0, 131, 148),30%, rgb(0, 225, 255));
-    /* opacity: 0.9; */
-}
-
-.jBlock {
-    background: linear-gradient(20deg, rgb(29, 29, 167),30%, rgb(29, 29, 255));
-    /* opacity: 0.9; */
-}
-
-.lBlock {
-    background: linear-gradient(20deg, rgb(168, 109, 0),30%, orange);
-    /* opacity: 0.9; */
-}
-
-.oBlock {
-    background: linear-gradient(20deg, rgb(148, 148, 0),30%, rgb(255, 238, 0));
-    /* opacity: 0.9; */
-}
-
-.sBlock {
-    background: linear-gradient(20deg, rgb(82, 122, 0),30%, rgb(145, 255, 0));
-    /* opacity: 0.9; */
-}
-
-.instructions {
-    font-size: 40;
-    color: #ccc;
-    width: auto;
-}
-
 .game-text {
     display: none;
     justify-content: center;
@@ -441,32 +336,6 @@ ul {
     color: #fff;
     font-size: 50px;
     z-index: 1;
-}
-
-.preview {
-    display: inline-table;
-    padding-left: 1rem;
-}
-
-.preview>ul {
-    width: 100px;
-    margin: 0 auto;
-}
-
-.preview>ul>li {
-    width: 100%;
-    height: 20px;
-    padding: 0;
-}
-
-.preview>ul>li>ul {
-    display: flex;
-}
-
-.preview>ul>li>ul>li {
-    width: 20px;
-    height: 20px;
-    outline: rgba(255, 255, 255, 0.9);
 }
 
 .game-button {
@@ -506,98 +375,16 @@ ul {
     z-index: 2;
 }
 
-#next {
-    padding-left: 2.2rem;
-    color: #ccc;
-}
 
 .wrapper {
     padding-left: 8.5rem;
 }
-
-.tetris {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0.5rem;
-    top: 0;
-    color: rgb(255, 217, 0);
-    font-size: 30px;
-    font-weight: bolder;
-    z-index: 1;
-}
-
-.high-scores {
-    text-align: left;
-}
-
 /*footer*/
 .footer-dark {
     margin-top: auto;
     color: #f0f9ff;
     background: linear-gradient(90deg, #121416, rgb(39, 39, 39), #121416);
     /* background-color: #16181b; */
-}
-.mobile_button{
-    display:none;
-    color:#16181b;
-    text-align: center;
-}
-#left_button{
-    top: 415px;
-    right:85px;
-    position:absolute;
-    width: 30px;
-    height: 30px;
-}
-#right_button{
-    top: 415px;
-    right:15px;
-    position:absolute;
-    width: 30px;
-    height: 30px;
-}
-#up_button {
-    top: 380px;
-    margin-bottom: 35px;
-    right:50px;
-    position:absolute;
-    width: 30px;
-    height: 30px;
-}
-#down_button{
-    top: 450px;
-    right:50px;
-    position:absolute;
-    width: 30px;
-    height: 30px;
-}
-#pause_button{
-    top: 270px;
-    right: 60px;
-    position:absolute;
-    width: 25px;
-    height: 25px;
-}
-#mute_button{
-    top: 270px;
-    right: 30px;
-    position:absolute;
-    width: 25px;
-    height: 25px;
-    font-weight: bolder;
-}
-#spacebar{
-    top: 480px;
-    right:15px;
-    margin-top: 35px;
-    position:absolute;
-    width: 100px;
-    height: 30px;
 }
 .footer-dark ul {
     padding: 0;
@@ -638,300 +425,20 @@ ul {
     margin-bottom: 0;
 }
 
-
-#label-container {
-    color: #ccc;
-    align-items: center;
-}
-
-#webcam-container {
-    align-items: center;
-}
-
-#dog-breed {
-    color: #ccc;
-    font-size: 30px;
-    text-align: center;
-    margin-top: -3rem;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-}
-
-#scan-button {
-    height: 4.5rem;
-    width: 49%;
-    font-weight: bold;
-    display: inline-block;
-    text-align: center;
-    align-items: top;
-    font-size: 20px;
-    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
-    color: rgb(46, 45, 45);
-    background: linear-gradient(20deg, rgb(187, 106, 0),40%, rgb(247, 181, 96)) ;
-    border-radius: 1rem;
-    box-shadow: 2px 2px 3px rgba(204, 138, 53, 0.6);
-}
-
-#buttons {
-    vertical-align: top;
-    height: 4.5rem;
-}
-
-#breed_list {
-    color: #ccc;
-}
-
-#upload-button {
-    height: 4.5rem;
-    width: 49%;
-    font-weight: bold;
-    display: inline-block;
-    text-align: center;
-    align-items: top;
-    font-size: 20px;
-    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
-    color: rgb(46, 45, 45);
-    background: linear-gradient(20deg, rgb(187, 106, 0),40%, rgb(247, 181, 96)) ;
-    border-radius: 1rem;
-    box-shadow: 2px 2px 3px rgba(204, 138, 53, 0.6);
-
-}
-
-#upload-label {
-    display: inline-block;
-    padding: 1rem 0rem 1rem;
-    width: 100%;
-}
-
-input[type="file"] {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-}
-
-video {
-    width: 100%;
-    height: fit-content;
-}
-
-#scannerWrapper {
-    width: 60%;
-    max-width: 500px;
-    padding-top: 20vh;
-    place-self: center;
-    align-content: center;
-    padding-bottom: 8%;
-}
-
-#output_image {
-    display: inline;
-    border: #ccc 1px;
-    width: 100%;
-    height: auto;
-    max-width: 500px;
-    place-self: center;
-    align-content: center;
-    padding-bottom: 8%;
-}
-
-.collapsible {
-    background-color: rgb(20, 20, 20);
-    color: rgb(163, 163, 163);
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .collapsible:hover {
-    background-color: rgb(30, 30, 30);
-}
-
-/* Style the collapsible content. Note: hidden by default */
-.content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: rgb(20, 20, 20);
-}
-
-#loading {
-    color: #ccc;
-    height: 100px;
-    align-items: center;
-    justify-content: center;
-    display: none;
-    font-size: 8px;
-    font-size: 4vw;
-
-}
-/* connect4 game */
-.connect4 {
-    padding-bottom: 12vh;
-    align-items: center;
-    display: inline-table;
-}
-
-.connect4>ul {
-    border: 1px solid #333;
-    background-color: rgba(11, 12, 100, 0.9);
-    /* background-color: rgba(30, 30, 30, 0.9); */
-    width: 455px;
-    margin: 0 auto;
-}
-
-.connect4>ul>li {
-    width: 100%;
-    height: 65px;
-    padding: 0;
-}
-
-.connect4>ul>li>ul {
-    display: flex;
-}
-
-.connect4>ul>li>ul>li {
-    width: 60px;
-    height: 60px;
-    margin: 2.5px;
-    border-radius: 50%;
-    background-color: rgba(187, 187, 187,0.3);
-    /* border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
-    border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
-    border-right: rgba(29, 29, 29, 0.15) solid 0.8px; */
-}
-
-
-.player1 {
-    /* background: linear-gradient(20deg, rgb(100, 1, 1), 25%, rgb(255, 0, 0)); */
-    background: radial-gradient(circle at 40px 25px, rgb(255,62,62), rgba(49, 0, 0));
-}
-
-.player2 {
-    background: radial-gradient(circle at 40px 25px, rgb(255,251,0), rgba(49, 44, 0));
-}
-
-#player {
-    padding:0;
-    text-align: center;
-    padding-top: 10vh;
-    padding-bottom: 6vh;
-    margin: 0;
-    font-size: 36px;
-    color: #CCC;
-    font-weight: 900;
-}
-
-
-
-.pick_line {
-    align-items: center;
-}
-
-.pick_line>ul {
-    border: 1px solid #333;
-    background-color: rgba(1, 2, 77, 0.9);
-    width: 455px;
-    margin: 0 auto;
-    display:flex;
-}
-.pick_line>ul>li {
-    width: 60px;
-    margin: 2.5px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: rgba(187, 187, 187, 0.1);
-    padding: 0;
-}
-
-#single_player {
-display:none;
-}
-
-#two_player {
-display: none;
-}
-
-.last_move {
-    border: solid 2px red ;
-}
-
-#spinner {
-    display:none;
-    margin: 50px auto;
-    width: 14vw;
-    height: 14vw;
-    max-width: 100px;
-    max-height: 100px;
-    border-radius: 50%;
-    /* background: #ccc; */
-    background: linear-gradient(to right, #ccc 10%, rgba(255, 255, 255, 0) 42%);
-    position: relative;
-    animation: load3 1s infinite linear;
-    transform: translateZ(0);
-  }
-  #spinner:before {
-    width: 50%;
-    height: 50%;
-    background: #ccc;
-    border-radius: 100% 0 0 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: '';
-  }
-  #spinner:after {
-    background: rgb(30,30,30);
-    width: 75%;
-    height: 75%;
-    border-radius: 50%;
-    content: '';
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-
-  @keyframes load3 {
-    0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
-  
 /* mobile View */
 
 @media only screen and (max-width: 600px) {
+    
+    .tetris-footer{
+        display: none;
+    }
+
+
     #tetris-body {
         height: fit-content!important;
         touch-action: manipulation;
     }
-    .tetris-footer{
-        display: none;
-    }
-    .closeBtn {
-        top: 6vh;
-        right: 5vw;
-    }
+
     
     h1 {
         font-size: 8vw;
@@ -1028,94 +535,5 @@ display: none;
 
     .burger.active .bar:nth-child(3) {
         transform: translateY(-8px) rotate(-45deg);
-    }
-
-    .playground>ul {
-        border: 1px solid #333;
-        background-color: rgba(30, 30, 30, 0.9);
-        width: 230px;
-        margin: 0 auto;
-    }
-
-    .playground>ul>li {
-        width: 100%;
-        height: 23px;
-        padding: 0;
-    }
-
-    .next-level {
-        margin-left: 3rem;
-    }
-
-    .playground>ul>li>ul {
-        display: flex;
-    }
-
-    .playground>ul>li>ul>li {
-        width: 23px;
-        height: 23px;
-        /* outline: rgba(255, 255, 255, 0.9); */
-        border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
-        border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
-        border-right: rgba(29, 29, 29, 0.15) solid 0.8px;
-    }
-
-    #dog-breed {
-        font-size: 21px;
-    }
-
-    #upload-label {
-        display: block !important;
-        padding: unset !important;
-    }
-    .mobile_button {
-        display:inline-block;
-    }
-
-    .connect4 {
-        padding-bottom: 12vh;
-        align-items: center;
-        display: inline-table;
-    }
-    
-    .connect4>ul { 
-        width: 350px;
-    }
-    
-    .connect4>ul>li {
-        height: 50px;
-    }
-    
-    .connect4>ul>li>ul>li {
-        width: 45px;
-        height: 45px;
-
-        /* border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
-        border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
-        border-right: rgba(29, 29, 29, 0.15) solid 0.8px; */
-    }
-    .player1 {
-        /* background: linear-gradient(20deg, rgb(100, 1, 1), 25%, rgb(255, 0, 0)); */
-        background: radial-gradient(circle at 32px 20px, rgb(255,62,62), rgba(49, 0, 0));
-    }
-    
-    .player2 {
-        background: radial-gradient(circle at 32px 20px, rgb(255,251,0), rgba(49, 44, 0));
-    }
-    
-    #player {
-        padding-top: 10vh;
-        padding-bottom: 6vh;
-        font-size: 26px;
-        color: #CCC;
-        font-weight: 900;
-    }
-    
-    .pick_line>ul {
-        width: 350px;
-    }
-    .pick_line>ul>li {
-        width: 45px;
-        height: 45px;
-    }
+    }  
 }

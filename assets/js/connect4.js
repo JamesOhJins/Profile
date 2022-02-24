@@ -3,10 +3,10 @@ const pickline = document.querySelector(".pick_line");
 const playerName = document.querySelector("#player");
 const restartButton = document.querySelector(".game-button");
 const gameText = document.querySelector(".game-text");
+const buttons = document.getElementById("buttons");
 
-
-var CONNECT4_COLS = 7;
-var CONNECT4_ROWS = 6;
+const CONNECT4_COLS = 7;
+const CONNECT4_ROWS = 6;
 var first = true;
 var verticalThree = false;
 var verticalIndex = 0;
@@ -37,6 +37,7 @@ var player1Turn = true;
 var pvp = false;
 
 function init() {
+
     if(!play) {
         restartButton.innerText = "Play";
         restartButton.style.display = "flex";
@@ -86,6 +87,16 @@ function prependPickLine() {
         pickline.prepend(ul);
     }
 }
+
+function single_player() {
+    pvp = false;
+    buttons.style.display = "none";
+}
+function two_player() {
+    pvp = true;
+    buttons.style.display = "none";
+}
+
 function addpicker() {
     for (let j = 0; j < CONNECT4_COLS; j++) {
         let pickerIndex = document.querySelector('.x' + j + '.picker');
@@ -98,6 +109,7 @@ function addpicker() {
             pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
         });
         pickerIndex.addEventListener("click", function () {
+            buttons.style.display = "none";
             if (!pvp) {
                 if (player1Turn) {
                     disk(j);
@@ -261,20 +273,20 @@ function aiDisk(x) {
         }
     }
 }
-
 function changeColor() {
-    var playerColor = "radial-gradient(circle at 40px 25px, #ff3e3e, rgb(49, 0, 0))";
-    ;
+    
+    var playerColor = "";
+    
     if (pvp) {
         if (player1Turn) {
-            playerColor = "radial-gradient(circle at 40px 25px, #ff3e3e, rgb(49, 0, 0))";
+            playerColor = "radial-gradient(circle at 30px 30px, rgb(202, 44, 44), rgb(151, 8, 8))";
         }
         else {
-            playerColor = "linear-gradient(20deg, rgb(208, 255, 0), 25%, rgba(255, 255, 137, 0.884))";
+            playerColor = "radial-gradient(circle at 30px 30px, rgb(255,251,0), rgb(153, 140, 19))";
         }
     }
     else {
-        playerColor = "radial-gradient(circle at 40px 25px, #ff3e3e, rgb(49, 0, 0))";
+        playerColor = "radial-gradient(circle at 30px 30px, rgb(202, 44, 44), rgb(151, 8, 8))";
     }
     return playerColor;
 }
@@ -301,14 +313,6 @@ document.addEventListener("keydown", e => {
 // }
 function disk(x) {
     if (player1Turn && yindex[x] < CONNECT4_ROWS) {
-       
-        // for(let i = 0; yindex[x] + i < CONNECT4_ROWS -1; i++){
-        //     console.log("need to change " + i);
-        //     target = (5 - i);
-        //     index = (".y" + target + " > ul > .x" + x);
-        //     timeoutForDrop(index);
-        // }
-       
         index = (".y" + yindex[x] + " > ul > .x" + x)
         target = document.querySelector(index);
         
@@ -772,7 +776,27 @@ function playerWin(x) {
     // removeListener();
 }
 
+function removeLastMove() {
+    childNodes.forEach(child => {
+        child.childNodes.forEach(ul => {
+            ul.childNodes.forEach(li => {
+                if (li.classList.contains("player1")) {
+                    if(li.classList.contains("last_move")) {
+                        li.classList.remove("last_move");
+                        console.log("p1remove");
+                    }
+                }
+                else if (li.classList.contains("player2")) {
 
+                    if(li.classList.contains("last_move")) {
+                        li.classList.remove("last_move");
+                        console.log("p2remove");
+                    }
+                }
+            })
+        })
+    })
+}
 function restart() {
     const childNodes = connect4.childNodes;
     childNodes.forEach(child => {
@@ -797,7 +821,6 @@ function restart() {
     })
     pickline.style.display = "initial";
     playerName.innerHTML = "Player1's turn";
-    console.log(playerName.innerHTML);
     yindex = [0, 0, 0, 0, 0, 0, 0];
     play = true;
     player1Turn = true;
@@ -819,10 +842,8 @@ function restart() {
     horizontalTwoIndex = 0;
     horizontalTwoAi = false;
     horizontalTwoIndexAi = 0;
-    // if(!pvp){
-    //     player1Turn = false;
-    //     think();
-    // }
+    buttons.style.display = "flex";
+
 }
 restartButton.addEventListener("click", () => {
     restart();

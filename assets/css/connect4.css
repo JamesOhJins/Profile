@@ -1,0 +1,168 @@
+
+/* connect4 game */
+.connect4 {
+    padding-bottom: 12vh;
+    align-items: center;
+    display: inline-table;
+}
+
+.connect4>ul {
+    border: 1px solid #333;
+    background-color: rgb(10, 11, 95);
+    /* background-color: rgba(30, 30, 30, 0.9); */
+    width: 497px;
+    margin: 0 auto;
+}
+
+.connect4>ul>li {
+    width: 100%;
+    height: 68px;
+    padding: 0;
+}
+
+.connect4>ul>li>ul {
+    display: flex;
+}
+
+.connect4>ul>li>ul>li {
+    width: 60px;
+    height: 60px;
+    margin: 3px;
+    border-radius: 50%;
+    border: solid 3px rgba(11, 12, 100);
+    background-color: rgba(187, 187, 187,0.3);
+    /* border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
+    border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
+    border-right: rgba(29, 29, 29, 0.15) solid 0.8px; */
+}
+
+
+.player1 {
+     background: radial-gradient(circle at 30px 30px, rgb(202, 44, 44), rgb(151, 8, 8));
+    border: solid 3px rgb(139, 0, 0)!important;
+}
+
+
+.player2 {
+    background: radial-gradient(circle at 30px 30px, rgb(255,251,0), rgb(153, 140, 19));
+    border: solid 3px rgb(145, 145, 23)!important;
+}
+
+#player {
+    padding:0;
+    text-align: center;
+    padding-top: 10vh;
+    padding-bottom: 6vh;
+    margin: 0;
+    font-size: 36px;
+    color: #CCC;
+    font-weight: 900;
+}
+
+.pick_line {
+    align-items: center;
+}
+
+.pick_line>ul {
+    border: 1px solid #333;
+    background-color: rgba(1, 2, 77, 0.9);
+    width: 497px;
+    margin: 0 auto;
+    display:flex;
+}
+.pick_line>ul>li {
+    width: 60px;
+    margin: 3px;
+    height: 60px;
+    border:solid 3px rgba(1, 2, 77, 0.9);
+    border-radius: 50%;
+    background-color: rgba(187, 187, 187, 0.1);
+    padding: 0;
+}
+#buttons {
+    vertical-align: top;
+    height: 3rem;
+}
+#single_player {
+    height: 2.5rem;
+    width: 49%;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    align-items: top;
+    font-size: 20px;
+    color:#cccccc;
+    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
+    background-color: rgb(14, 11, 53);
+    border-radius: 1rem;
+    box-shadow: 2px 2px 3px rgba(72, 8, 102, 0.6);
+}
+
+#two_player {
+    height: 2.5rem;
+    width: 49%;
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    align-items: top;
+    font-size: 20px;
+    color:#cccccc;
+    text-shadow: 2.5px 2.5px 4px rgba(97, 97, 97, 0.7);
+    background-color: rgb(14, 11, 53);
+    border-radius: 1rem;
+    box-shadow: 2px 2px 3px rgba(72, 8, 102, 0.6);
+}
+
+.last_move {
+    border: solid 2px rgb(30, 255, 0) !important;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .connect4 {
+        padding-bottom: 12vh;
+        align-items: center;
+        display: inline-table;
+    }
+    
+    .connect4>ul { 
+        width: 375px;
+    }
+    
+    .connect4>ul>li {
+        height: 53px;
+    }
+    
+    .connect4>ul>li>ul>li {
+        width: 45px;
+        height: 45px;
+
+        /* border-bottom: rgba(29, 29, 29, 0.15) solid 0.8px;
+        border-top: rgba(29, 29, 29, 0.15) solid 0.8px;
+        border-right: rgba(29, 29, 29, 0.15) solid 0.8px; */
+    }
+    .player1 {
+        /* background: linear-gradient(20deg, rgb(100, 1, 1), 25%, rgb(255, 0, 0)); */
+        background: radial-gradient(circle at 25px 25px, rgb(202, 44, 44), rgb(151, 8, 8));
+    }
+    
+    .player2 {
+        background: radial-gradient(circle at 25px 25px, rgb(255,251,0), rgb(153, 140, 19));
+    }
+    
+    #player {
+        padding-top: 10vh;
+        padding-bottom: 6vh;
+        font-size: 26px;
+        color: #CCC;
+        font-weight: 900;
+    }
+    
+    .pick_line>ul {
+        width: 375px;
+    }
+    .pick_line>ul>li {
+        width: 45px;
+        height: 45px;
+    }
+}

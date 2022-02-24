@@ -1,6 +1,5 @@
 // More API functions here:
 // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
-
 // the link to your model provided by Teachable Machine export panel
 const URL = "assets/data/my_model/";
 let model, webcam, labelContainer, maxPredictions;
@@ -36,6 +35,7 @@ async function preview_image(event) {
     const prediction = await model.predict(img, flip);
     var found = false;
     maxPredictions = model.getTotalClasses();
+    
     for (let i = 0; i < maxPredictions; i++) {
         if (prediction[i].probability > 0.01){
             console.log(prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%");
@@ -90,7 +90,7 @@ async function init() {
         console.log(scanButton.innerHTML);
         labelContainer.style.display = 'initial';
         dogBreed.style.display = 'initial';
-
+        console.log(model.getClassLabels());
         for (let i = 0; i < maxPredictions; i++) { // and class labels
             labelContainer.appendChild(document.createElement("div"));
         }
