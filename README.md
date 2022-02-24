@@ -20,7 +20,6 @@
 - Add more game features such as Stages, sound, multi_line removal display, etc.
 - Tetris theme music by Patrick de Arteaga (https://patrickdearteaga.com/arcade-music/)
 
-## Connect4
 ## [**Connect4**](https://jins10.github.io/Profile/connect4.html) 
 Algorithm used to make AI.
 Think() function will find the best moves corresponding to user's move. There are 7 Columns in a matrix, so Think() function will choose index that results the best outcome. Priority for the outcome is defined as:
