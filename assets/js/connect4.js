@@ -292,10 +292,26 @@ document.addEventListener("keydown", e => {
 
 })
 
+// function timeoutForDrop (index){
+//     setTimeout(function () {
+//         let color = document.querySelector(index);
+//         color.style.background = changeColor();
+//         console.log("color has changed");
+//     }, 1000)
+// }
 function disk(x) {
     if (player1Turn && yindex[x] < CONNECT4_ROWS) {
+       
+        // for(let i = 0; yindex[x] + i < CONNECT4_ROWS -1; i++){
+        //     console.log("need to change " + i);
+        //     target = (5 - i);
+        //     index = (".y" + target + " > ul > .x" + x);
+        //     timeoutForDrop(index);
+        // }
+       
         index = (".y" + yindex[x] + " > ul > .x" + x)
         target = document.querySelector(index);
+        
         target.classList.add("player1");
         // console.log("diskclass is added for p1 at (" + (CONNECT4_COLS - x - 1) + ", " + yindex[x] + ")");
         player1Turn = false;
