@@ -300,7 +300,7 @@
 #up_button {
     top: 380px;
     margin-bottom: 35px;
-    left: 2vw;
+    right: 2vw;
     position: absolute;
     width: 80px;
     height: 40px;
@@ -309,7 +309,7 @@
 }
 
 #down_button {
-    top: 380px;
+    top: 480px;
     right: 2vw;
     position: absolute;
     width: 80px;
@@ -320,7 +320,7 @@
 
 #pause_button {
     top: 270px;
-    right: 12vw;
+    left: 12vw;
     position: absolute;
     width: 25px;
     height: 25px;
@@ -328,7 +328,7 @@
 
 #mute_button {
     top: 270px;
-    right: 4vw;
+    left: 4vw;
     position: absolute;
     width: 25px;
     height: 25px;
@@ -336,7 +336,7 @@
 }
 
 #spacebar {
-    top: 480px;
+    top: 500px;
     right: 2vw;
     margin-top: 35px;
     position: absolute;
