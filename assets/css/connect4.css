@@ -114,7 +114,8 @@
 }
 
 .last_move {
-    border: solid 2px rgb(30, 255, 0) !important;
+    border: solid 2px rgb(223, 223, 223) !important;
+    /* border: solid 2px rgb(30, 255, 0) !important; */
 }
 
 

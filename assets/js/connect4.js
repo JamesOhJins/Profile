@@ -38,7 +38,7 @@ var pvp = false;
 
 function init() {
 
-    if(!play) {
+    if (!play) {
         restartButton.innerText = "Play";
         restartButton.style.display = "flex";
         gameText.innerText = "\n Select one column from the top row you want to put a disk. \n Disks will be stacked from the bottom. \n If you link 4 disks horizontally, verticall, or diagonally, \n Congratulations, you win!! \n Try defeating AI";
@@ -88,25 +88,31 @@ function prependPickLine() {
     }
 }
 
-function single_player() {
+function getMatchType(matchType) {
+    if(matchType == 'singleP'){
     pvp = false;
     buttons.style.display = "none";
-}
-function two_player() {
+    }
+    else{
     pvp = true;
     buttons.style.display = "none";
+    console.log('pvp');
+    }
 }
+
 
 function addpicker() {
     for (let j = 0; j < CONNECT4_COLS; j++) {
         let pickerIndex = document.querySelector('.x' + j + '.picker');
 
         pickerIndex.addEventListener("mouseover", function () {
-            pickerIndex.style.background = changeColor();
+            pickerIndex.style.background = getColors(true).disk;
+            pickerIndex.style.border = getColors(true).border;
         });
 
         pickerIndex.addEventListener("mouseout", function () {
-            pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+            pickerIndex.style.background = getColors(false).disk;
+            pickerIndex.style.border = getColors(false).border;
         });
         pickerIndex.addEventListener("click", function () {
             buttons.style.display = "none";
@@ -114,7 +120,8 @@ function addpicker() {
                 if (player1Turn) {
                     disk(j);
                     playerIndex = j;
-                    pickerIndex.style.background = "rgba(187, 187, 187, 0.1)";
+                    pickerIndex.style.background = getColors(false).disk;
+                    pickerIndex.style.border = getColors(false).border;
                     think();
                 }
                 else {
@@ -123,11 +130,13 @@ function addpicker() {
             }
             else {
                 disk(j);
-                pickerIndex.style.background = changeColor();
+                pickerIndex.style.background = getColors(true).disk;
+                pickerIndex.style.border = getColors(true).border;
             }
         });
     }
 }
+
 
 function think() {
     if (!player1Turn) {
@@ -188,7 +197,7 @@ function think() {
             horizontalThree = false;
             return;
         }
-        else if (horizontalTwoAi){
+        else if (horizontalTwoAi) {
             console.log("horizontalTwoAi");
             setTimeout(function () {
                 aiDisk(horizontalTwoIndexAi);
@@ -212,24 +221,24 @@ function think() {
             first = false;
             return;
         }
-
         else {
             //defaunlt;
             console.log("default");
-            if(playerIndex != doNotPut){
-            console.log("playerIndex is not equal to donoput");
-            setTimeout(function () {
-                aiDisk(playerIndex);
-            }, 500)
+            if (playerIndex != doNotPut) {
+                console.log("playerIndex is not equal to donoput");
+                setTimeout(function () {
+                    aiDisk(playerIndex);
+                }, 500)
             }
-            else{
+            else {
                 setTimeout(function () {
                     // aiDisk(playerIndex);
                     let newX = Math.floor(Math.random() * 7);
-                    console.log("trying with new index x: "+newX);
+                    console.log("trying with new index x: " + newX);
                     aiDisk(newX);
                 }, 500)
-            }            return;
+            }
+            return;
         }
     }
 
@@ -273,23 +282,36 @@ function aiDisk(x) {
         }
     }
 }
-function changeColor() {
-    
-    var playerColor = "";
-    
-    if (pvp) {
-        if (player1Turn) {
-            playerColor = "radial-gradient(circle at 30px 30px, rgb(202, 44, 44), rgb(151, 8, 8))";
+function getColors(display) {
+    let playerColor = "";
+    let borderColor = "";
+    if(display){
+        if (pvp) {
+            if (player1Turn) {
+                playerColor = "radial-gradient(circle at 30px 30px, rgb(202, 44, 44), rgb(151, 8, 8))";
+                borderColor = "solid 3px rgb(139, 0, 0)";
+            }
+            else {
+                playerColor = "radial-gradient(circle at 30px 30px, rgb(255,251,0), rgb(153, 140, 19))";
+                borderColor = "solid 3px rgb(145, 145, 23)";
+            }
         }
         else {
-            playerColor = "radial-gradient(circle at 30px 30px, rgb(255,251,0), rgb(153, 140, 19))";
+            playerColor = "radial-gradient(circle at 30px 30px, rgb(202, 44, 44), rgb(151, 8, 8))";
+            borderColor = "solid 3px rgb(139, 0, 0)";
         }
     }
     else {
-        playerColor = "radial-gradient(circle at 30px 30px, rgb(202, 44, 44), rgb(151, 8, 8))";
+        playerColor = "rgba(187, 187, 187, 0.1)";
+        borderColor = "solid 3px rgba(11, 12, 100)";
     }
-    return playerColor;
+    return {
+        disk: playerColor,
+        border: borderColor,
+    };
 }
+
+
 document.addEventListener("keydown", e => {
     switch (e.keyCode) {
         case 82:
@@ -304,18 +326,12 @@ document.addEventListener("keydown", e => {
 
 })
 
-// function timeoutForDrop (index){
-//     setTimeout(function () {
-//         let color = document.querySelector(index);
-//         color.style.background = changeColor();
-//         console.log("color has changed");
-//     }, 1000)
-// }
+
 function disk(x) {
     if (player1Turn && yindex[x] < CONNECT4_ROWS) {
         index = (".y" + yindex[x] + " > ul > .x" + x)
         target = document.querySelector(index);
-        
+
         target.classList.add("player1");
         // console.log("diskclass is added for p1 at (" + (CONNECT4_COLS - x - 1) + ", " + yindex[x] + ")");
         player1Turn = false;
@@ -338,7 +354,7 @@ function disk(x) {
         // console.log("diskclass is added for p2 at (" + (CONNECT4_COLS - x - 1) + ", " + yindex[x] + ")");
         player1Turn = true;
         yindex[x] += 1;
-        if(pvp){
+        if (pvp) {
             playerName.innerHTML = "Player1's turn";
         }
         else {
@@ -383,8 +399,8 @@ function checkX() {
                 if (p1Count == 2) {
                     if (j > 2 && j < 6) {
                         console.log("height:" + i);
-                        checkC1 = (".y" + i + " > ul > .x" + (j -3));
-                        checkC2 = (".y" + i + " > ul > .x" + (j -2));
+                        checkC1 = (".y" + i + " > ul > .x" + (j - 3));
+                        checkC2 = (".y" + i + " > ul > .x" + (j - 2));
 
                         console.log("c1:" + checkC1);
                         if (i == yindex[j + 1] && i == yindex[j - 2]) {
@@ -403,24 +419,24 @@ function checkX() {
                 if (p1Count == 3 && !pvp) {
                     if (j < 6 && j > 2) {
                         if (i == yindex[j - 3] + 1) {
-                            console.log("donotPut" + (j -3));
+                            console.log("donotPut" + (j - 3));
                             donotput = j - 3;
                             exception = true;
                         }
-                        else if(i == yindex[j - 3]) {
-                            console.log("block at " + (j-3));
+                        else if (i == yindex[j - 3]) {
+                            console.log("block at " + (j - 3));
                             horizontalThree = true;
                             horizontalIndex = (j - 3);
-                        }                         
+                        }
 
-                        
+
 
                     }
                 }
                 // console.log("p1Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p1Count);
                 if (p1Count == 4) {
-                    for (let k = 1; k < 4; k++){
-                        lastMoveTarget = document.querySelector(".y" + i + " > ul > .x" + (j-k));
+                    for (let k = 1; k < 4; k++) {
+                        lastMoveTarget = document.querySelector(".y" + i + " > ul > .x" + (j - k));
                         lastMoveTarget.classList.add("last_move");
                     }
                     target.classList.add("last_move");
@@ -433,8 +449,8 @@ function checkX() {
                 p1Count = 0;
                 if (p2Count == 2) {
                     if (j > 2 && j < 6) {
-                        checkC1 = (".y" + i + " > ul > .x" + (j -3));
-                        checkC2 = (".y" + i + " > ul > .x" + (j -2));
+                        checkC1 = (".y" + i + " > ul > .x" + (j - 3));
+                        checkC2 = (".y" + i + " > ul > .x" + (j - 2));
                         if (i == yindex[j + 1] && i == yindex[j - 2]) {
                             horizontalTwoAi = true;
                             horizontalTwoIndexAi = j + 1;
@@ -465,8 +481,8 @@ function checkX() {
                 }
                 // console.log("p2Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p2Count);
                 if (p2Count == 4) {
-                    for (let k = 1; k < 4; k++){
-                        lastMoveTarget = document.querySelector(".y" + i + " > ul > .x" + (j-k));
+                    for (let k = 1; k < 4; k++) {
+                        lastMoveTarget = document.querySelector(".y" + i + " > ul > .x" + (j - k));
                         lastMoveTarget.classList.add("last_move");
                     }
                     target.classList.add("last_move");
@@ -497,14 +513,14 @@ function checkY() {
                     if (!document.querySelector(".y" + (j + 1) + " >ul > .x" + i).classList.contains("player2")) {
                         verticalThree = true;
                         console.log("vertical Three at :" + i + " y: " + yindex[i]);
-                        
+
                         verticalIndex = i;
                     }
                 }
                 // console.log("p1Count increased: (" + (CONNECT4_COLS-i-1) + ", " + j + ") " + p1Count);
                 if (p1Count == 4) {
-                    for (let k = 1; k < 4; k++){
-                        lastMoveTarget = document.querySelector(".y" + (j-k) + " > ul > .x" + i);
+                    for (let k = 1; k < 4; k++) {
+                        lastMoveTarget = document.querySelector(".y" + (j - k) + " > ul > .x" + i);
                         lastMoveTarget.classList.add("last_move");
                     }
                     target.classList.add("last_move");
@@ -523,8 +539,8 @@ function checkY() {
                     verticalIndexAi = i;
                 }
                 if (p2Count == 4) {
-                    for (let k = 1; k < 4; k++){
-                        lastMoveTarget = document.querySelector(".y" + (j-k) + " > ul > .x" + i);
+                    for (let k = 1; k < 4; k++) {
+                        lastMoveTarget = document.querySelector(".y" + (j - k) + " > ul > .x" + i);
                         lastMoveTarget.classList.add("last_move");
                     }
                     target.classList.add("last_move");
@@ -597,8 +613,8 @@ function checkZDsc() {
                     }
                 }
                 if (p1Count == 4) {
-                    for (let k = 1; k < 4; k++){
-                        lastMoveTarget = document.querySelector(".y" + (yVal-k) + " > ul > .x" + (xVal-k));
+                    for (let k = 1; k < 4; k++) {
+                        lastMoveTarget = document.querySelector(".y" + (yVal - k) + " > ul > .x" + (xVal - k));
                         lastMoveTarget.classList.add("last_move");
                     }
                     target.classList.add("last_move");
@@ -627,8 +643,8 @@ function checkZDsc() {
                     }
                 }
                 if (p2Count == 4) {
-                    for (let k = 1; k < 4; k++){
-                        lastMoveTarget = document.querySelector(".y" + (yVal-k) + " > ul > .x" + (xVal-k));
+                    for (let k = 1; k < 4; k++) {
+                        lastMoveTarget = document.querySelector(".y" + (yVal - k) + " > ul > .x" + (xVal - k));
                         lastMoveTarget.classList.add("last_move");
                     }
                     target.classList.add("last_move");
@@ -704,8 +720,8 @@ function checkZAsc() {
                 }
 
                 if (p1Count == 4) {
-                    for (let k = 1; k < 4; k++){
-                        lastMoveTarget = document.querySelector(".y" + (yVal-k) + " > ul > .x" + (xVal+k));
+                    for (let k = 1; k < 4; k++) {
+                        lastMoveTarget = document.querySelector(".y" + (yVal - k) + " > ul > .x" + (xVal + k));
                         lastMoveTarget.classList.add("last_move");
                     }
                     target.classList.add("last_move");
@@ -733,8 +749,8 @@ function checkZAsc() {
                     }
                 }
                 if (p2Count == 4) {
-                    for (let k = 1; k < 4; k++){
-                        lastMoveTarget = document.querySelector(".y" + (yVal-k) + " > ul > .x" + (xVal+k));
+                    for (let k = 1; k < 4; k++) {
+                        lastMoveTarget = document.querySelector(".y" + (yVal - k) + " > ul > .x" + (xVal + k));
                         lastMoveTarget.classList.add("last_move");
                     }
                     target.classList.add("last_move");
@@ -779,7 +795,7 @@ function playerWin(x) {
         if (!pvp && x == 2) {
             pName = "computer";
         }
-        else if(!pvp && x == 1) {
+        else if (!pvp && x == 1) {
             pName = "You";
         }
         else {
@@ -796,27 +812,27 @@ function playerWin(x) {
     // removeListener();
 }
 
-function removeLastMove() {
-    childNodes.forEach(child => {
-        child.childNodes.forEach(ul => {
-            ul.childNodes.forEach(li => {
-                if (li.classList.contains("player1")) {
-                    if(li.classList.contains("last_move")) {
-                        li.classList.remove("last_move");
-                        console.log("p1remove");
-                    }
-                }
-                else if (li.classList.contains("player2")) {
+// function removeLastMove() {
+//     childNodes.forEach(child => {
+//         child.childNodes.forEach(ul => {
+//             ul.childNodes.forEach(li => {
+//                 if (li.classList.contains("player1")) {
+//                     if (li.classList.contains("last_move")) {
+//                         li.classList.remove("last_move");
+//                         console.log("p1remove");
+//                     }
+//                 }
+//                 else if (li.classList.contains("player2")) {
 
-                    if(li.classList.contains("last_move")) {
-                        li.classList.remove("last_move");
-                        console.log("p2remove");
-                    }
-                }
-            })
-        })
-    })
-}
+//                     if (li.classList.contains("last_move")) {
+//                         li.classList.remove("last_move");
+//                         console.log("p2remove");
+//                     }
+//                 }
+//             })
+//         })
+//     })
+// }
 function restart() {
     const childNodes = connect4.childNodes;
     childNodes.forEach(child => {
@@ -825,14 +841,14 @@ function restart() {
                 if (li.classList.contains("player1")) {
                     li.classList.remove("player1");
                     console.log("player1 disks are removed");
-                    if(li.classList.contains("last_move")) {
+                    if (li.classList.contains("last_move")) {
                         li.classList.remove("last_move");
                     }
                 }
                 else if (li.classList.contains("player2")) {
                     li.classList.remove("player2");
                     console.log("player2 disks are removed");
-                    if(li.classList.contains("last_move")) {
+                    if (li.classList.contains("last_move")) {
                         li.classList.remove("last_move");
                     }
                 }
