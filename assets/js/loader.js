@@ -1,9 +1,17 @@
 
 function removeLoader(source) {
     window.addEventListener ("load", function() {
-        document.querySelector(".spinner").src = source;
-        loader =document.querySelector(".spinner");
+        // loader.addAttribute("img");
+        document.querySelector(".spinner > img").src = source;
+        //document.querySelector(".spinner").src = source;
+        loader = document.querySelector(".spinner > img");
+        // loader = document.querySelector(".spinner");
+        loader.style.display = "flex";
         console.log("loading2" + loader.src);
-        loader.classList.remove("spinner");
+        console.log("closest spinner is " + loader.closest(".spinner"));
+        var spinner =  loader.closest(".spinner");
+        spinner.classList.remove("spinner");
+        // loader.classList.remove("img");
+        
     });
 }

@@ -6,6 +6,7 @@
     <script src="assets/js/highlightSelected.js"></script>
     <link href="assets/css/style.css" rel="stylesheet">
     <script defer src="assets/js/modal.js"></script>
+    <script src="assets/js/loader.js"></script>
     <script async src="https://kit.fontawesome.com/6cc05e1e8e.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
@@ -28,7 +29,10 @@
     <div id=grid>
         <div id=column>
             <ul>
-            <figure class="gallery__item"> <img src="assets/images/studies/algorithm/DFS.png" class="photo">
+            <figure class="gallery__item"> 
+                <div class="spinner" style="display:flex">
+                    <img src="assets/images/studies/algorithm/BFS.png" class="photo" onload="removeLoader(src)">
+                </div>
                 <figcaption><span>Depth-first search (DFS)</span><br> DFS is an algorithm for traversing a tree. It starts
                     traversing from the root node and explores as far as possible along each branch before backtracking.
                     Usually uses <span>stack</span> to find the shortest path. In general, DFS is faster than
@@ -37,7 +41,9 @@
             </ul>
             <ul>
             <figure class="gallery__item">
-                <img src="assets/images/studies/algorithm/BFS.png" class="photo">
+                <div class="spinner" style="display:flex">
+                    <img src="assets/images/studies/algorithm/BFS.png" class="photo" onload="removeLoader(src)">
+                </div>
                 <figcaption><span>Breadth-first search (BFS)</span><br> BFS is an algorithm for searching a tree. It starts
                     traversing from the root node and explores all nodes at the present depth prior to moving on to the
                     nodes at the next depth level. Extra memory, usually a <span>queue</span>, is needed to keep track
