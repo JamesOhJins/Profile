@@ -7,9 +7,17 @@ function removeLoader(source) {
         //document.querySelector(".spinner").src = source;
         // document.querySelectorAll("img[src='meh.png']");
         // var image = document.querySelector("img[src='"+source+"'");
-        console.log("source: " + getAbsoluteUrl(source));
-        
-        const image = document.querySelector(`.spinner > img[src=${CSS.escape(source)}]`);//".spinner > img[src='"+ CSS.escape(source)+"']");
+        var url = new URL(source);
+        if(source.includes(window.location.hostname)){ //path is relative path
+        var result = url.pathname;
+        result = result.substring(1,result.length); 
+        }
+        else { //path is abosolute path
+            result = url;
+        }
+        console.log("source: " + result); 
+        //source = "assets/images/rashi/Rashi2.jpeg";
+        const image = document.querySelector(`.spinner > img[src=${CSS.escape(result)}]`);//".spinner > img[src='"+ CSS.escape(source)+"']");
         // image.src = source;
         // loader = document.querySelector(".spinner");
         image.style.display = "flex";
@@ -22,12 +30,5 @@ function removeLoader(source) {
     });
 }
 
-var getAbsoluteUrl = (function() {
-    var a;
-    return function(url) {
-        if(!a) a = document.createElement('a');
-        a.href = url;
-        return a.href;
-    }
-})();
+
    
