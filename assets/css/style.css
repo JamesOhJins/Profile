@@ -8,8 +8,8 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    /* background: rgb(15,15,15); */
-    background: linear-gradient( rgb(15, 15, 15), rgb(20, 20, 20), rgb(15, 15, 15));
+    background: rgb(8,8,8);
+    /* background: linear-gradient( rgb(15, 15, 15), rgb(20, 20, 20), rgb(15, 15, 15)); */
     /* background-color: rgb(15, 15, 15); */
 }
 
@@ -36,7 +36,9 @@ h1 {
     margin: 0;
     font-weight: 400;
     /* filter:invert(); */
-    color: #c4c4c4; 
+    color: #dbdbdb; 
+    /* color: #c4c4c4;  */
+
     /* background: -webkit-linear-gradient(#cccccc, rgb(119, 119, 119));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -386,7 +388,7 @@ ul {
     margin-top: auto;
     /* border-style:solid 0.5px white; */
     border-style: none;
-    background-color: rgb(18, 18, 18);
+    background-color: rgb(10, 10, 10);
 }
 .footer-top { 
     /* position:absolute; */
