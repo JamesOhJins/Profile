@@ -4,6 +4,7 @@ let imgSrc;
 let i = 0;
 function getSource() {
     imgSrc = images[i].src;
+    console.log(imgSrc);
 }
 images.forEach((img, j) => {
     img.addEventListener("click", (e) => {
