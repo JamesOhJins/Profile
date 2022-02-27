@@ -27,19 +27,20 @@ a {
 
 h1 {
     font-family: 'Optima';
-    text-shadow: 2px 3.5px 2.5px rgba(177, 177, 177, 0.5);
+    /* text-shadow: 2px 3.5px 2.5px rgba(177, 177, 177, 0.5); */
     text-align: left;
-    font-size: 45px;
+    font-size: 38px;
     padding-bottom: 20px;
     padding-left: 5%;
     padding-top: 2.5%;
     margin: 0;
-    /* color: linear-gradient(20deg, #cccccc, #ccc);
-    color: #cccccc; */
-    background: -webkit-linear-gradient(#cccccc, rgb(119, 119, 119));
+    font-weight: 400;
+    /* filter:invert(); */
+    color: #c4c4c4; 
+    /* background: -webkit-linear-gradient(#cccccc, rgb(119, 119, 119));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-    background-color: transparent;
+    background-color: transparent; */
 }
 /* burger icon on PC */
 .burger {
@@ -306,7 +307,7 @@ h1 {
 #profile {
     width: 100%;
     text-align: center;
-    padding-top: 20%;
+    padding-top: 15vh;
 }
 
 #profile img {
@@ -383,9 +384,18 @@ ul {
 /*footer*/
 .footer-dark {
     margin-top: auto;
-    color: #f0f9ff;
-    background: linear-gradient(90deg, #121416, rgb(39, 39, 39), #121416);
-    /* background-color: #16181b; */
+    /* border-style:solid 0.5px white; */
+    border-style: none;
+    background-color: rgb(18, 18, 18);
+}
+.footer-top { 
+    /* position:absolute; */
+    height: 0.5px;
+    width: 100%;
+    border: 0;
+    margin:0;
+    background: black;
+    background: -webkit-gradient(linear, 25% 0, 75% 0, from(transparent), to(transparent), color-stop(50%, rgb(202, 201, 201)));
 }
 .footer-dark ul {
     padding: 0;
