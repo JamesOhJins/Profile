@@ -10,7 +10,7 @@ function removeLoader(source) {
         var url = new URL(source);
         if(source.includes(window.location.hostname)){ //path is relative path
         var result = url.pathname;
-        result = result.substring(1,result.length); 
+        result = result.substring(9,result.length); 
         }
         else { //path is abosolute path
             result = url;
