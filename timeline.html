@@ -28,7 +28,59 @@
         </h1>
         <dl class="navLinks">
         </dl>
-        <div id=grid>
+        <div id="percent">Peoria</div>
+        <script>
+            const percentLabel = document.querySelector("#percent");
+            $(window).on('scroll', function () {
+                var s = $(window).scrollTop(),
+                    d = $(document).height(),
+                    c = $(window).height();
+
+                var scrollPercent = (s / (d - c)) * 100;
+                scrollPercent.toFixed(2);
+
+                switch(true){
+                    case (scrollPercent < 7): {
+                        percentLabel.innerHTML = "Peoria";
+                        break;
+                    }
+
+                    case (scrollPercent < 17): {
+                        percentLabel.innerHTML = "Chicago";
+                        break;
+                    }
+                    case (scrollPercent < 40): {
+                        percentLabel.innerHTML = "Buffalo";
+                        break;
+                    }
+                    case (scrollPercent < 52): {
+                        percentLabel.innerHTML = "Niagara Falls";
+                        break;
+                    }
+                    case (scrollPercent < 64): {
+                        percentLabel.innerHTML = "Busan";
+                        break;
+                    }
+                    case (scrollPercent < 73): {
+                        percentLabel.innerHTML = "Military";
+                        break;
+                    }
+                    case (scrollPercent < 95): {
+                        percentLabel.innerHTML = "IT Company";
+                        break;
+                    }
+                    case (scrollPercent < 100): {
+                        percentLabel.innerHTML = "Covid Status";
+                        break;
+                    }
+                    default: {
+                        break;
+                    }
+                }
+
+            })
+        </script>
+        <div id="timeline">
             <span id=column>
                 <figure class="gallery__item">
                     <div class="spinner" style="display:flex">
@@ -76,7 +128,7 @@
                 <figure class="gallery__item">
                     <div class="spinner" style="display:flex">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/K-9_%EC%9E%90%EC%A3%BC%ED%8F%AC_%287445556056%29_%282%29.jpg"
-                        class="photo" onload="removeLoader(src)">
+                            class="photo" onload="removeLoader(src)">
                     </div>
                     <!-- source: wikipedia -->
                     <figcaption><span class="timeline">June, 2019 ~ January, 2021</span><br><br>I served in a Battalion

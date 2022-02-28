@@ -105,7 +105,7 @@ video {
 }
 
 .collapsible {
-    background-color: rgb(20, 20, 20);
+    background-color: rgb(17, 17, 17);
     color: rgb(163, 163, 163);
     cursor: pointer;
     padding: 18px;
@@ -139,55 +139,6 @@ video {
     font-size: 4vw;
 
 }
-
-#spinner {
-    display:none;
-    margin: 50px auto;
-    width: 14vw;
-    height: 14vw;
-    max-width: 100px;
-    max-height: 100px;
-    border-radius: 50%;
-    /* background: #ccc; */
-    background: linear-gradient(to right, #ccc 10%, rgba(255, 255, 255, 0) 42%);
-    position: relative;
-    animation: load3 1s infinite linear;
-    transform: translateZ(0);
-  }
-  #spinner:before {
-    width: 50%;
-    height: 50%;
-    background: #ccc;
-    border-radius: 100% 0 0 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: '';
-  }
-  #spinner:after {
-    background: rgb(30,30,30);
-    width: 75%;
-    height: 75%;
-    border-radius: 50%;
-    content: '';
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-
-  @keyframes load3 {
-    0% {
-      -webkit-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-    }
-  }
   
 
 

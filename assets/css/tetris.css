@@ -1,3 +1,7 @@
+.tetris-body {
+    padding-left: 8.5rem;
+}
+
 .score {
     text-align: center;
     font-family: 'Karma', sans-serif;
