@@ -354,11 +354,8 @@
     .score {
         padding: 0;
     }
-
-    .preview {
-        /* display: inline-block; */
-        
-        /* padding:0; */
+    .tetris-body {
+        padding-left: 1.5rem;
     }
 
     .preview>ul {

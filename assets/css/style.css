@@ -128,18 +128,18 @@ h1 {
 }
 #percent {
     position:fixed;
-    top: 45vh;
-    left: 5vw;
+    top: 30vh;
+    left: 2vw;
     color:#ccc;
     font-size: 24px;
 }
 #timeline {
-    margin-left: 20vw!important;
+    margin-left: 15vw!important;
     justify-content: center;
     padding-top: 2rem;
     padding-bottom: 2rem;
     margin: 0 auto;
-    width: 60%;
+    width: 70%;
 }
 .photo {
     width: 100%;
@@ -265,7 +265,7 @@ h1 {
     max-height: 90%;
     max-width: 90%;
     overflow-x: scroll;
-    object-fit: cover;
+    object-fit: scale-down;
     cursor: pointer;
 }
 
@@ -489,7 +489,11 @@ ul {
       transform: rotate(360deg);
     }
   }
-
+  #percent > li {
+    list-style: none;
+    margin-top: 2vh;
+    color:rgba(255, 255, 255, 0.2);
+}
 
 
 
@@ -608,9 +612,10 @@ ul {
         font-size: 4vw;
     }
     #percent {
-        top: 45vh;
+        top: 28vh;
         left: 1vw;
-        color:#ccc;
         font-size: 20px;
+        /* background-color: rgba(0, 0, 0, 0.2); */
     }
+    
 }

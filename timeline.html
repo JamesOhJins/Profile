@@ -28,49 +28,82 @@
         </h1>
         <dl class="navLinks">
         </dl>
-        <div id="percent">Peoria</div>
+        <div id="percent">
+            <li>Peoria</li>
+            <li>Chicago</li>
+            <li>Buffalo</li>
+            <li>Niagara Falls</li>
+            <li>Busan</li>
+            <li>Military</li>
+            <li>3i(IT Company)</li>
+            <li>Korea</li>
+         </div>
         <script>
-            const percentLabel = document.querySelector("#percent");
+            const percentLabel = document.querySelectorAll("#percent > li");
             $(window).on('scroll', function () {
                 var s = $(window).scrollTop(),
                     d = $(document).height(),
                     c = $(window).height();
-
                 var scrollPercent = (s / (d - c)) * 100;
                 scrollPercent.toFixed(2);
-
                 switch(true){
-                    case (scrollPercent < 7): {
-                        percentLabel.innerHTML = "Peoria";
+                    case (scrollPercent < 1.67): {
+                        percentLabel[0].style.color = "#ccc";
+                        percentLabel[1].style.color = 'rgba(255, 255, 255, 0.2)';
                         break;
                     }
 
-                    case (scrollPercent < 17): {
-                        percentLabel.innerHTML = "Chicago";
+                    case (scrollPercent < 11): {
+                        percentLabel[0].style.color = 'rgba(255, 255, 255, 0.2)';
+                        percentLabel[1].style.color = "#ccc";
+                        percentLabel[2].style.color = 'rgba(255, 255, 255, 0.2)';
+
+                        // i++;
+                        // j++;
                         break;
                     }
-                    case (scrollPercent < 40): {
-                        percentLabel.innerHTML = "Buffalo";
+                    case (scrollPercent < 34): {
+                        percentLabel[1].style.color = 'rgba(255, 255, 255, 0.2)';
+                        percentLabel[2].style.color = "#ccc";
+                        percentLabel[3].style.color = 'rgba(255, 255, 255, 0.2)';
+
                         break;
                     }
-                    case (scrollPercent < 52): {
-                        percentLabel.innerHTML = "Niagara Falls";
+                    case (scrollPercent < 48): {
+                        percentLabel[2].style.color = 'rgba(255, 255, 255, 0.2)';
+                        percentLabel[3].style.color = "#ccc";
+                        percentLabel[4].style.color = 'rgba(255, 255, 255, 0.2)';
+
+                        // i++;j++;                        
                         break;
                     }
-                    case (scrollPercent < 64): {
-                        percentLabel.innerHTML = "Busan";
+                    case (scrollPercent < 63): {
+                        percentLabel[3].style.color = 'rgba(255, 255, 255, 0.2)';
+                        percentLabel[4].style.color = "#ccc";
+                        percentLabel[5].style.color = 'rgba(255, 255, 255, 0.2)';
+
+                        // i++;j++;                        
                         break;
                     }
-                    case (scrollPercent < 73): {
-                        percentLabel.innerHTML = "Military";
+                    case (scrollPercent < 72): {
+                        percentLabel[4].style.color = 'rgba(255, 255, 255, 0.2)';
+                        percentLabel[5].style.color = "#ccc";
+                        percentLabel[6].style.color = 'rgba(255, 255, 255, 0.2)';
+                        // i++;j++;                       
                         break;
                     }
                     case (scrollPercent < 95): {
-                        percentLabel.innerHTML = "IT Company";
+                        percentLabel[5].style.color = 'rgba(255, 255, 255, 0.2)';
+                        percentLabel[6].style.color = "#ccc";
+                        percentLabel[7].style.color = 'rgba(255, 255, 255, 0.2)';
+
+                        // i++;j++;                        
                         break;
                     }
                     case (scrollPercent < 100): {
-                        percentLabel.innerHTML = "Covid Status";
+                        percentLabel[6].style.color = 'rgba(255, 255, 255, 0.2)';
+                        percentLabel[7].style.color = "#ccc";
+                        // i++;j++;                        
                         break;
                     }
                     default: {
