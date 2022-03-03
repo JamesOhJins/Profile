@@ -315,7 +315,9 @@ h1 {
     font-size: 90% !important;
     font-weight: lighter !important;
 }
-
+#timeline .gallery__item img {
+    padding-top: 4vh;
+}
 /*profile*/
 #profile {
     width: 100%;
