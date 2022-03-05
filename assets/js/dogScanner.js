@@ -60,7 +60,6 @@ async function preview_image(event) {
 // Load the image model and setup the webcam
 async function init() {
     if (scanButton.innerHTML == 'Scan My Dog' && firstTime) {
-        console.log("first time");
         dogBreed.innerHTML = '';
         uploadButton.style.display = 'none';
         dogBreed.style.display = "none";
@@ -86,7 +85,7 @@ async function init() {
         // loading.style.display = 'none';
         spinner.style.display = 'none';
         window.requestAnimationFrame(loop);
-        firstTime = false;
+        // firstTime = false;
         console.log(scanButton.innerHTML);
         labelContainer.style.display = 'initial';
         dogBreed.style.display = 'initial';
@@ -95,31 +94,7 @@ async function init() {
             labelContainer.appendChild(document.createElement("div"));
         }
     }
-    else if (scanButton.innerHTML == 'Scan My Dog' && !firstTime) {
-        //if it's not first time, do not ask access for camera and do not append new webcam Container
-        console.log("not first time");
-        dogBreed.innerHTML = '';
-        uploadButton.style.display = 'none';
-        dogBreed.style.display = "none";
-        imgPreview.style.display = 'none';
-        scanButton.style.width = "100%";
-        // loading.style.display = 'flex';
-        spinner.style.display = 'flex';
-        webcamContainer.style.display = 'flex';
-        scanButton.innerHTML = 'Stop Scanning';
-        await webcam.play();
-        // loading.style.display = 'none';
-        spinner.style.display = 'none';
-        window.requestAnimationFrame(loop);
-
-        console.log(scanButton.innerHTML);
-        labelContainer.style.display = 'initial';
-        dogBreed.style.display = 'initial';
-
-        for (let i = 0; i < maxPredictions; i++) { // and class labels
-            labelContainer.appendChild(document.createElement("div"));
-        }
-    }
+   
     else if (scanButton.innerHTML == "Re-try") {
         webcamContainer.innerHTML = "";
         dogBreed.innerHTML = '';
@@ -130,8 +105,12 @@ async function init() {
     }
     else {
         console.log("default: return to main menu")
+        webcam.stop();
         scanButton.innerHTML = 'Scan My Dog';
-        webcamContainer.style.display = 'none';
+        while (webcamContainer.firstChild) {
+            webcamContainer.firstChild.remove();
+        }
+        console.log("child has been removed");
         labelContainer.style.display = 'none';
         dogBreed.style.display = 'none';
         scanButton.style.width = "49%";
@@ -157,6 +136,9 @@ async function predict() {
             prediction[i].className + ": " + (prediction[i].probability.toFixed(2) * 100) + "%";
         if (prediction[i].probability > 0.15) {
             labelContainer.childNodes[i].innerHTML = classPrediction;
+            let prob = prediction[i].probability.toFixed(2) * 100;
+            labelContainer.childNodes[i].style.background = "linear-gradient(to right, rgba(51,9,121,1) "+prob+"%, transparent " + (100 - prob)+"%)";
+            // labelContainer.childNodes[i].style.width = (prob + "%");
         } 
         else {
             labelContainer.childNodes[i].innerHTML = "";
@@ -165,7 +147,6 @@ async function predict() {
             dogBreed.innerHTML = prediction[i].className;
             scanButton.innerHTML = 'Scan New Dog';
             webcam.pause();
-            firstTime = false;
             return;
         }
     }

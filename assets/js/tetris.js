@@ -402,6 +402,12 @@ function checkEmpty(target) {
     }
     return true;
 }
+// checkEmpty = (target) => {
+//     if (!target || target.classList.contains("seized")) {
+//         return false;
+//     }
+//     return true;
+// }
 
 //receives direction and amount as parameter, and moves the block
 function moveBlock(movetype, amount) {
@@ -573,6 +579,7 @@ function reset() {
     nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
     theme2.pause();
     theme.play();
+    console.clear();
 }
 //restart button
 restartButton.addEventListener("click", () => {

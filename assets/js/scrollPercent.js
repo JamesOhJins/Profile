@@ -1,10 +1,13 @@
 const percentLabel = document.querySelectorAll("#percent > li > a");
+const percentBar = document.querySelector("#percent")
 $(window).on('scroll', function () {
     var s = $(window).scrollTop(),
         d = $(document).height(),
         c = $(window).height();
     var scrollPercent = (s / (d - c)) * 100;
     scrollPercent.toFixed(2);
+    percentBar.style.height = (((scrollPercent/3)+3)+"vh");
+    percentBar.style.maxHeight = "50vh";
     switch (true) {
         case (scrollPercent < 5): {
             changeColor();
