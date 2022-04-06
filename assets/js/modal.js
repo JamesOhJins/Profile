@@ -98,7 +98,7 @@ let imgModal = (src) => {
         modal.remove();
         newImage.removeAttribute("src", imgSrc);
         getSource();
-        newImage.removeAttribute("src");
+        // newImage.removeAttribute("src");
         newImage.setAttribute("src", imgSrc);
         modal.append(newImage);
         document.querySelector(".main").append(modal);

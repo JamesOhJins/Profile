@@ -119,7 +119,6 @@ async function init() {
 }
 
 async function loop() {
-
     webcam.update(); // update the webcam frame
     await predict();
     window.requestAnimationFrame(loop);

@@ -179,12 +179,9 @@ function prependNewLine() {
     count++;
 
     if (count == lines + GAME_ROWS && !ul.classList.contains("top_line")) {
-        console.log("top line was added at index of: " + (lines + GAME_ROWS));
         ul.classList.add("top_line");
-        
     }
     if (count == lines + GAME_ROWS +1 && !ul.classList.contains("invisible")) {
-        console.log("invisible line was added at index of: " + (lines + GAME_ROWS + 1));
         ul.classList.add("invisible");
         ul.parentElement.style.display = "none";
         checkCount = count;
@@ -402,12 +399,7 @@ function checkEmpty(target) {
     }
     return true;
 }
-// checkEmpty = (target) => {
-//     if (!target || target.classList.contains("seized")) {
-//         return false;
-//     }
-//     return true;
-// }
+
 
 //receives direction and amount as parameter, and moves the block
 function moveBlock(movetype, amount) {

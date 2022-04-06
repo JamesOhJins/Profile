@@ -1,12 +1,21 @@
+//connect4 grid
 const connect4 = document.querySelector(".connect4 > ul");
+//user select line at the top
 const pickline = document.querySelector(".pick_line");
+//player name field
 const playerName = document.querySelector("#player");
+//restart button
 const restartButton = document.querySelector(".game-button");
+//game instruction
 const gameText = document.querySelector(".game-text");
+//# of players selection button
 const buttons = document.getElementById("buttons");
 
+//connect4 grid
 const CONNECT4_COLS = 7;
 const CONNECT4_ROWS = 6;
+
+//
 var first = true;
 var verticalThree = false;
 var verticalIndex = 0;
@@ -37,7 +46,6 @@ var player1Turn = true;
 var pvp = false;
 
 function init() {
-
     if (!play) {
         restartButton.innerText = "Play";
         restartButton.style.display = "flex";
@@ -50,13 +58,9 @@ function init() {
         prependNewLine();
     }
     addpicker();
-    // if(!pvp){
-    //     player1Turn = false;
-    // think();
-    // }
 }
 init();
-
+//generate connect 4 grid
 function prependNewLine() {
     const li = document.createElement("li");
     const ul = document.createElement("ul");
@@ -73,7 +77,7 @@ function prependNewLine() {
     li.classList.add(yindex);
     count++;
 }
-
+//generate user select line
 function prependPickLine() {
     const li = document.createElement("li");
     const ul = document.createElement("ul");
@@ -138,8 +142,10 @@ function addpicker() {
 }
 
 
+
 function think() {
     if (!player1Turn) {
+        //priority: verticalThreeAi > diagonalThreeAi > horizontalThreeAi > verticalThree > diagonalThree > horizontalThree > horizontalTwoAi > horizontalTwo > first > default (check do Not Put)
         if (verticalThreeAi) {
             console.log("verticalthreeai");
             end = true;
@@ -372,7 +378,6 @@ function disk(x) {
         }
     }
     checkFour();
-    // console.log("checking four");
 }
 
 function checkFour() {
@@ -413,7 +418,6 @@ function checkX() {
                             horizontalIndex = j - 2;
                             console.log("2 + 1");
                         }
-                        // }
                     }
                 }
                 if (p1Count == 3 && !pvp) {
@@ -809,30 +813,8 @@ function playerWin(x) {
     restartButton.innerHTML = "Re-start";
     restartButton.style.display = 'flex';
     return;
-    // removeListener();
 }
 
-// function removeLastMove() {
-//     childNodes.forEach(child => {
-//         child.childNodes.forEach(ul => {
-//             ul.childNodes.forEach(li => {
-//                 if (li.classList.contains("player1")) {
-//                     if (li.classList.contains("last_move")) {
-//                         li.classList.remove("last_move");
-//                         console.log("p1remove");
-//                     }
-//                 }
-//                 else if (li.classList.contains("player2")) {
-
-//                     if (li.classList.contains("last_move")) {
-//                         li.classList.remove("last_move");
-//                         console.log("p2remove");
-//                     }
-//                 }
-//             })
-//         })
-//     })
-// }
 function restart() {
     const childNodes = connect4.childNodes;
     childNodes.forEach(child => {
@@ -879,11 +861,9 @@ function restart() {
     horizontalTwoAi = false;
     horizontalTwoIndexAi = 0;
     buttons.style.display = "flex";
-
 }
 restartButton.addEventListener("click", () => {
     restart();
     restartButton.style.display = "none";
     gameText.style.display = "none";
-    // theme.play();
 })
