@@ -26,7 +26,8 @@ a {
     text-decoration: none;
 }
 
-h1 {
+#title {
+    padding-top: 3vh!important;
     font-family: 'Optima';
     text-align: left;
     font-size: 32px;
@@ -35,6 +36,10 @@ h1 {
     margin: 0;
     font-weight: 400;
     color: #dbdbdb; 
+}
+#title > a {
+    color: #dbdbdb; 
+
 }
 /* burger icon on PC */
 .burger {
@@ -516,6 +521,33 @@ ul {
     max-height: 190vh;
     width: auto !important;
 }
+#cny {
+    position:fixed;
+    left: 2vw;
+    top: 44vh;
+    font-size: 2.5vh;
+    color: #ccc;
+}
+#krw {
+    position:fixed;
+    left: 2vw;
+    top: 37vh;
+    font-size: 2.5vh;
+    color: #ccc;
+}
+#jpy {
+    position:fixed;
+    left: 2vw;
+    top: 51vh;
+    font-size: 2.5vh;
+    color: #ccc;
+}
+#exchange{
+    position:inherit;
+    text-align: center;
+    font-size: 3vh;
+    color: rgb(255, 52, 52)
+}
 
 /* mobile View */
 
@@ -531,8 +563,7 @@ ul {
         touch-action: manipulation;
     }
 
-    
-    h1 {
+    title{
         font-size: 6vw;
     }
 
