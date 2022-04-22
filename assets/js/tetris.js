@@ -32,6 +32,7 @@ const PREVIEW_COLS = 5;
 let score = 0;
 let duration = 1000;
 let downInterval;
+let hDrop = false;
 let tempMovingItem;
 let nextMovingItem;
 let play = false;
@@ -264,6 +265,7 @@ function seizeBlock() {
     movingBlocks.forEach(moving => {
         moving.classList.remove("moving");
         moving.classList.add("seized");
+        hDrop = false;
     })
     checkMatch()
 }
@@ -356,7 +358,6 @@ function pauseResume() {
 //function that sets a new drop interval of the block
 function dropInterval() {
     if (play && drop) {
-
         clearInterval(downInterval);
         downInterval = setInterval(() => {
             moveBlock('top', 1)
@@ -385,10 +386,11 @@ function generateNewBlock() {
     
     nextMovingItem = { ...nextItem };
     tempMovingItem = { ...movingItem };
-
+    renderPreview()
     if (play) {
-        renderPreview()
-        renderBlocks()
+        setTimeout(function () {
+            renderBlocks()
+        }, 400)
     }
 }
 
@@ -410,7 +412,10 @@ function moveBlock(movetype, amount) {
 }
 //changes the direction of current block
 function changeDirection() {
-    if (play) {
+    if (hDrop) {
+        console.log("cannot change direction during hard drop");
+    }
+    if (play && !hDrop) {
         const direction = tempMovingItem.direction;
         direction === 3 ? tempMovingItem.direction = 0 : tempMovingItem.direction += 1;
         renderBlocks();
@@ -421,10 +426,12 @@ function changeDirection() {
 function hardDrop() {
     clearInterval(downInterval);
     if (play) {
+        hDrop = true;
         downInterval = setInterval(() => {
             moveBlock('top', 1)
-        }, 10) //}, 10)
+        }, 14)
     }
+    
 }
 
 function showGameoverText() {
