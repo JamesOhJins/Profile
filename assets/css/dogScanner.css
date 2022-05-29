@@ -86,8 +86,8 @@ video {
 }
 
 #scannerWrapper {
-    width: 60%;
-    max-width: 500px;
+    width: 80%;
+    max-width: 1000px;
     padding-top: 20vh;
     place-self: center;
     align-content: center;
@@ -97,12 +97,11 @@ video {
 #output_image {
     display: inline;
     border: #ccc 1px;
-    width: 100%;
+    width: 49%;
     height: auto;
-    max-width: 500px;
-    place-self: center;
+    max-width: 1000px;
+    place-self: left;
     align-content: center;
-    padding-bottom: 8%;
 }
 
 .collapsible {
@@ -125,6 +124,7 @@ video {
 /* Style the collapsible content. Note: hidden by default */
 .content {
     padding: 0 18px;
+    padding-bottom: 10px;
     display: none;
     overflow: hidden;
     background-color: rgb(20, 20, 20);
@@ -140,7 +140,37 @@ video {
     font-size: 4vw;
 
 }
-  
+#breed_data {
+    border-radius: 4px;
+    padding-top: 10px;
+    font-size: 2.8vh;
+    color:#ccc;
+    text-align: end;
+    transition: all 0.2s;
+    /* margin: 0 auto; */
+    width: 100%;
+  }
+#breed_data_table {
+    width:100%;
+    line-height: 35px;
+    vertical-align: top;
+  }
+
+td {
+    vertical-align: top;
+    border: #ccc 1px;
+
+}
+
+#dog {
+    display: inline;
+    border: #ccc 1px;
+    width: 49%;
+    height: auto;
+    max-width: 1000px;
+    place-self: center;
+    align-content: center;
+}
 
 
 @media only screen and (max-width: 600px) {
