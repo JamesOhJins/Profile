@@ -198,6 +198,8 @@ function returnImg(id) {
             return 50;
         case "Beagle":
             return 31;
+        case "Boxer":
+            return 55;
         case "Borzoi":
             return 0;
         case "Bedlington Terrier":
@@ -228,7 +230,7 @@ function returnImg(id) {
             return 121;
         case "Great Dane":
             return 124;
-        case "Japanese Spits":
+        case "Japanese Spitz":
             return 141;
         case "Labrador Retriever":
             return 149;
@@ -258,6 +260,8 @@ function returnImg(id) {
             return 68;
         case "Yorkshire Terrier":
             return 264;
+        default:
+            return 0;
     }
 }
 
