@@ -18,6 +18,7 @@ dogImage = document.querySelector("#dog");
 const flip = false;
 var firstTime = true;
 var breedFound = false;
+var looping = false;
 async function preview_image(event) {
     uploadLabel.innerHTML = "Upload Image";
     var reader = new FileReader();
@@ -72,6 +73,7 @@ async function preview_image(event) {
 // Load the image model and setup the webcam
 async function init() {
     if (scanButton.innerHTML == 'Scan My Dog' && firstTime) {
+        clearBreed();
         dogBreed.innerHTML = '';
         uploadButton.style.display = 'none';
         dogBreed.style.display = "none";
@@ -94,6 +96,7 @@ async function init() {
         wc.muted = "true"
         wc.id = "webcamVideo";
         await webcam.play();
+        looping = true;
         // loading.style.display = 'none';
         spinner.style.display = 'none';
         window.requestAnimationFrame(loop);
@@ -137,10 +140,11 @@ async function init() {
 }
 
 async function loop() {
-    webcam.update(); // update the webcam frame
-    await predict();
-    window.requestAnimationFrame(loop);
-
+    if(looping){
+        webcam.update(); // update the webcam frame
+        await predict();
+        window.requestAnimationFrame(loop);
+    }
 }
 
 // run the webcam image through the image model
@@ -161,8 +165,10 @@ async function predict() {
             labelContainer.childNodes[i].innerHTML = "";
         }
         if (prediction[i].probability == 1) {
+            labelContainer.childNodes[i].innerHTML = "";
             var breed = prediction[i].className;
             dogBreed.innerHTML = breed;
+            looping = false;
             if (returnImg(breed) != 0 && !breedFound)    {
                 getDogByBreed(returnImg(breed));
                 breedFound = true;
@@ -259,7 +265,6 @@ function returnImg(id) {
 // Made to demonstrate how to use JQuery and TheDogAPI to load breed list, and show a breed image and data on selection. Any questions hit me up at - https://forum.thatapiguy.com - Aden
 
 // Setup the Controls
-// getDogByBreed("1")
 // triggered when the breed select control changes
 function getDogByBreed(breed_id) {
     ajax_get('https://api.thedogapi.com/v1/images/search?include_breed=1&breed_id=' + breed_id, function (data) {
