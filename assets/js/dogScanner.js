@@ -252,7 +252,7 @@ function returnImg(id) {
             return 212;
         case "Siberian Husky":
             return 226;
-        case "Shih Zhu":
+        case "Shih Tzu":
             return 223;
         case "Welsh Corgi":
             return 68;
