@@ -82,6 +82,7 @@ input[type="file"] {
 }
 
 video {
+    padding-top:7px;
     width: 100%;
     height: fit-content;
 }
@@ -96,6 +97,7 @@ video {
 }
 
 #output_image {
+    padding-top:7px;
     display: inline;
     border: #ccc 1px;
     width: 49%;
@@ -143,7 +145,7 @@ video {
 }
 #breed_data {
     border-radius: 4px;
-    padding-top: 10px;
+    padding-top: 7px;
     font-size: 2.8vh;
     color:#ccc;
     text-align: end;
@@ -169,6 +171,7 @@ td {
     width: 49%;
     height: auto;
     max-width: 1000px;
+    padding-top:10px;
     place-self: center;
     align-content: center;
 }
