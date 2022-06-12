@@ -271,7 +271,6 @@ function returnImg(id) {
 // triggered when the breed select control changes
 function getDogByBreed(breed_id) {
     ajax_get('https://api.thedogapi.com/v1/images/search?include_breed=1&breed_id=' + breed_id, function (data) {
-
         if (data.length == 0) {
             // if there are no images returned
             clearBreed();
@@ -322,7 +321,6 @@ function ajax_get(url, callback) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            console.log('responseText:' + xmlhttp.responseText);
             try {
                 var data = JSON.parse(xmlhttp.responseText);
             } catch (err) {
@@ -336,5 +334,3 @@ function ajax_get(url, callback) {
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
-// call the getBreeds function which will load all the Dog breeds into the select control
-// getBreeds();
