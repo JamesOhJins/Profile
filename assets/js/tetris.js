@@ -114,6 +114,8 @@ function mobile() {
         if (play) { //
             setTimeout(function () {
                 drop = true;
+                score += 1*scoreMultiplier;
+                    updateScore();
                 dropInterval();
             }, 100)
         }
