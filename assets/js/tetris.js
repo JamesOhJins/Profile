@@ -58,7 +58,7 @@ let double = new Audio("assets/audio/double.ogg");
 let triple = new Audio("assets/audio/triple.ogg");
 let tetris = new Audio("assets/audio/tetris.ogg");
 let down = new Audio("assets/audio/down.ogg");
-let mute = false;
+let mute = true;
 gameover.preload, theme.preload, line.preload, double.preload, triple.preload, tetris.preload, down.preload = "auto";
 gameover.currentTime, line.currentTime, double.currentTime, triple.currentTime, tetris.currentTime, down.currentTime = 0.5;
 theme.volume = theme2.volume = double.volume = 0.15;
@@ -66,6 +66,7 @@ line.volume = down.volume = 0.07;
 triple.volume = 0.2;
 tetris.volume = 0.25;
 gameover.volume = 0.1;
+theme.muted = theme2.muted = line.muted = down.muted = double.muted = triple.muted = tetris.muted = gameover.muted = mute = true;
 const movingItem = {
     type: "",
     direction: 0,
@@ -99,18 +100,14 @@ init()
 function mobile() {
     leftButton.onclick = function() {
         moveBlock("left", -1);
-        console.log("leftbutton is pressed");
         }
     rightButton.onclick = function() {
         moveBlock("left", 1);
-        console.log("rightbutton is presed");    
         }
     upButton.onclick = function() {
         changeDirection();
-        console.log("upbutton is pressed");
         }
     downButton.onclick = function() {
-        console.log("downbutton is pressed");
         drop = false;
         clearInterval(downInterval);
         moveBlock("top", 1);
@@ -123,7 +120,6 @@ function mobile() {
     }
     spacebar.onclick = function() { 
         hardDrop();
-        console.log("spacebar is pressed");
     }
 
     pauseButton.onclick = function() {
@@ -141,7 +137,7 @@ function init() {
         restartButton.innerText = "Play";
         restartButton.style.display = "flex";
         restartButton.style.fontFamily = 'Karma';
-        gameText.innerText = "Instructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop \n m: mute/unmute \n r: re-start";
+        gameText.innerText = "Instructions: \n →, ←: move block right or left \n ↓: soft drop \n space-bar: hard(instant) drop \n m: play sound/mute \n r: re-start";
         gameText.style.fontSize = "medium";
         gameText.style.fontFamily = 'Karma';
         gameText.style.display = "flex";
@@ -325,8 +321,7 @@ function checkMatch() {
                 nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
                 stageDisplay.innerText = "Stage: " + stage;
             }
-            scoreDisplay.innerText = "Score: " + score;
-
+            updateScore();
         }
     })
     checkTetris(linesRemoved);
@@ -428,6 +423,8 @@ function hardDrop() {
     if (play) {
         hDrop = true;
         downInterval = setInterval(() => {
+            score += 1 * scoreMultiplier;
+            updateScore();
             moveBlock('top', 1)
         }, 14)
     }
@@ -497,6 +494,8 @@ document.addEventListener("keydown", e => {
                 setTimeout(function () {
                     drop = true;
                     dropInterval();
+                    score += 1*scoreMultiplier;
+                    updateScore();
                 }, 100)
             }
             break;
@@ -529,6 +528,10 @@ document.addEventListener("keydown", e => {
     }
 })
 
+function updateScore() {
+    scoreDisplay.innerText = "Score: " + score.toFixed(0);
+}
+
 function restart() {
     playground.innerHTML = "";
     preview.innerHTML = "";
@@ -541,21 +544,18 @@ function checkTetris(lines) {
         case 4:
             //print Tetris
             score += (120 * scoreMultiplier);
-            scoreDisplay.innerText = "Score: " + score;
+            updateScore();
             showTetrisText("Tetris");
             break;
         case 3:
             score += (50 * scoreMultiplier);
-            scoreDisplay.innerText = "Score: " + score;
+            updateScore();
             showTetrisText("Triple");
             break;
 
         case 2:
-            console.log("double score")
-            console.log("score added: " + (20 * scoreMultiplier));
             score += 20 * scoreMultiplier;
-            scoreDisplay.innerText = "Score: " + score;
-
+            updateScore();
             showTetrisText("Double");
             break;
 
@@ -573,7 +573,7 @@ function reset() {
     duration = 1000;
     score = count = lines = lineCount = 0;
     play = drop = playsound = true;
-    scoreDisplay.innerText = "Score: " + score;
+    updateScore();
     stageDisplay.innerText = "Stage: " + stage;
     nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
     theme2.pause();
