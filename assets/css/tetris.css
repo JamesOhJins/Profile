@@ -123,7 +123,22 @@
     font-size: 50px;
     z-index: 1;
 }
-
+.combo {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0.5rem;
+    top: -3rem;
+    color: rgb(190, 190, 190);
+    text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+    font-size: 30px;
+    font-weight: bolder;
+    z-index: 1;
+}
 .preview {
     display: inline-table;
     padding-left: 1rem;
@@ -206,6 +221,7 @@
     left: 0.5rem;
     top: 0;
     color: rgb(255, 217, 0);
+    text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
     font-size: 30px;
     font-weight: bolder;
     z-index: 1;
@@ -247,7 +263,7 @@
     padding-left: 2.2rem;
     color: #ccc;
 }
-
+/* 
 .tetris {
     display: none;
     justify-content: center;
@@ -262,7 +278,7 @@
     font-size: 30px;
     font-weight: bolder;
     z-index: 1;
-}
+} */
 
 .high-scores {
     text-align: left;

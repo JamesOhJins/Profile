@@ -244,7 +244,7 @@ function returnImg(id) {
         case "Pug":
             return 201;
         case "Rottweiler":
-            return 219;
+            return 210;
         case "Shiba Inu":
             return 222;
         case "Samoyed":

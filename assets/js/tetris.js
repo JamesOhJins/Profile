@@ -4,6 +4,7 @@ import BLOCKS from "./blocks.js"
 //DOM
 const playground = document.querySelector(".playground > ul");
 const gameText = document.querySelector(".game-text");
+const comboText = document.querySelector(".combo");
 const scoreDisplay = document.querySelector(".score");
 const restartButton = document.querySelector(".game-button");
 const leftButton = document.querySelector("#left_button");
@@ -29,6 +30,8 @@ const PREVIEW_ROWS = 4;
 const PREVIEW_COLS = 5;
 
 //variables
+let combo = 0.0;
+let checkCombo = true;
 let score = 0;
 let duration = 1000;
 let downInterval;
@@ -81,7 +84,6 @@ const nextItem = {
 };
 function changeTheme() {
     if (stage > 9) {
-        console.log("change music");
         theme.pause();
         theme2.play();
     }
@@ -192,13 +194,11 @@ function prependNewLine() {
         child.childNodes.forEach(ul => {
             if(count >  GAME_ROWS +1 &&ul.classList.contains("top_line")) {
                 ul.classList.remove("top_line");
-                console.log("old top_line removed")
             }
             if(count > GAME_ROWS +1 && ul.classList.contains("invisible")){
             ul.classList.remove("invisible");
             ul.classList.add("top_line");
             ul.parentElement.style.display = "initial";
-            console.log("invisible changed to top_line");
             checkCount++;
             }
             
@@ -274,7 +274,6 @@ function checkGameover() {
             if (ul.classList.contains("top_line")) {
                 child.children[0].childNodes.forEach(li => {
                     if (li.classList.contains("seized")) {
-                        console.log("Seized on the top line");
                         clearInterval(downInterval)
                         play = false;
                         if (playsound) {
@@ -302,9 +301,10 @@ function checkMatch() {
             }
         })
         if (matched) {
+            checkCombo = true;
+            console.log(checkCombo)
             child.remove();
             lines += 1;
-            console.log("total lines " + lines);
             // document.getElementsByClassName("top_line").classList.remove("top_line");
             // document.getElementsByClassName("invisible").classList.add('top_line').classList.remove("invisible");
             prependNewLine();
@@ -312,7 +312,6 @@ function checkMatch() {
             lineCount += 1;
             linesRemoved += 1;
             nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
-            console.log("linesRemoved = " + linesRemoved);
 
             if (lineCount == 10) {
                 duration = duration * 0.90;
@@ -325,7 +324,19 @@ function checkMatch() {
             }
             updateScore();
         }
+        else {
+            checkCombo = false;
+        }
     })
+    if(checkCombo) {
+        combo += (1/linesRemoved);
+        console.log(combo);
+        displayCombo();
+    }
+    else    {
+        combo = 0;
+        console.log("combo is over");
+    }
     checkTetris(linesRemoved);
     linesRemoved = 0;
     generateNewBlock()
@@ -410,7 +421,7 @@ function moveBlock(movetype, amount) {
 //changes the direction of current block
 function changeDirection() {
     if (hDrop) {
-        console.log("cannot change direction during hard drop");
+        // console.log("cannot change direction during hard drop");
     }
     if (play && !hDrop) {
         const direction = tempMovingItem.direction;
@@ -431,6 +442,17 @@ function hardDrop() {
         }, 14)
     }
     
+}
+function displayCombo() {
+    if (combo > 1){
+        comboText.style.fontSize = 30 + combo * 0.2;
+        comboText.style.color = `rgb(${170+combo*10},${150+combo*3},${150+combo*1})`;
+        comboText.innerText = combo.toFixed(0);
+        comboText.style.display = "flex";
+        setTimeout(function () {
+            comboText.style.display = "none"
+    }, 500);
+    }
 }
 
 function showGameoverText() {
@@ -469,11 +491,11 @@ function showTetrisText(msg) {
 function muteUnmute() {
     if (!mute) {
         theme.muted = theme2.muted = line.muted = down.muted = double.muted = triple.muted = tetris.muted = gameover.muted = mute = true;
-        console.log("muted");
+        // console.log("muted");
     }
     else if (mute) {
         theme.muted = theme2.muted = line.muted = down.muted = double.muted = triple.muted = tetris.muted = gameover.muted = mute = false;
-        console.log("unmuted");
+        // console.log("unmuted");
     }
 }
 //event handling
