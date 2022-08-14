@@ -265,6 +265,7 @@ function seizeBlock() {
         moving.classList.add("seized");
         hDrop = false;
     })
+    checkCombo = false;
     checkMatch()
 }
 function checkGameover() {
@@ -302,13 +303,13 @@ function checkMatch() {
         })
         if (matched) {
             checkCombo = true;
-            console.log(checkCombo)
             child.remove();
             lines += 1;
             // document.getElementsByClassName("top_line").classList.remove("top_line");
             // document.getElementsByClassName("invisible").classList.add('top_line').classList.remove("invisible");
             prependNewLine();
-            score += (10 * scoreMultiplier);
+            score += (10 * scoreMultiplier*(1+(0.5*combo)));
+            console.log("score += *" + ((1+(0.5*combo))))
             lineCount += 1;
             linesRemoved += 1;
             nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
@@ -324,18 +325,13 @@ function checkMatch() {
             }
             updateScore();
         }
-        else {
-            checkCombo = false;
-        }
     })
     if(checkCombo) {
-        combo += (1/linesRemoved);
-        console.log(combo);
+        combo += 1;
         displayCombo();
     }
     else    {
         combo = 0;
-        console.log("combo is over");
     }
     checkTetris(linesRemoved);
     linesRemoved = 0;
@@ -567,18 +563,18 @@ function checkTetris(lines) {
     switch (lines) {
         case 4:
             //print Tetris
-            score += (120 * scoreMultiplier);
+            score += (120 * scoreMultiplier)  *(1+(0.5*combo));
             updateScore();
             showTetrisText("Tetris");
             break;
         case 3:
-            score += (50 * scoreMultiplier);
+            score += (50 * scoreMultiplier) *(1+(0.5*combo));
             updateScore();
             showTetrisText("Triple");
             break;
 
         case 2:
-            score += 20 * scoreMultiplier;
+            score += 20 * scoreMultiplier *(1+(0.5*combo));
             updateScore();
             showTetrisText("Double");
             break;
