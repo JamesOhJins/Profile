@@ -6,8 +6,8 @@ $(window).on('scroll', function () {
         c = $(window).height();
     var scrollPercent = (s / (d - c)) * 100;
     scrollPercent.toFixed(2);
-    percentBar.style.height = (((scrollPercent/3)+3)+"vh");
-    percentBar.style.maxHeight = "50vh";
+    percentBar.style.height = (((scrollPercent/2.6)+3)+"vh");
+    percentBar.style.maxHeight = "60vh";
     switch (true) {
         case (scrollPercent < 5): {
             changeColor();
@@ -15,22 +15,22 @@ $(window).on('scroll', function () {
             break;
         }
 
-        case (scrollPercent < 19): {
+        case (scrollPercent < 22.5): {
             changeColor();
             percentLabel[1].style.color = "#ccc";
             break;
         }
-        case (scrollPercent < 33): {
+        case (scrollPercent < 35): {
             changeColor();
             percentLabel[2].style.color = "#ccc";
             break;
         }
-        case (scrollPercent < 45): {
+        case (scrollPercent < 47.5): {
             changeColor();
             percentLabel[3].style.color = "#ccc";
             break;
         }
-        case (scrollPercent < 59): {
+        case (scrollPercent < 60): {
             changeColor();
             percentLabel[4].style.color = "#ccc";
             break;
@@ -40,14 +40,20 @@ $(window).on('scroll', function () {
             percentLabel[5].style.color = "#ccc";
             break;
         }
-        case (scrollPercent < 86): {
+        case (scrollPercent < 85): {
             changeColor();
             percentLabel[6].style.color = "#ccc";
             break;
         }
-        case (scrollPercent < 110): {
+        case (scrollPercent < 97.5): {
             changeColor();
             percentLabel[7].style.color = "#ccc";
+            // i++;j++;                        
+            break;
+        }
+        case (scrollPercent < 110): {
+            changeColor();
+            percentLabel[8].style.color = "#ccc";
             // i++;j++;                        
             break;
         }
