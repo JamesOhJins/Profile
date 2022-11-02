@@ -23,7 +23,7 @@ var verticalThreeAi = false;
 var verticalIndexAi = 0;
 var diagonalThree = false;
 var diagonalIndex = 0;
-var doNotPut = 0;
+var doNotPut = [];
 var exception = false;
 var diagonalThreeAi = false;
 var diagonalIndexAi = 0;
@@ -127,9 +127,10 @@ function addpicker() {
                     pickerIndex.style.background = getColors(false).disk;
                     pickerIndex.style.border = getColors(false).border;
                     think();
+                    updateDoNotPut(j);
                 }
                 else {
-
+                   
                 }
             }
             else {
@@ -140,7 +141,16 @@ function addpicker() {
         });
     }
 }
-
+function updateDoNotPut(x){
+    if (doNotPut.includes(x)){
+        console.log("updating doNotPut: " + doNotPut);
+        const index = doNotPut.indexOf(x);
+        if(index >-1) { //if index is found
+            doNotPut.splice(index);
+            console.log("updated doNotPut: " + doNotPut);
+        }
+    }
+}
 
 
 function think() {
@@ -230,8 +240,8 @@ function think() {
         else {
             //defaunlt;
             console.log("default");
-            if (playerIndex != doNotPut) {
-                console.log("playerIndex is not equal to donoput");
+            if (!doNotPut.includes(playerIndex)) {
+                console.log("playerIndex is not in donoput");
                 setTimeout(function () {
                     aiDisk(playerIndex);
                 }, 500)
@@ -258,7 +268,7 @@ function aiDisk(x) {
             sum += yindex[i];
         }
 
-        if (x == doNotPut && exception == true && sum < 36 && !end) {
+        if (doNotPut.includes(x) && exception == true && sum < 36 && !end) {
             console.log("trying to seize at do not put");
             newX = Math.floor(Math.random() * 7);
             think(newX);
@@ -424,7 +434,9 @@ function checkX() {
                     if (j < 6 && j > 2) {
                         if (i == yindex[j - 3] + 1) {
                             console.log("donotPut" + (j - 3));
-                            donotput = j - 3;
+                            if(!doNotPut.includes(j-3)){
+                                doNotPut.push(j-3);// = j - 3;
+                            }
                             exception = true;
                         }
                         else if (i == yindex[j - 3]) {
@@ -592,8 +604,9 @@ function checkZDsc() {
                 if (p1Count == 3) {
                     if (xVal < 6) {
                         if (yVal == yindex[xVal + 1]) {
-                            doNotPut = xVal + 1;
-                            // console.log("do not put at: " + (xVal + 1));
+                            if(!doNotPut.includes(xVal+1)){
+                                doNotPut.push(xVal+1);// = xVal + 1;
+                            }// console.log("do not put at: " + (xVal + 1));
                             exception = true;
                         }
                         else if (yVal + 1 == yindex[xVal + 1]) {
@@ -603,8 +616,10 @@ function checkZDsc() {
                             // console.log("block at case1: " + diagonalIndex);
                         }
                         else if ((yVal - 4) == yindex[xVal - 3]) {
-                            doNotPut = xVal - 3;
+                            if(!doNotPut.includes(xVal-3)){
+                            doNotPut.push(xVal-3);// = xVal - 3;
                             // console.log("do not put at: " + (xVal - 3));
+                            }
                             exception = true;
                         }
                         else if ((yVal - 3) == yindex[xVal - 3]) {
@@ -701,7 +716,9 @@ function checkZAsc() {
                 if (p1Count == 3) {
                     if (xVal > 0 && xVal < 6) {
                         if (yVal == yindex[xVal - 1]) {
-                            doNotPut = (xVal - 1);
+                            if(!doNotPut.includes(xVal-1)){
+                                doNotPut.push(xVal-1);// = (xVal - 1);
+                            }
                             exception = true;
                         }
                         else if (yVal == yindex[xVal - 1] - 1) {
@@ -711,7 +728,9 @@ function checkZAsc() {
                             // console.log("case1 1: block with " + (xVal - 1));
                         }
                         else if ((yVal - 4) == yindex[xVal + 3]) {
-                            doNotPut = (xVal + 3);
+                            if(!doNotPut.includes(xVal+3)){
+                                doNotPut.push(xVal+3);// = (xVal + 3);
+                            }
                             exception = true;
                         }
                         else if ((yVal - 3) == yindex[xVal + 3]) {
@@ -850,7 +869,7 @@ function restart() {
     diagonalThreeAi = false;
     horizontalThree = false;
     horizontalIndex = 0;
-    doNotPut = 0;
+    doNotPut = [];
     exception = false;
     verticalIndex = 0;
     verticalIndexAi = 0;
