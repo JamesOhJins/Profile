@@ -454,6 +454,7 @@ function checkX() {
                 }
                 if (p1Count == 3 && !pvp) {
                     if (j < 6 && j > 2) {
+                        // console.log("three horizontal at i: %i j: %i", i,j)
                         if (i == yindex[j - 3] + 1) {
                             console.log("donotPut" + (j - 3));
                             if(!doNotPut.includes(j-3)){
@@ -465,6 +466,10 @@ function checkX() {
                             console.log("block at " + (j - 3));
                             horizontalThree = true;
                             horizontalIndex = (j - 3);
+                        }
+                        else if (i == yindex[j+1]) {
+                            horizontalThree = true;
+                            horizontalIndex = (j + 1);
                         }
 
 
@@ -507,13 +512,12 @@ function checkX() {
                             horizontalThreeAi = true;
                             horizontalIndexAi = (j + 1);
                         }
-                        else if (j > 2) {
-                            if (i  == yindex[j - 3]) {
-                                horizontalThreeAi = true;
-                                horizontalIndexAi = j - 3;
-                            }
+                    }
+                    if (j > 2) {
+                        if (i  == yindex[j - 3]) {
+                            horizontalThreeAi = true;
+                            horizontalIndexAi = j - 3;
                         }
-
                     }
                 }
                 // console.log("p2Count increased: (" + (CONNECT4_COLS-j-1) + ", " + i + ") " + p2Count);
