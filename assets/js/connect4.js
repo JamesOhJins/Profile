@@ -391,6 +391,7 @@ function disk(x) {
 }
 
 function checkFour() {
+    reset();
     checkX();
     checkY();
     checkZAsc();
@@ -421,22 +422,33 @@ function checkX() {
                     }
                 }
                 if (p1Count == 2) {
-                    if (j > 2 && j < 6) {
+                    if (j > 2 && j <= 6) {
                         console.log("height:" + i + " j: " + j);
                         checkC1 = (".y" + i + " > ul > .x" + (j - 3));
                         checkC2 = (".y" + i + " > ul > .x" + (j - 2));
-                        
-                        console.log("c1:" + checkC1);
+                        checkC3 = (".y" + i + " > ul > .x" + (j + 2));
+                        checkC4 = (".y" + i + " > ul > .x" + (j + 1));
+                        console.log("c3:" + checkC3);
+                        console.log("c4:" + checkC4);
                         if (i == yindex[j + 1] && i == yindex[j - 2]) { //
                             horizontalTwo = true;
                             horizontalTwoIndex = j + 1;
                             // console.log("need to block horizontally");
                         }
-                        
-                        else if (i == yindex[j + 2] && document.querySelector(checkC1).classList.contains("player1") && !document.querySelector(checkC2).classList.contains("player2")) {
-                            horizontalThree = true;
-                            horizontalIndex = j - 2;
-                            console.log("2 + 1");
+                        if (j >= 2){
+                            if (i == yindex[j - 2] && document.querySelector(checkC1).classList.contains("player1") && !document.querySelector(checkC2).classList.contains("player2")) {
+                                horizontalThree = true;
+                                horizontalIndex = j - 2;
+                                console.log("2 + 1");
+                            }
+                        }
+                        if (j <= 4){
+                            console.log("checking this")
+                            if (i == yindex[j+1]&& document.querySelector(checkC3).classList.contains("player1") && !document.querySelector(checkC4).classList.contains("player2")) {//{
+                                horizontalThree = true;
+                                horizontalIndex = j + 1;
+                                console.log("1 + 2");
+                            }
                         }
                     }
                 }
@@ -492,12 +504,11 @@ function checkX() {
                 if (p2Count == 3 && !pvp) {
                     if (j < 6) {
                         if (i == yindex[j + 1]) {
-                            console.log("xVal" + j);
                             horizontalThreeAi = true;
                             horizontalIndexAi = (j + 1);
                         }
                         else if (j > 2) {
-                            if (yindex[j - 2] - 1 == yindex[j - 3]) {
+                            if (i  == yindex[j - 3]) {
                                 horizontalThreeAi = true;
                                 horizontalIndexAi = j - 3;
                             }
@@ -896,3 +907,15 @@ restartButton.addEventListener("click", () => {
     restartButton.style.display = "none";
     gameText.style.display = "none";
 })
+
+
+function reset() {
+    verticalThree = false;
+    verticalThreeAi = false;
+    diagonalThree = false;
+    diagonalThreeAi = false;
+    horizontalTwo = false;
+    horizontalTwoAi = false;
+    horizontalThree = false;
+    horizontalThreeAi = false;
+}
