@@ -411,18 +411,28 @@ function checkX() {
             if (target.classList.contains("player1")) {
                 p1Count++;
                 p2Count = 0;
+                if (j >= 3 && j< 6 && i < 5){
+                    if(i == yindex[j + 1] && i == yindex[j-1] && i == yindex[j-3]) {
+                        index2 = (".y" + (i) + " > ul > .x" + (j-2));
+                        if(document.querySelector(index).classList.contains("player1") && document.querySelector(index2).classList.contains("player1")){
+                            horizontalTwo = true;
+                            horizontalTwoIndex = j - 1;
+                        }
+                    }
+                }
                 if (p1Count == 2) {
                     if (j > 2 && j < 6) {
-                        console.log("height:" + i);
+                        console.log("height:" + i + " j: " + j);
                         checkC1 = (".y" + i + " > ul > .x" + (j - 3));
                         checkC2 = (".y" + i + " > ul > .x" + (j - 2));
-
+                        
                         console.log("c1:" + checkC1);
-                        if (i == yindex[j + 1] && i == yindex[j - 2]) {
+                        if (i == yindex[j + 1] && i == yindex[j - 2]) { //
                             horizontalTwo = true;
                             horizontalTwoIndex = j + 1;
-                            console.log("need to block horizontally");
+                            // console.log("need to block horizontally");
                         }
+                        
                         else if (i == yindex[j + 2] && document.querySelector(checkC1).classList.contains("player1") && !document.querySelector(checkC2).classList.contains("player2")) {
                             horizontalThree = true;
                             horizontalIndex = j - 2;

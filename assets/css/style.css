@@ -548,7 +548,9 @@ ul {
     font-size: 3vh;
     color: rgb(255, 52, 52)
 }
-
+/* #timeline_items {
+    opacity: 0;
+} */
 /* mobile View */
 
 @media only screen and (max-width: 600px) {

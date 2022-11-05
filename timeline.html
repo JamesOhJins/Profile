@@ -18,6 +18,34 @@
             $("#header").load("assets/html/header.html")
         });
     </script>
+    <script> 
+    scrollViewer()
+    function scrollViewer(){
+        if (document.querySelector("#timeline_items")) {//when items are loaded
+            console.log("timeline is loaded");
+            let targetObj = document.querySelectorAll("#timeline_items");
+            let obeserver = new IntersectionObserver((e)=>{
+            e.forEach((obj)=>{
+                if(obj.isIntersecting){
+                    obj.target.style.transition= "opacity 0 1 1s linear 0s"
+                    console.log(obj.target.style.transition);
+                }
+                else {
+                    obj.target.style.transition= "opacity 1 0 1s linear 0s"
+                    obj.target.style.opacity
+                }
+            })
+        })
+        
+        for(var index = 0; index < targetObj.length; index++){
+            obeserver.observe(targetObj[index]);
+            console.log("observing" + targetObj[index]);
+        }
+      } else {
+        setTimeout(scrollViewer, 15);
+      }
+    }
+    </script>
     <div id="header"></div>
 </head>
 
