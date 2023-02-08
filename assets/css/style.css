@@ -326,17 +326,20 @@ a {
 }
 /*profile*/
 #profile {
+    padding-top:4vh;
+    padding-bottom:2vh;
     width: 100%;
-    text-align: center;
-    padding-top: 15vh;
+    text-align: center;    
 }
 
 #profile img {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     justify-content: center;
-    border: 10px solid #ccc;
+    box-shadow:5px #ccc;
+
+    /* border: 2.5px solid #ccc; */
     border-color: rgb(30, 30, 30);
     text-align: center;
 }
@@ -551,6 +554,27 @@ ul {
 /* #timeline_items {
     opacity: 0;
 } */
+#bioBox {
+    /* padding-top: -15%; */
+    padding-left: 5%;
+    padding-bottom: 10%;
+    max-width: 25%;
+    align-self: left;
+}
+#nameBox {
+    padding-top: 15vh;
+    align-self: center;
+}
+#name {
+  padding-top: 10vh;
+   font-size: 4vh; 
+   color:#ccc;
+   font-weight: bolder;
+   text-align: center;
+}
+#bio {
+    color:#ccc;
+}
 /* mobile View */
 
 @media only screen and (max-width: 600px) {

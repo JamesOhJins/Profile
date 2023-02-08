@@ -1,0 +1,13 @@
+I am currently pursuing BS in Computer Science, and in my senior year. 
+I have work experience at a mobile application company where it uses agile as the development process. 
+I worked as a quality assurance engineer testing application and developing automation wtih Java using appium. 
+<br><br>Other than the required courses such as Math courses, Statistics & Probability, Data sctructure and Algorithm, Systems Programming, Copmuter Organizitaion and Etc.
+<br><br>I have taken those courses as elective: <br><br>
+ - Introduction to Artificial Intelligence<br>
+ - Introduction to Machine Learning<br>
+ - Data Model and Query Languages<br>
+<br>
+Planning to take:<br><br>
+Modern Networking Concepts <br>
+Introduction to Computer Vision and Image Processing <br>
+Theory Algorithms for Modern Computing Systems <br>

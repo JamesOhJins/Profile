@@ -23,12 +23,22 @@
     </h1>
     <dl class="navLinks">
     </dl>
-    <div id=profile>
-        <img src="assets/images/profile/profile.png" alt="profileImg">
+    <div id="nameBox">
+        <p id="name">
+            Jinsang Oh
+        </p>
     </div>
-    <div id=grid>
-        <div id=column>
-        </div>
+    <div id=profile>
+        <img src="assets/images/profile/profile.jpeg" alt="profileImg">
+    </div>
+    
+    <div id=bioBox>
+        <p id=bio>
+            <script>$('#bio').load('assets/data/bio.txt', function () {
+                // load dog list
+            });
+        </script>
+        </p>
     </div>
     <div class="footer-dark">
 
