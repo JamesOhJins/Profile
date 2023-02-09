@@ -69,13 +69,13 @@ a {
     opacity: 0.75;
 }
 .ion-social-facebook{
-    color:rgb(255, 208, 0);
+    color:rgb(255, 225, 0);
 }
 .material-icons {
-    color:rgb(255, 208, 0);
+    color:rgb(255, 225, 0);
 }
 .fa-linkedin-square {
-    color:rgb(255, 208, 0);
+    color:rgb(255, 225, 0);
 }
 /* Navigation links at right top corner */
 .navLinks {
@@ -347,7 +347,7 @@ a {
     border-radius: 50%;
     justify-content: center;
     box-shadow:5px #ccc;
-    border: 4.5px solid rgb(255, 208, 0);
+    border: 4.5px solid rgb(255, 225, 0);
     /* border-color: rgb(30, 30, 30); */
     text-align: center;
 }
@@ -415,7 +415,7 @@ ul {
     margin-top: auto;
     /* border-style:solid 0.5px white; */
     border-style: none;
-    color:rgb(255, 208, 0);
+    color:rgb(255, 225, 0);
     background-color: rgb(10, 10, 10);
 }
 .footer-top { 
@@ -438,11 +438,11 @@ ul {
 .footer-dark .item.social {
     text-align: center;
     padding-top: 20px;
-    color:rgb(255, 187, 0)
+    color:rgb(255, 225, 0)
 }
 
 .footer-dark .item.social>a {
-    color:rgb(255, 187, 0) !important;
+    color:rgb(255, 225, 0) !important;
     font-size: 20px;
     width: 36px;
     height: 36px;
@@ -450,7 +450,7 @@ ul {
     display: inline-block;
     text-align: center;
     border-radius: 50%;
-    box-shadow: 0 0 0 1px rgb(255, 187, 0,0.6) ;
+    box-shadow: 0 0 0 1px rgb(255, 225, 0,0.6) ;
     margin: 0 8px;
     color: #fff;
     opacity: 0.75;
@@ -579,7 +579,7 @@ ul {
 #name {
   padding-top: 10vh;
    font-size: 4vh; 
-   color:rgb(255, 208, 0);
+   color:rgb(255, 225, 0);
    font-weight: bolder;
    text-align: center;
 }
