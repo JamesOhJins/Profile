@@ -162,7 +162,7 @@ async function predict() {
         else {
             labelContainer.childNodes[i].innerHTML = "";
         }
-        if (prediction[i].probability == 1) {
+        if (prediction[i].probability > 0.99) {
             labelContainer.childNodes[i].innerHTML = "";
             var breed = prediction[i].className;
             dogBreed.innerHTML = breed;
