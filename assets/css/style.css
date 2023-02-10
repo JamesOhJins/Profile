@@ -58,7 +58,8 @@ a {
     margin: 5px auto;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    background-color: #ccc;
+    background-color:rgb(255, 225, 0);
+
 }
 /* logo image next to title */
 #logo {
@@ -429,7 +430,7 @@ ul {
     border: 0;
     margin:0;
     background: black;
-    background: -webkit-gradient(linear, 25% 0, 75% 0, from(transparent), to(transparent), color-stop(50%, rgb(202, 201, 201)));
+    background: -webkit-gradient(linear, 25% 0, 75% 0, from(transparent), to(transparent), color-stop(50%, rgb(255, 225, 150)));
 }
 .footer-dark ul {
     padding: 0;
@@ -587,11 +588,17 @@ ul {
     align-self: center;
 }
 #name {
-  padding-top: 10vh;
+  /* padding-top: 10vh; */
    font-size: 4vh; 
-   color:rgb(255, 225, 0);
+   color:#ccc;
+   /* color:rgb(255, 225, 0); */
    font-weight: bolder;
    text-align: center;
+}
+#namedescription {
+    font-size: 4vh; 
+    color:#ccc;
+    text-align: center;
 }
 #bio {
     color:#ccc;
