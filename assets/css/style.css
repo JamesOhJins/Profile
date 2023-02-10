@@ -352,7 +352,7 @@ a {
     border-radius: 50%;
     justify-content: center;
     box-shadow:5px #ccc;
-    border: 4.5px solid rgb(255, 225, 0);
+    border: 1.2px solid rgb(255, 225, 0);
     /* border-color: rgb(30, 30, 30); */
     text-align: center;
 }
