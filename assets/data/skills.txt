@@ -1,15 +1,15 @@
 												
 <b>Technical skills:</b><br><br>
-MS Word, Spreadsheet, Powerpoint<br>				 
-Git							        <br>     
-Jira/Confluence (Agile board)			<br>		 
-Python	(Numpy, Pytorch and Tensorflow)		<br>	 
-Java (OOP)							 <br>
-Web (Javascript/HTML/CSS)				<br>	 
-App (Swift & Flutter(dart))					<br> 
-Scala								 <br>
-C/C++								 <br>
-SQL(MySQL, PostgreSQL)					 <br>
-Windows							 <br>
-MacOs								 <br>
-Linux				 				 <br>
+- MS Word, Spreadsheet, Powerpoint<br>				 
+- Git							        <br>     
+- Jira/Confluence (Agile board)			<br>		 
+- Python	(Numpy, Pytorch and Tensorflow)		<br>	 
+- Java (OOP)							 <br>
+- Web (Javascript/HTML/CSS)				<br>	 
+- Mobile (Swift & Flutter(dart))					<br> 
+- Scala								 <br>
+- C/C++								 <br>
+- SQL(MySQL, PostgreSQL)					 <br>
+- Windows							 <br>
+- MacOs								 <br>
+- Linux				 				 <br>

@@ -3,16 +3,16 @@ State University at New York, Buffalo		       <br>Bachelor of Science, Computer 
 <br>
 Courses taken:<br>
 <br>
--Data Structure and Algorithm<br>
--Systems Programming<br>
--Statistics and Probability<br>	
--Introduction to Artificial Intelligence<br>
--Introduction to Machine Learning<br>
--Software Engineering<br>
--Computer Organization<br>
--Data Models and Query Languages <br>
+- Data Structure and Algorithm<br>
+- Systems Programming<br>
+- Statistics and Probability<br>	
+- Introduction to Artificial Intelligence<br>
+- Introduction to Machine Learning<br>
+- Software Engineering<br>
+- Computer Organization<br>
+- Data Models and Query Languages <br>
 <br>
 Will take:<br><br>
-Modern Networking Concepts <br>
-Introduction to Computer Vision and Image Processing <br>
-Theory Algorithms for Modern Computing Systems <br>
+- Modern Networking Concepts <br>
+- Introduction to Computer Vision and Image Processing <br>
+- Theory Algorithms for Modern Computing Systems <br>
