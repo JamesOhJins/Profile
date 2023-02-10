@@ -1,0 +1,25 @@
+<b>Device Reservation System</b> (June, 2021 ~ August, 2022)</b> - Dart, Flutter <br><br>
+ - A reservation system app to track the test devices that were being used in a company.<br>
+ - I served a role to develop the application using Flutter and use REST API and HTTP protocol to put or fetch data from server..<br>
+<br>
+<b>Portfolio Webpage</b>(Jan, 2022 ~ May, 2022) - Javascript, CSS, HTML<br><br>
+ - Developed a personal webpage for portfolio. Have several sections:<br>
+ - Profile: To introduce and describe about myself<br>
+ - Photos: To practice grid webpage and upload photos<br>
+ - Application: <br>
+    - <b>Tetris</b>: Developed only by using JS, CSS and HTML<br>
+    - <b>Connect4</b>: Also developed only by using JS,CSS, and HTML, AI that plays Connect4 was developed as an algorithm.<br>
+    - <b>Dog Scanner</b>: Using a dog model I made by using Teachable Machine, I deployed it on my webpage and customized it so that it can use a camera or a picture to classify what dog breed it is. If dog was found, I fetched dog picture and data from “thedogapi” and display it on the screen<br>
+ - Studies: Similarly to the Photos, I made a grid webpage to store my algorithm and AI study materials.<br>
+<br>
+<br>
+<b>Dog Classification</b> (July, 2022) - Python<br><br>
+ - Using a Tensorflow and Keras Library, made an dog classification model<br>
+<br>
+<b>Dynamic Memory Allocator</b> (Oct, 2022) - C<br><br>
+ - Using multi-pool alloctor method, implemented a dynamic memory allocator that can replace malloc, calloc, free and realloc on a Linux system<br>
+ - Reusable using a multi-pool allocator and linked-list type of data structure that points to the next free block of memory.<br>
+<br>
+<b>Movie Recommendation System</b> (Dec, 2022) - Python<br><br>
+ - Goal: make a movie recommendation system that would recommend a movie that is not just another series of the same movie, but something that I couldn’t think of. <br>
+ - Put the genre as BOW, and applied Cosine Similarity from the Scikit-learn library to find similar movies with similar genres. <br>

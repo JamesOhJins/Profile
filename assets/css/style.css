@@ -135,7 +135,11 @@ a {
     color:rgb(255, 225, 0) !important;
     opacity: 1 !important;
 }
-
+#buttonbox {
+    width: 50%;
+    padding-bottom: 50px;
+    align-self: center;
+}
 #grid {
     display: grid;
     justify-content: center;
@@ -567,10 +571,16 @@ ul {
 } */
 #bioBox {
     /* padding-top: -15%; */
-    padding-left: 5%;
-    padding-bottom: 10%;
-    max-width: 25%;
-    align-self: left;
+    margin-top: 2%;
+    line-height: 1.5 ;
+    color: #ccc !important;
+
+}
+.biobutton {
+    border: 0.8px solid rgb(255, 225, 0);
+    color: rgb(255, 225, 0);
+    font-size: 20px!important;
+    /* height: 20%!important; */
 }
 #nameBox {
     padding-top: 15vh;
@@ -711,5 +721,9 @@ ul {
     #timeline .gallery__item #buffalo {
         padding-top: 0 !important;
     }
-    
+    #buttonbox {
+        width: 90% !important;
+        padding-bottom: 50px;
+        align-self: center;
+    }
 }

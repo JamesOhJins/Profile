@@ -3,6 +3,7 @@
 
 <head>
     <title>My Profile</title>
+    <link href="assets/css/dogScanner.css" rel="stylesheet">
     <link href="assets/css/style.css" rel="stylesheet">
     <script src="assets/js/highlightSelected.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
@@ -19,8 +20,6 @@
 </head>
 
 <body>
-    <!-- <h1 id = "title"><a href="index">My Profile</a> -->
-    <!-- </h1> -->
     <dl class="navLinks">
     </dl>
     <div id="nameBox">
@@ -31,17 +30,52 @@
     <div id=profile>
         <img src="assets/images/profile/profile.jpeg" alt="profileImg">
     </div>
-    
-    <div id=bioBox>
-        <p id=bio>
-            <script>$('#bio').load('assets/data/bio.txt', function () {
-                // load dog list
-            });
-        </script>
-        </p>
+    <div id=buttonbox>
+        <button type="button" class="biobutton collapsible">About me</button>
+        <div class="content">
+            <div id=bioBox>
+                <p id=bio>
+                    <script>$('#bio').load('assets/data/bio.txt', function () {
+                        });
+                    </script>
+                </p>
+            </div>
+        </div>
+        <button type="button" class="biobutton collapsible">Education</button>
+        <div class="content">
+            <div id=bioBox>
+                <p id=education>
+                    <script>$('#education').load('assets/data/education.txt', function () {
+                        });
+                    </script>
+                </p>
+            </div>
+        </div>
+        <button type="button" class="biobutton collapsible">Projects</button>
+        <div class="content">
+            <div id=bioBox>
+                <p id=projects>
+                    <script>$('#projects').load('assets/data/projects.txt', function () {
+                        });
+                    </script>
+                </p>
+            </div>
+        </div>
+        <button type="button" class="biobutton collapsible">Skills</button>
+        <div class="content">
+            <div id=bioBox>
+                <p id=skills>
+                    <script>$('#skills').load('assets/data/skills.txt', function () {
+                        });
+                    </script>
+                </p>
+            </div>
+        </div>
     </div>
-    <div class="footer-dark">
+    <script src="assets/js/collapsible.js"></script>
 
+
+    <div class="footer-dark">
     </div>
 </body>
 
