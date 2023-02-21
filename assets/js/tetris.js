@@ -98,43 +98,54 @@ window.addEventListener("keydown", function (e) {
 }, false);
 
 init()
+function handleLeftButtonClick() {
+    moveBlock("left", -1);
+}
+
+function handleRightButtonClick() {
+    moveBlock("left", 1);
+}
+
+function handleUpButtonClick() {
+    changeDirection();
+}
+
+function handleDownButtonClick() {
+    drop = false;
+    clearInterval(downInterval);
+    moveBlock("top", 1);
+    if (play) {
+        setTimeout(function () {
+            drop = true;
+            score += 1 * scoreMultiplier;
+            updateScore();
+            dropInterval();
+        }, 100)
+    }
+}
+
+function handleSpacebarClick() {
+    hardDrop();
+}
+
+function handlePauseButtonClick() {
+    pauseResume();
+}
+
+function handleMuteButtonClick() {
+    muteUnmute();
+}
 
 function mobile() {
-    leftButton.onclick = function() {
-        moveBlock("left", -1);
-        }
-    rightButton.onclick = function() {
-        moveBlock("left", 1);
-        }
-    upButton.onclick = function() {
-        changeDirection();
-        }
-    downButton.onclick = function() {
-        drop = false;
-        clearInterval(downInterval);
-        moveBlock("top", 1);
-        if (play) { //
-            setTimeout(function () {
-                drop = true;
-                score += 1*scoreMultiplier;
-                    updateScore();
-                dropInterval();
-            }, 100)
-        }
-    }
-    spacebar.onclick = function() { 
-        hardDrop();
-    }
-
-    pauseButton.onclick = function() {
-        pauseResume();
-    }
-
-    muteButton.onclick = function() {
-        muteUnmute();
-    }
-    
+    leftButton.onclick = handleLeftButtonClick;
+    rightButton.onclick = handleRightButtonClick;
+    upButton.onclick = handleUpButtonClick;
+    downButton.onclick = handleDownButtonClick;
+    spacebar.onclick = handleSpacebarClick;
+    pauseButton.onclick = handlePauseButtonClick;
+    muteButton.onclick = handleMuteButtonClick;
 }
+
 function init() {
     if (!play) {
         mobile();
@@ -148,7 +159,7 @@ function init() {
     }
     nextMovingItem = movingItem;
     tempMovingItem = movingItem;
-    for (let i = 0; i < GAME_ROWS +1; i++) {
+    for (let i = 0; i < GAME_ROWS + 1; i++) {
         prependNewLine()
     }
     for (let j = 0; j < PREVIEW_ROWS; j++) {

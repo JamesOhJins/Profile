@@ -35,7 +35,13 @@ let imgModal = (src) => {
         modal.remove();
     };
     modal.append(newImage, closeBtn);
-
+    modal.addEventListener("click", (event) => {
+        if (event.target.closest(".modal")) {
+            console.log("CLICKED");
+            window.document.removeEventListener("keydown", handler);
+            modal.remove();
+        }
+    });
     modalImg = document.querySelector(".modal img");
     modalImg.onclick = () => {
         console.log("modalimg is pressed");
