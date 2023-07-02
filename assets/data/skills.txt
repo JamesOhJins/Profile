@@ -13,3 +13,4 @@
 - Windows							 <br>
 - MacOs								 <br>
 - Linux				 				 <br>
+- Automation Testing Library (Selenium, Appium) <br>

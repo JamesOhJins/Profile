@@ -22,9 +22,9 @@
 </head>
 
 <body class=main>
-    <h1 id = "title">
+    <h1 id="title">
         <a href="profile">
-        Algorithm Studies
+            Algorithm Studies
         </a>
     </h1>
     <dl class="navLinks">
@@ -32,55 +32,72 @@
     <div id=grid>
         <div id=column>
             <ul>
-            <figure class="gallery__item"> 
-                <div class="spinner" style="display:flex">
-                    <img src="assets/images/studies/algorithm/DFS.png" class="photo" onload="removeLoader(src)">
-                </div>
-                <figcaption><span>Depth-first search (DFS)</span><br> is an algorithm for traversing a tree. It starts
-                    traversing from the root node and explores as far as possible along each branch before backtracking.
-                    Usually uses <span>stack</span> to find the shortest path. In general, DFS is faster than
-                    BFS.<br><span>Time complexity: </span> O(V+E)</figcaption>
-            </figure>
+                <figure class="gallery__item">
+                    <div class="spinner" style="display:flex">
+                        <img src="assets/images/studies/algorithm/DFS.png" class="photo" onload="removeLoader(src)">
+                    </div>
+                    <figcaption><span>Depth-first search (DFS)</span><br> is an algorithm for traversing a tree. It
+                        starts
+                        traversing from the root node and explores as far as possible along each branch before
+                        backtracking.
+                        Usually uses <span>stack</span> to find the shortest path. In general, DFS is faster than
+                        BFS.<br><span>Time complexity: </span> O(V+E)</figcaption>
+                </figure>
             </ul>
             <ul>
-            <figure class="gallery__item">
-                <div class="spinner" style="display:flex">
-                    <img src="assets/images/studies/algorithm/BFS.png" class="photo" onload="removeLoader(src)">
-                </div>
-                <figcaption><span>Breadth-first search (BFS)</span><br> is an algorithm for searching a tree. It starts
-                    traversing from the root node and explores all nodes at the present depth prior to moving on to the
-                    nodes at the next depth level. Extra memory, usually a <span>queue</span>, is needed to keep track
-                    of the child nodes that were encountered but not yet explored. It is usually a better option when
-                    target is closer to source.<br> <span>Time complexity: O(V+E)</span></figcaption>
-            </figure>
+                <figure class="gallery__item">
+                    <div class="spinner" style="display:flex">
+                        <img src="assets/images/studies/algorithm/BFS.png" class="photo" onload="removeLoader(src)">
+                    </div>
+                    <figcaption><span>Breadth-first search (BFS)</span><br> is an algorithm for searching a tree. It
+                        starts
+                        traversing from the root node and explores all nodes at the present depth prior to moving on to
+                        the
+                        nodes at the next depth level. Extra memory, usually a <span>queue</span>, is needed to keep
+                        track
+                        of the child nodes that were encountered but not yet explored. It is usually a better option
+                        when
+                        target is closer to source.<br> <span>Time complexity: O(V+E)</span></figcaption>
+                </figure>
             </ul>
             <ul>
                 <figure class="gallery__item">
                     <div class="spinner" style="display:flex">
                         <img src="assets/images/studies/algorithm/sieve.png" class="photo" onload="removeLoader(src)">
                     </div>
-                    <figcaption><span>Sieve of Eratosthenes</span><br> is a method used to find all the prime numbers up to a limit number(N).
-                        It adds all the numbers in a range as a prime number. Starting from smallest prime number, 2, it removes multiple of each prime number(i).
+                    <figcaption><span>Sieve of Eratosthenes</span><br> is a method used to find all the prime numbers up
+                        to a limit number(N).
+                        It adds all the numbers in a range as a prime number. Starting from smallest prime number, 2, it
+                        removes multiple of each prime number(i).
                         When i reaches sqrt(N) or bigger, all the numbers remaining are defined as prime number.
-                        <br> <span>Time complexity: O(N log (log N))</span></figcaption>
+                        <br> <span>Time complexity: O(N log (log N))</span>
+                    </figcaption>
                 </figure>
             </ul>
             <ul>
                 <figure class="gallery__item">
                     <div class="spinner" style="display:flex">
-                        <img src="assets/images/studies/algorithm/bruteforce.png" class="photo" onload="removeLoader(src)">
+                        <img src="assets/images/studies/algorithm/bruteforce.png" class="photo"
+                            onload="removeLoader(src)">
                     </div>
-                    <figcaption><span>Brute-force search</span><br> is a problem-solving technique that enumerates all the possible candidates for the solution. It checks each candidate if it satisfies problem's requirements.
-                        In general, Brute-force is easy to implement, but becomes inefficient as the number of possible candidates increases
-                        <br> <span>Time complexity: O(mn)</span></figcaption>
+                    <figcaption><span>Brute-force search</span><br> is a problem-solving technique that enumerates all
+                        the possible candidates for the solution. It checks each candidate if it satisfies problem's
+                        requirements.
+                        In general, Brute-force is easy to implement, but becomes inefficient as the number of possible
+                        candidates increases
+                        <br> <span>Time complexity: O(mn)</span>
+                    </figcaption>
                 </figure>
             </ul>
             <ul>
                 <figure class="gallery__item">
                     <div class="spinner" style="display:flex">
-                        <img src="assets/images/studies/algorithm/backtracking.png" class="photo" onload="removeLoader(src)">
+                        <img src="assets/images/studies/algorithm/backtracking.png" class="photo"
+                            onload="removeLoader(src)">
                     </div>
-                    <figcaption><span>Backtracking algorithm</span><br> is a problem-solving algorithm that recursively goes through candidates and returns to initial position if the candidate do not satisfy the condition.</figcaption>
+                    <figcaption><span>Backtracking algorithm</span><br> is a problem-solving algorithm that recursively
+                        goes through candidates and returns to initial position if the candidate do not satisfy the
+                        condition.</figcaption>
                 </figure>
             </ul>
             <ul>
@@ -88,7 +105,11 @@
                     <div class="spinner" style="display:flex">
                         <img src="assets/images/studies/algorithm/dj.png" class="photo" onload="removeLoader(src)">
                     </div>
-                    <figcaption><span>Dijkstra's Algorithm</span><br> is a graph search algorithm that solves the single-source shortest path problem. It works by visiting the unvisited node with the lowest path cost and updating path costs of its neighbors. It works for both directed and undirected graphs with non-negative edge weights.<br><span>Time complexity: </span> O(V^2) or O(V + E log V)</figcaption>
+                    <figcaption><span>Dijkstra's Algorithm</span><br> is a graph search algorithm that solves the
+                        single-source shortest path problem. It works by visiting the unvisited node with the lowest
+                        path cost and updating path costs of its neighbors. It works for both directed and undirected
+                        graphs with non-negative edge weights.<br><span>Time complexity: </span> O(V^2) or O(V + E log
+                        V)</figcaption>
                 </figure>
             </ul>
             <ul>
@@ -96,7 +117,10 @@
                     <div class="spinner" style="display:flex">
                         <img src="assets/images/studies/algorithm/binary.png" class="photo" onload="removeLoader(src)">
                     </div>
-                    <figcaption><span>Binary Search</span><br> is a search algorithm that finds the position of a target value within a sorted array. It compares the middle element of the array with the target value and narrows down the search range by half until the target value is found or the range is empty.<br><span>Time complexity: </span> O(log N)</figcaption>
+                    <figcaption><span>Binary Search</span><br> is a search algorithm that finds the position of a target
+                        value within a sorted array. It compares the middle element of the array with the target value
+                        and narrows down the search range by half until the target value is found or the range is
+                        empty.<br><span>Time complexity: </span> O(log N)</figcaption>
                 </figure>
             </ul>
             <ul>
@@ -104,7 +128,10 @@
                     <div class="spinner" style="display:flex">
                         <img src="assets/images/studies/algorithm/merge.png" class="photo" onload="removeLoader(src)">
                     </div>
-                    <figcaption><span>Merge Sort</span><br> is a divide-and-conquer sorting algorithm that works by recursively dividing the array into two halves, sorting them, and then merging the sorted halves back together. It is a stable sort and has a worst-case time complexity of O(N log N).<br><span>Time complexity: </span> O(N log N)</figcaption>
+                    <figcaption><span>Merge Sort</span><br> is a divide-and-conquer sorting algorithm that works by
+                        recursively dividing the array into two halves, sorting them, and then merging the sorted halves
+                        back together. It is a stable sort and has a worst-case time complexity of O(N log
+                        N).<br><span>Time complexity: </span> O(N log N)</figcaption>
                 </figure>
             </ul>
             <ul>
@@ -112,9 +139,98 @@
                     <div class="spinner" style="display:flex">
                         <img src="assets/images/studies/algorithm/quick.png" class="photo" onload="removeLoader(src)">
                     </div>
-                    <figcaption><span>Quick Sort</span><br> is a divide-and-conquer sorting algorithm that works by selecting a 'pivot' element from the array and partitioning the other elements into two groups, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively. In average cases, it has a time complexity of O(N log N), but it can degrade to O(N^2) in the worst case.<br><span>Time complexity: </span> O(N log N) (average), O(N^2) (worst)</figcaption>
+                    <figcaption><span>Quick Sort</span><br> is a divide-and-conquer sorting algorithm that works by
+                        selecting a 'pivot' element from the array and partitioning the other elements into two groups,
+                        according to whether they are less than or greater than the pivot. The sub-arrays are then
+                        sorted recursively. In average cases, it has a time complexity of O(N log N), but it can degrade
+                        to O(N^2) in the worst case.<br><span>Time complexity: </span> O(N log N) (average), O(N^2)
+                        (worst)</figcaption>
                 </figure>
             </ul>
+            <ul>
+                <figure class="gallery__item">
+                    <div class="spinner" style="display:flex">
+                        <img src="assets/images/studies/algorithm/DFS.png" class="photo" onload="removeLoader(src)">
+                    </div>
+                    <figcaption><span>Depth-first search (DFS)</span><br> is an algorithm for traversing a tree. It
+                        starts
+                        traversing from the root node and explores as far as possible along each branch before
+                        backtracking.
+                        Usually uses <span>stack</span> to find the shortest path. In general, DFS is faster than
+                        BFS.<br><span>Time complexity: </span> O(V+E)</figcaption>
+                </figure>
+            </ul>
+            <ul>
+                <figure class="gallery__item">
+                    <div class="spinner" style="display:flex">
+                        <img src="assets/images/studies/algorithm/DFS.png" class="photo" onload="removeLoader(src)">
+                    </div>
+                    <figcaption><span>Depth-first search (DFS)</span><br> is an algorithm for traversing a tree. It
+                        starts
+                        traversing from the root node and explores as far as possible along each branch before
+                        backtracking.
+                        Usually uses <span>stack</span> to find the shortest path. In general, DFS is faster than
+                        BFS.<br><span>Time complexity: </span> O(V+E)</figcaption>
+                </figure>
+            </ul>
+
+            <ul>
+                <figure class="gallery__item">
+                    <div class="spinner" style="display:flex">
+                        <img src="assets/images/studies/algorithm/DFS.png" class="photo" onload="removeLoader(src)">
+                    </div>
+                    <figcaption><span>Depth-first search (DFS)</span><br> is an algorithm for traversing a tree. It
+                        starts
+                        traversing from the root node and explores as far as possible along each branch before
+                        backtracking.
+                        Usually uses <span>stack</span> to find the shortest path. In general, DFS is faster than
+                        BFS.<br><span>Time complexity: </span> O(V+E)</figcaption>
+                </figure>
+            </ul>
+
+            <ul>
+                <figure class="gallery__item">
+                    <div class="spinner" style="display:flex">
+                        <img src="assets/images/studies/algorithm/DFS.png" class="photo" onload="removeLoader(src)">
+                    </div>
+                    <figcaption><span>Depth-first search (DFS)</span><br> is an algorithm for traversing a tree. It
+                        starts
+                        traversing from the root node and explores as far as possible along each branch before
+                        backtracking.
+                        Usually uses <span>stack</span> to find the shortest path. In general, DFS is faster than
+                        BFS.<br><span>Time complexity: </span> O(V+E)</figcaption>
+                </figure>
+            </ul>
+
+            <ul>
+                <figure class="gallery__item">
+                    <div class="spinner" style="display:flex">
+                        <img src="assets/images/studies/algorithm/galeShapley.png" class="photo" onload="removeLoader(src)">
+                    </div>
+                    <figcaption><span>Gale-Shapley Algorithm</span><br> is an algorithm that solves the Stable Marriage Problem. It involves an equal number of men and women; each man ranks all the women in order of preference and vice versa. The algorithm reaches a stable state where no man and woman who are not married to each other would both prefer each other over their current partners.<br><span>Time complexity: </span> O(n^2)</figcaption>
+                </figure>
+            </ul>
+            
+
+            <ul>
+                <figure class="gallery__item">
+                    <div class="spinner" style="display:flex">
+                        <img src="assets/images/studies/algorithm/prims.png" class="photo" onload="removeLoader(src)">
+                    </div>
+                    <figcaption><span>Prim's Algorithm</span><br> is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph. It works by building the tree one vertex at a time, from an arbitrary starting vertex, at each step adding the cheapest possible connection from the tree to another vertex.<br><span>Time complexity: </span> O(E log V)</figcaption>
+                </figure>
+            </ul>
+            
+
+            <ul>
+                <figure class="gallery__item">
+                    <div class="spinner" style="display:flex">
+                        <img src="assets/images/studies/algorithm/kruskal.png" class="photo" onload="removeLoader(src)">
+                    </div>
+                    <figcaption><span>Kruskal's Algorithm</span><br> is a greedy algorithm that finds a minimum spanning tree in an undirected, connected and weighted graph. It works by sorting all the edges from low weight to high and adding them to the spanning tree in order, ignoring those edges that would form a cycle.<br><span>Time complexity: </span> O(E log E)</figcaption>
+                </figure>
+            </ul>
+            
         </div>
     </div>
     <div class="footer-dark">

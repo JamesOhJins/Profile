@@ -5,6 +5,7 @@
     <title>Photo Timeline</title>
     <link href="assets/css/style.css" rel="stylesheet">
     <script src="assets/js/highlightSelected.js"></script>
+    <script src="assets/js/firebase.js"></script>
     <script defer src="assets/js/modal.js"></script>
     <script src="assets/js/loader.js"></script>
     <script async src="https://kit.fontawesome.com/6cc05e1e8e.js" crossorigin="anonymous"></script>
@@ -64,8 +65,9 @@
             <li><a href="#busan">June, 2019</a></li>
             <li><a href="#military">Jan, 2021</a></li>
             <li><a href="#threei">Nov, 2021</a></li>
-            <li><a href="#korea">Dec, 2021</a></li>
-            <li><a href="#ub">Aug,2022</a></li>
+            <li><a href="#korea">Aug, 2022</a></li>
+            <li><a href="#daou">Aug,2023</a></li>
+            <li><a href="#ub">Dec,2023</a></li>
         </div>
         <script src = "assets/js/scrollPercent.js">
         </script>
@@ -151,12 +153,22 @@
                 </figure>
                 <figure class="gallery__item" id = "timeline_items">
                     <div class="spinner" style="display:flex">
+                        <img id="daou" src="assets/images/timeline/selenium.png" class="photo" onload="removeLoader(src)">
+                    </div>
+                    <figcaption><span class="timeline">June, 2023 ~ August, 2023</span> <br><br>
+                        I had a summer internship at Daou Technology Inc., and wrote code to test the services that the company was serving.
+                        It was all written in Python, using Selenium library for webpages. 
+                    </figcaption>
+                </figure>
+                <figure class="gallery__item" id = "timeline_items">
+                    <div class="spinner" style="display:flex">
                         <img id="ub" src="https://arts-sciences.buffalo.edu/etc/designs/ubcms/clientlibs-main/images/ub-social.png.img.512.auto.png/1615975619499.png" class="photo" onload="removeLoader(src)">
                     </div>
                     <figcaption><span class="timeline">Aug, 2022 ~ Now</span> <br><br> I came back to UB to pursue my degree. 
                         I am taking more CSE courses including ML, and looking for internships involving machine learning.
                     </figcaption>
                 </figure>
+
             </span>
         </div>
     </div>

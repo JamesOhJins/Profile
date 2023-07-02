@@ -11,8 +11,7 @@ Courses taken:<br>
 - Software Engineering<br>
 - Computer Organization<br>
 - Data Models and Query Languages <br>
-<br>
-Will take:<br><br>
+- Introduction to Data Mining
+- Data Intensive Computing <br>
 - Modern Networking Concepts <br>
-- Introduction to Computer Vision and Image Processing <br>
-- Theory Algorithms for Modern Computing Systems <br>
+- Intro Thoery of Computation<br>
