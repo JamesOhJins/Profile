@@ -1,3 +1,5 @@
-I am currently pursuing <b>BS in Computer Science</b>, and in my senior year. 
-I have work experience at a mobile application company where it uses <b>agile</b> as the development process. 
-I worked as a <b>quality assurance engineer</b> testing application and developing <b>automation</b> wtih <b>Java</b> using <b>appium</b>. 
+Welcome! I'm nearing completion of my Computer Science degree with a focus on data science and machine learning. With experience in agile development and automation, I've realized the pivotal role of data-driven insights in creating robust applications. <br>
+<br>
+Passionate about data science, I leverage Python and R to derive actionable insights. Machine learning, from neural networks to regression, captivates me for its ability to unveil complex patterns. As I approach graduation, I'm excited to take on data-driven challenges and their endless possibilities.<br>
+<br>
+Best regards
