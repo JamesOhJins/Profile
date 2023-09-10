@@ -222,7 +222,7 @@ a {
     color: #cccccc;
     font-weight: bolder;
     text-align: center !important;
-    /* display: inline-block; */
+    display: inline-block;
     padding: 0;
 }
 
