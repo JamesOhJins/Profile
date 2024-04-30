@@ -603,6 +603,13 @@ ul {
 #bio {
     color:#ccc;
 }
+#bioBox {
+    font-size: 1.25em;
+}
+.whiteLink {
+    color: #ccc;
+
+}
 /* mobile View */
 
 @media only screen and (max-width: 600px) {

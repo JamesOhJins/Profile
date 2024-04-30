@@ -289,7 +289,7 @@ function clearBreed() {
 function displayBreed(image) {
     $('#dog').attr('src', image.url);
     $("#breed_data_table tr").remove();
-
+    
     var breed_data = image.breeds[0]
   $.each(breed_data, function(key, value) {
     // as 'weight' and 'height' are objects that contain 'metric' and 'imperial' properties, just use the metric string

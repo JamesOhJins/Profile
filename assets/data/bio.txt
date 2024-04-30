@@ -1,5 +1,5 @@
-Welcome! I'm nearing completion of my Computer Science degree with a focus on data science and machine learning. With experience in agile development and automation, I've realized the pivotal role of data-driven insights in creating robust applications. <br>
+Welcome! I've got my Computer Science degree with a focus on data science and machine learning. With experience in agile development and automation, I've realized the pivotal role of data-driven insights in creating robust applications. <br>
 <br>
-Passionate about data science, I leverage Python and R to derive actionable insights. Machine learning, from neural networks to regression, captivates me for its ability to unveil complex patterns. As I approach graduation, I'm excited to take on data-driven challenges and their endless possibilities.<br>
+Passionate about data science, I leverage Python and R to derive actionable insights. Machine learning, from neural networks to regression, captivates me for its ability to unveil complex patterns. I'm passionate in utilizing LLM to leverage test automation<br>
 <br>
 Best regards
