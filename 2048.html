@@ -78,8 +78,20 @@
             aspect-ratio: 1 / 1;
             font-size: 2vmin; /* Base font size */
         }
+        #score-container {
+            display: flex;
+            justify-content: space-evenly;
+            width: 60%;
+            min-width: 400px;
+            margin-bottom: 2vh;
+        }
         #score {
-            font-size: 5vh;
+            font-size: 4vh;
+            margin-bottom: 2vh;
+            color: #bbada0;
+        }
+        #best-score {
+            font-size: 4vh;
             margin-bottom: 2vh;
             color: #bbada0;
         }
@@ -114,7 +126,10 @@
 </head>
 <body>
     <div id="game-container">
-        <div id="score">Score: <span id="score-value">0</span></div>
+        <div id="score-container">
+            <div id="score">Score: <span id="score-value">0</span></div>
+            <div id="best-score">Best: <span id="best-score-value">0</span></div>
+        </div>
         <div id="game-board"></div>
         <div id="buttons">
             <button onclick="newGame()">New Game</button>
@@ -128,7 +143,37 @@
         const gridSize = 4;
         let undoState = null;
         let canUndo = true;
+        window.fakeStorage = {
+            _data: {},
+            setItem: function (id, val) {
+                return this._data[id] = String(val);
+            },
+            getItem: function (id) {
+                return this._data.hasOwnProperty(id) ? this._data[id] : undefined;
+            },
+            removeItem: function (id) {
+                return delete this._data[id];
+            },
+            clear: function () {
+                return this._data = {};
+            }
+        };
+        function LocalScoreManager() {
+            var localSupported = !!window.localStorage;
+            this.key = "bestScore";
+            this.storage = localSupported ? window.localStorage : window.fakeStorage;
+        }
 
+        LocalScoreManager.prototype.get = function () {
+            return this.storage.getItem(this.key) || 0;
+        };
+
+        LocalScoreManager.prototype.set = function (score) {
+            this.storage.setItem(this.key, score);
+        };
+
+        // Create an instance of LocalScoreManager
+        const scoreManager = new LocalScoreManager();
         function initializeGame() {
             board = [];
             for (let i = 0; i < gridSize; i++) {
@@ -143,6 +188,8 @@
             updateBoard();
             document.getElementById('undoButton').disabled = true;
             canUndo = true;
+            updateBestScore();
+
         }
 
         function addNewTile() {
@@ -176,6 +223,14 @@
             }
             document.getElementById('score-value').textContent = score;
             adjustFontSizes();
+            if (score > scoreManager.get()) {
+                scoreManager.set(score);
+                updateBestScore();
+            }
+        }
+        function updateBestScore() {
+            const bestScore = scoreManager.get();
+            document.getElementById('best-score-value').textContent = bestScore;
         }
 
         function getTileColor(value) {
@@ -262,10 +317,12 @@
                 updateBoard();
                 animateMove(direction);
                 if (isGameOver()) {
-                    setTimeout(() => {
-                        alert('Game Over! Your score: ' + score);
-                    }, 300);
-                }
+                setTimeout(() => {
+                    alert('Game Over! Your score: ' + score);
+                    newGame();
+                }, 300);
+}
+
             }
         }
 
@@ -390,6 +447,7 @@
         window.addEventListener('load', () => {
             initializeGame();
             resizeGame();
+            updateBestScore();
         });
     </script>
 </body>
