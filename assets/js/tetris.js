@@ -6,6 +6,7 @@ const playground = document.querySelector(".playground > ul");
 const gameText = document.querySelector(".game-text");
 const comboText = document.querySelector(".combo");
 const scoreDisplay = document.querySelector(".score");
+const bestScoreDisplay = document.querySelector(".best-score");
 const restartButton = document.querySelector(".game-button");
 const leftButton = document.querySelector("#left_button");
 const rightButton = document.querySelector("#right_button");
@@ -33,6 +34,7 @@ const PREVIEW_COLS = 5;
 let combo = 0.0;
 let checkCombo = true;
 let score = 0;
+let bestScore = 0;
 let duration = 1000;
 let downInterval;
 let hDrop = false;
@@ -157,6 +159,8 @@ function init() {
         gameText.style.fontFamily = 'Karma';
         gameText.style.display = "flex";
     }
+    loadBestScore();
+    updateScoreDisplay();
     nextMovingItem = movingItem;
     tempMovingItem = movingItem;
     for (let i = 0; i < GAME_ROWS + 1; i++) {
@@ -292,14 +296,16 @@ function checkGameover() {
                             gameover.play();
                             playsound = false;
                         }
+                        if (score > bestScore) {
+                            bestScore = score;
+                            saveBestScore();
+                        }
                         showGameoverText()
                     }
                 })
             }
-
         })
     })
-
 }
 
 
@@ -559,10 +565,35 @@ document.addEventListener("keydown", e => {
     }
 })
 
-function updateScore() {
-    scoreDisplay.innerText = "Score: " + score.toFixed(0);
+function updateScoreDisplay() {
+    scoreDisplay.innerText = `Score: ${score.toFixed(0)}`;
+    const bestScoreDisplay = document.querySelector(".best-score");
+    if (bestScoreDisplay) {
+        bestScoreDisplay.innerText = `Best: ${bestScore.toFixed(0)}`;
+    } else {
+        const newBestScoreDisplay = document.createElement("div");
+        newBestScoreDisplay.className = "best-score";
+        newBestScoreDisplay.innerText = `Best: ${bestScore.toFixed(0)}`;
+        scoreDisplay.parentNode.insertBefore(newBestScoreDisplay, scoreDisplay.nextSibling);
+    }
 }
-
+function updateScore() {
+    score += scoreMultiplier;
+    if (score > bestScore) {
+        bestScore = score;
+        saveBestScore();
+    }
+    updateScoreDisplay();
+}
+function loadBestScore() {
+    const storedBestScore = localStorage.getItem("tetrisBestScore");
+    if (storedBestScore) {
+        bestScore = parseInt(storedBestScore, 10);
+    }
+}
+function saveBestScore() {
+    localStorage.setItem("tetrisBestScore", bestScore.toString());
+}
 function restart() {
     playground.innerHTML = "";
     preview.innerHTML = "";
@@ -604,7 +635,7 @@ function reset() {
     duration = 1000;
     score = count = lines = lineCount = 0;
     play = drop = playsound = true;
-    updateScore();
+    updateScoreDisplay();
     stageDisplay.innerText = "Stage: " + stage;
     nextLevelDisplay.innerText = "Next Level: " + (10 - lineCount);
     theme2.pause();

@@ -2,14 +2,20 @@
     padding-left: 8.5rem;
 }
 
+#score-wrapper {
+    padding-right: 8.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 3vh;
+}
+
 .score {
     text-align: center;
     font-family: 'Karma', sans-serif;
-    padding-right: 8.5rem;
-    font-size: 32px;
-    margin-bottom: 1rem;
+    font-size: 2vh;
     color: #ccc;
 }
+
 
 .info {
     padding-bottom: 1rem;
@@ -367,6 +373,9 @@
 }
 
 @media only screen and (max-width: 600px) {
+    #score-wrapper {
+        padding-right: 0rem;
+    }
     .score {
         padding: 0;
     }
