@@ -175,9 +175,7 @@ function initMobileControls() {
     gameArea.addEventListener("touchend", handleTouchEnd, { passive: false });
     
     // make pauseButton visible
-    // pauseButton.style.display = "flex";
-    // resumeButton.style.display = "flex";
-
+    pauseButton.addEventListener("click", handlePauseButtonClick);
     muteButton.addEventListener("click", muteUnmute);
     
     restartButton.addEventListener("click", restart);
