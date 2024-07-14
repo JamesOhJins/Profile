@@ -8,11 +8,7 @@ const comboText = document.querySelector(".combo");
 const scoreDisplay = document.querySelector(".score");
 const bestScoreDisplay = document.querySelector(".best-score");
 const restartButton = document.querySelector(".game-button");
-const leftButton = document.querySelector("#left_button");
-const rightButton = document.querySelector("#right_button");
-const upButton = document.querySelector("#up_button");
-const downButton = document.querySelector("#down_button");
-const spacebar = document.querySelector("#spacebar");
+
 const pauseButton = document.querySelector("#pause_button");
 const resumeButton = document.querySelector(".resume-button");
 const muteButton = document.querySelector("#mute_button");
@@ -99,36 +95,7 @@ window.addEventListener("keydown", function (e) {
     }
 }, false);
 
-init()
-function handleLeftButtonClick() {
-    moveBlock("left", -1);
-}
-
-function handleRightButtonClick() {
-    moveBlock("left", 1);
-}
-
-function handleUpButtonClick() {
-    changeDirection();
-}
-
-function handleDownButtonClick() {
-    drop = false;
-    clearInterval(downInterval);
-    moveBlock("top", 1);
-    if (play) {
-        setTimeout(function () {
-            drop = true;
-            score += 1 * scoreMultiplier;
-            updateScore();
-            dropInterval();
-        }, 100)
-    }
-}
-
-function handleSpacebarClick() {
-    hardDrop();
-}
+init();
 
 function handlePauseButtonClick() {
     pauseResume();
@@ -138,14 +105,92 @@ function handleMuteButtonClick() {
     muteUnmute();
 }
 
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+let longPressTimer;
+const SWIPE_THRESHOLD = 50;
+const LONG_PRESS_DURATION = 200;
+
+function handleTouchStart(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    longPressTimer = setTimeout(() => {
+        handleSoftDrop();
+    }, LONG_PRESS_DURATION);
+}
+
+function handleTouchMove(e) {
+    // Prevent default scrolling behavior
+    e.preventDefault();
+    clearTimeout(longPressTimer);
+}
+function handleTouchEnd(e) {
+    clearTimeout(longPressTimer);
+    touchEndX = e.changedTouches[0].clientX;
+    touchEndY = e.changedTouches[0].clientY;
+    handleSwipe();
+}
+
+function handleSwipe() {
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+            if (deltaX > 0) {
+                moveBlock("left", 1);
+            } else {
+                moveBlock("left", -1);
+            }
+        }
+    } else {
+        if (deltaY > SWIPE_THRESHOLD) {
+            hardDrop();
+        } else if (Math.abs(deltaY) < SWIPE_THRESHOLD) {
+            changeDirection(); // Rotate on tap
+        }
+    }
+}
+
+function handleSoftDrop() {
+    drop = false;
+    clearInterval(downInterval);
+    moveBlock("top", 1);
+    if (play) {
+        setTimeout(function () {
+            drop = true;
+            score += 1 * scoreMultiplier;
+            updateScore();
+            dropInterval();
+        }, 100);
+    }
+}
+
+function initMobileControls() {
+    const gameArea = document.querySelector(".playground");
+    gameArea.addEventListener("touchstart", handleTouchStart, { passive: false });
+    gameArea.addEventListener("touchmove", handleTouchMove, { passive: false });
+    gameArea.addEventListener("touchend", handleTouchEnd, { passive: false });
+    
+    // make pauseButton visible
+    // pauseButton.style.display = "flex";
+    // resumeButton.style.display = "flex";
+
+    muteButton.addEventListener("click", muteUnmute);
+    
+    restartButton.addEventListener("click", restart);
+    resumeButton.addEventListener("click", () => {
+        if (!play) {
+            pauseResume();
+        }
+    });
+}
+
+
 function mobile() {
-    leftButton.onclick = handleLeftButtonClick;
-    rightButton.onclick = handleRightButtonClick;
-    upButton.onclick = handleUpButtonClick;
-    downButton.onclick = handleDownButtonClick;
-    spacebar.onclick = handleSpacebarClick;
-    pauseButton.onclick = handlePauseButtonClick;
-    muteButton.onclick = handleMuteButtonClick;
+    initMobileControls();
 }
 
 function init() {
