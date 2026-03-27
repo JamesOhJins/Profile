@@ -167,6 +167,53 @@ function handleSoftDrop() {
         }, 100);
     }
 }
+function getShadowTop() {
+    const { type, direction, left, top } = movingItem;
+    let shadowTop = top;
+
+    while (true) {
+        let canMove = true;
+        for (const block of BLOCKS[type][direction]) {
+            const x = block[0] + left;
+            const y = block[1] + (shadowTop + 1) + 1; // +1 for the hidden top row offset
+            const target = playground.childNodes[y]
+                ? playground.childNodes[y].childNodes[0].childNodes[x]
+                : null;
+            if (!target || target.classList.contains("seized")) {
+                canMove = false;
+                break;
+            }
+        }
+        if (!canMove) break;
+        shadowTop++;
+    }
+    return shadowTop;
+}
+
+// Render the ghost/shadow piece at the calculated drop position
+function renderShadow() {
+    // Clear previous shadow
+    document.querySelectorAll(".shadow").forEach(el => el.classList.remove("shadow"));
+
+    if (!play) return;
+
+    const { type, direction, left } = movingItem;
+    const shadowTop = getShadowTop();
+
+    // Don't render shadow if it overlaps the actual block
+    if (shadowTop === movingItem.top) return;
+
+    BLOCKS[type][direction].forEach(block => {
+        const x = block[0] + left;
+        const y = block[1] + shadowTop + 1;
+        const target = playground.childNodes[y]
+            ? playground.childNodes[y].childNodes[0].childNodes[x]
+            : null;
+        if (target && !target.classList.contains("seized") && !target.classList.contains("moving")) {
+            target.classList.add("shadow");
+        }
+    });
+}
 
 function initMobileControls() {
     const gameArea = document.querySelector(".playground");
@@ -314,9 +361,11 @@ function renderBlocks(moveType = "") {
     movingItem.left = left;
     movingItem.top = top;
     movingItem.direction = direction;
+    renderShadow();
 }
 
 function seizeBlock() {
+    document.querySelectorAll(".shadow").forEach(el => el.classList.remove("shadow")); // 👈 ADD
     const movingBlocks = document.querySelectorAll(".moving");
     movingBlocks.forEach(moving => {
         moving.classList.remove("moving");
@@ -324,7 +373,7 @@ function seizeBlock() {
         hDrop = false;
     })
     checkCombo = false;
-    checkMatch()
+    checkMatch();
 }
 function checkGameover() {
     const childNodes = playground.childNodes;
@@ -488,16 +537,55 @@ function changeDirection() {
 
 //fast auto-drop function when spacebar is pressed
 function hardDrop() {
+    if (!play) return;
     clearInterval(downInterval);
-    if (play) {
-        hDrop = true;
-        downInterval = setInterval(() => {
-            score += 1 * scoreMultiplier;
-            updateScore();
-            moveBlock('top', 1)
-        }, 14)
+    hDrop = true;
+
+    const { type, direction, left } = movingItem;
+    let shadowTop = movingItem.top;
+
+    while (true) {
+        let canMove = true;
+        for (const block of BLOCKS[type][direction]) {
+            const x = block[0] + left;
+            const y = block[1] + (shadowTop + 1) + 1;
+            const target = playground.childNodes[y]
+                ? playground.childNodes[y].childNodes[0].childNodes[x]
+                : null;
+            if (!target || target.classList.contains("seized")) {
+                canMove = false;
+                break;
+            }
+        }
+        if (!canMove) break;
+        shadowTop++;
     }
-    
+
+    const distance = shadowTop - movingItem.top;
+    score += distance * scoreMultiplier;
+    updateScore();
+
+    movingItem.top = shadowTop;
+    tempMovingItem = { ...movingItem };
+
+    document.querySelectorAll(".moving").forEach(el => {
+        el.classList.remove(movingItem.type, "moving");
+    });
+
+    BLOCKS[type][direction].forEach(block => {
+        const x = block[0] + left;
+        const y = block[1] + shadowTop + 1;
+        const target = playground.childNodes[y]
+            ? playground.childNodes[y].childNodes[0].childNodes[x]
+            : null;
+        if (target && !target.classList.contains("seized")) {
+            target.classList.add(type, "moving");
+        }
+    });
+
+    down.play();
+    seizeBlock();
+    checkGameover(); // 👈 generateNewBlock() removed — seizeBlock → checkMatch → generateNewBlock handles it
 }
 function displayCombo() {
     if (combo > 1){
